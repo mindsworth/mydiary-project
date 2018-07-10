@@ -1,0 +1,115 @@
+header {
+    display: grid;
+    grid-template-columns: 18rem auto 25rem;
+    height: 6rem;
+    background-color: #ffffff;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.brand {
+    background-color: #FF6839;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.brand .brand-logo {
+    height: 2.5rem;
+}
+
+nav {
+    border-right: 2px solid #eee;
+    padding: .5rem 5rem;
+}
+
+nav .fa-plus {
+    padding: 1rem;
+    background-color: #f7f7f7;
+    border-radius: 50%;
+}
+
+.header .main-nav ul,
+.header .user ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header ul li {
+    display: inline-block;
+    padding: 0 1rem;
+    font-weight: 500;
+}
+
+.header ul li a {
+    text-decoration: none;
+    color: #222;
+}
+
+.user {
+    padding-right: 4rem;
+}
+
+.user .thumbnail {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    border: 5px solid #f7f7f7;
+    border-radius: 50%;
+    background-color: #2d1d80;
+    cursor: pointer;
+}
+
+/* Dropdown List */
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    min-width: 5rem;
+    min-height: 5rem;
+    top: 100%;
+    right: 5rem;
+    border-top: 3px solid #FF6839;
+    background-color: #ffffff;
+    box-shadow: 0px 10px 16px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-dropdown::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #FF6839;
+    top: -10px;
+    right: 0;
+    z-index: 10;
+    transition: all .3s ease-in-out;
+}
+
+.user-dropdown ul li {
+    display: block;
+    margin-bottom: .5rem;
+    padding: 0;
+    text-align: center;
+}
+
+.user-dropdown ul li a {
+    padding: 1rem 7rem;
+    display: block;
+    background-color: #f7f7f7;
+}
+
+.user-dropdown ul li a:hover {
+    transition: all .3s ease-in-out;
+    background-color: #eee;
+}
+
+.user-dropdown ul li:last-child {
+    margin-bottom: 0;
+}
