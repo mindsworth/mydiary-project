@@ -1,0 +1,16 @@
+.filter-list li {
+    list-style: none;
+}
+
+.filter-list li a {
+    background-color: #ffffff;
+    padding: 1rem;
+    display: block;
+    text-decoration: none;
+    font-weight: 500;
+    color: #222;
+}
+
+.filter-list li a:hover {
+    color: #FF6839;
+}
