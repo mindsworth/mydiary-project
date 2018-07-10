@@ -114,21 +114,36 @@ nav .fa-plus {
     margin-bottom: 0;
 }
 
+.mobile-show {
+    display: none !important;
+}
+
 /* Responsiveness Styling*/
 
 @media only screen and (max-width: 587px) {
     header {
         display: grid;
-        grid-template-columns: 15rem auto 4rem;
+        grid-template-columns: 15rem auto 2rem;
         height: 6rem;
     }
     nav {
         border-right: 0;
+        padding: .5rem 1rem;
+    }
+    .header .main-nav ul {
+        justify-content: flex-start;
     }
     .user-dropdown {
         right: 2rem;
     }
     .mobile-hide {
         display: none !important;
+    }
+    .user {
+        padding-right: 1.5rem;
+        padding-top: 1rem;
+    }
+    .mobile-show {
+        display: block !important;
     }
 }

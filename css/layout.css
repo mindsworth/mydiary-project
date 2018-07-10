@@ -1,7 +1,22 @@
-.container-one {
-    display: grid;
-    grid-template-columns: 250px auto;
+.container {
     width: 980px;
     margin: 10rem auto 7rem;
     grid-gap: 16px;
+}
+
+.col-2 {
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-gap: 16px;
+}
+
+/* Responsiveness Styling*/
+
+@media only screen and (max-width: 587px) {
+    .col-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 16px;
+        width: 95%;
+    }
 }
