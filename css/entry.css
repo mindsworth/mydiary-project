@@ -85,7 +85,7 @@
 @media only screen and (max-width: 587px) {
     .diary-entry {
         padding: 3rem;
-        margin-bottom: .3rem;
+        margin-bottom: 1rem;
     }
     .diary-entry .description {
         padding: 0;
