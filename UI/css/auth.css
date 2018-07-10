@@ -1,0 +1,124 @@
+.auth {
+    background: linear-gradient(45deg, #ff6839 0%, #2d1d80 85%, #2d1d80 100%) no-repeat center center;
+    /* background: url('../imgs/bgmain.jpg') no-repeat center center; */
+    background-size: cover;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.auth-container {
+    text-align: center;
+    z-index: 10;
+}
+
+.auth-inner {
+    background: #ffffff;
+    padding: 5rem 7rem;
+    box-shadow: 0px 2px 46px 20px rgba(0, 0, 0, 0.2);
+    padding-bottom: 8rem;
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.auth-logo {
+    width: 15rem;
+    margin-bottom: 4rem;
+}
+
+.auth-title {
+    margin-bottom: 3rem;
+}
+
+.auth-title h4 {
+    font-size: 2.4rem;
+    color: #FF6839;
+    margin-bottom: 1rem;
+}
+
+.form-group-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1.6rem;
+}
+
+.form-group {
+    position: relative;
+    display: block;
+}
+
+.form-group .form-control {
+    display: block;
+    border: 0;
+    color: #FF6839;
+    border-bottom: 1px solid #FF6839;
+    width: 100%;
+    height: 3rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.form-group label {
+    position: absolute;
+    left: 0%;
+    top: 120%;
+    width: 100%;
+    font-size: .9rem;
+    color: #FF6839;
+}
+
+.auth-inner button {
+    padding: 1em 5rem;
+    border-radius: 30px;
+    border: 0;
+    background-color: #FF6839;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: absolute;
+    bottom: -10%;
+    right: 50%;
+    transform: translateX(50%);
+    cursor: pointer;
+}
+
+/* Responsiveness Styling*/
+
+@media only screen and (max-width: 767px) {
+    .auth-container {
+        margin: 3rem 0;
+    }
+    .auth-inner {
+        padding: 5rem 2rem 4rem;
+        width: 100vw;
+    }
+    .auth-title {
+        margin-bottom: 1.6rem;
+    }
+    .form-group-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .form-group {
+        position: relative;
+        display: block;
+        margin-bottom: 2rem;
+    }
+    .form-group .form-control,
+    .form-group label {
+        text-align: center;
+    }
+    .auth-inner button {
+        font-size: 1.4rem;
+        padding: 1.3rem 2rem;
+        bottom: -7%;
+    }
+    .small-spacing {
+        display: none;
+    }
+    .a-left {
+        text-align-last: center !important;
+    }
+}
