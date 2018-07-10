@@ -87,7 +87,7 @@
 
 /* Responsiveness Styling*/
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 587px) {
     .auth-container {
         margin: 3rem 0;
     }

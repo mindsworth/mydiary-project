@@ -113,3 +113,22 @@ nav .fa-plus {
 .user-dropdown ul li:last-child {
     margin-bottom: 0;
 }
+
+/* Responsiveness Styling*/
+
+@media only screen and (max-width: 587px) {
+    header {
+        display: grid;
+        grid-template-columns: 15rem auto 4rem;
+        height: 6rem;
+    }
+    nav {
+        border-right: 0;
+    }
+    .user-dropdown {
+        right: 2rem;
+    }
+    .mobile-hide {
+        display: none !important;
+    }
+}
