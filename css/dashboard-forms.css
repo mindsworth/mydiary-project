@@ -37,6 +37,31 @@
     color: #FF6839;
 }
 
+.form-group-wrap .form-group select {
+    border: 1px solid #FF6839;
+    width: 100%;
+    padding: 1rem;
+    color: #FF6839;
+}
+
+.new-category {
+    text-align: right;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.new-category a {
+    background-color: #00BCD0;
+    padding: .5rem 1rem;
+    border-radius: 30px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.title-box {
+    position: relative;
+}
+
 @media only screen and (max-width: 587px) {
     .form-wrapper {
         padding: 0rem 0rem;
