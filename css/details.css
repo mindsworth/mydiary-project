@@ -1,0 +1,24 @@
+.details .diary-entry:hover {
+    background: none;
+    box-shadow: none;
+}
+
+.back-home {
+    text-align: center;
+}
+
+.back-home .fa-angle-left {
+    font-size: 6rem;
+    margin: 1rem;
+    color: #FF6839;
+}
+
+.notice .timer {
+    font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 587px) {
+    .details .diary-entry {
+        padding: 0;
+    }
+}
