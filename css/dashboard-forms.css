@@ -36,3 +36,18 @@
 .editprofile .about-cont textarea::-webkit-input-placeholder {
     color: #FF6839;
 }
+
+@media only screen and (max-width: 587px) {
+    .form-wrapper {
+        padding: 0rem 0rem;
+    }
+    .editprofile {
+        border-left: 5rem solid #FF6839;
+    }
+    .editprofile .modified-grid {
+        display: block;
+    }
+    .editprofile .form-group label {
+        font-size: 1rem;
+    }
+}

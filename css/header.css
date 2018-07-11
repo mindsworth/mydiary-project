@@ -1,7 +1,7 @@
 header {
     display: grid;
     grid-template-columns: 18rem auto 25rem;
-    height: 6rem;
+    height: 7rem;
     background-color: #ffffff;
     align-items: center;
     position: fixed;
