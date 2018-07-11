@@ -1,0 +1,38 @@
+.form-wrapper {
+    padding: 3rem 5rem;
+}
+
+.editprofile {
+    border-left: 20rem solid #FF6839;
+}
+
+.editprofile .modified-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 3rem;
+}
+
+.editprofile .form-group .form-control {
+    border: 1px solid #FF6839;
+    padding: 2rem 1rem;
+}
+
+.editprofile .form-group label {
+    font-size: 1.2rem;
+    top: 100%;
+}
+
+.editprofile .small-spacing {
+    margin-bottom: 2rem;
+}
+
+.editprofile .about-cont .form-control {
+    width: 100%;
+    height: 20rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.editprofile .about-cont textarea::-webkit-input-placeholder {
+    color: #FF6839;
+}

@@ -1,6 +1,7 @@
 /* Imported Styles */
 
 @import "./global.css";
+@import "./forms.css";
 @import "./auth.css";
 @import "./header.css";
 @import "./layout.css";
@@ -8,3 +9,4 @@
 @import "./entry.css";
 @import "./profile.css";
 @import "./details.css";
+@import "./dashboard-forms.css";
