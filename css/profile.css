@@ -112,6 +112,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 2rem;
+    align-items: center;
 }
 
 .inner-notsat p b {
@@ -175,4 +176,26 @@
 
 .statistics-figure-wrap {
     text-align: right;
+}
+
+@media only screen and (max-width: 587px) {
+    .info {
+        display: block;
+    }
+    .user-info-one .user-name {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .user-info-one .user-about {
+        margin: 2rem 0;
+    }
+    .age-gender .age {
+        flex: 1 100%;
+    }
+    .age-gender .gender {
+        flex: 1 50%;
+    }
+    .age span {
+        padding-left: 3rem;
+    }
 }

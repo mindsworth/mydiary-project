@@ -36,4 +36,10 @@
         grid-gap: 16px;
         width: 95%;
     }
+    .col-1 {
+        width: 95%;
+    }
+    .wrapper {
+        padding: 5rem 3rem;
+    }
 }
