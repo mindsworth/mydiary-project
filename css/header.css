@@ -63,6 +63,7 @@ nav .fa-plus {
     border-radius: 50%;
     background-color: #2d1d80;
     cursor: pointer;
+    overflow: hidden;
 }
 
 /* Dropdown List */

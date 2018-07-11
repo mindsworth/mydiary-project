@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Diari || Your personal true story</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/stylesheet.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="brand">
+            <a href="index.html">
+                <img class="brand-logo" src="./imgs/mydiary_logo_white.png" alt="diari_logo">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="mobile-hide">
+                    <a href="#">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="user">
+            <ul>
+                <li class="mobile-hide">Chigoziem</li>
+                <li>
+                    <div class="thumbnail">
+                        <img src="./imgs/userface.png" alt="User thumbnail">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="user-dropdown">
+            <ul>
+                <li>
+                    <a href="./profile.html">Profile</a>
+                </li>
+                <li>
+                    <a href="./login.html">Log out</a>
+                </li>
+                <li class="mobile-show">
+                    <a href="./create.html">Add New Entry</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main role="main">
+        <div class="container col-1">
+            <div>
+                <a href="./editprofile.html">
+                    <button class="cta-btn">Edit profile</button>
+                </a>
+            </div>
+            <div class="wrapper info">
+                <div class="user-image">
+                    <div class="thumbnail">
+                        <img src="./imgs/userface.png" alt="User thumbnail">
+                    </div>
+                    <div>
+                        <button class="change-image-btn">
+                            <i class="fas fa-image"></i>change image</button>
+                        <p class="remove">
+                            <a href="#">Remove</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="user-info-one">
+                    <h2 class="user-name">Chigoziem Nwaiwu</h2>
+                    <p class="user-about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                        dicta accusantium ipsa magnam facere reiciendis, quos voluptate eligendi numquam.</p>
+                    <div class="age-gender">
+                        <div class="age">
+                            <b>Age:</b>
+                            <span>30years</span>
+                        </div>
+                        <div class="gender">
+                            <i class="fas fa-male"></i>
+                            <b>Male</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info-two">
+                    <div class="email">
+                        <b>Email:</b>
+                        <span>princegoziem@gmail.com</span>
+                    </div>
+                    <div class="tel">
+                        <b>Phone Number:</b>
+                        <span>08039216673</span>
+                    </div>
+                    <div class="city">
+                        <b>City:</b>
+                        <span>Lagos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <h3>Reminder Settings</h3>
+                <div class="inner-notsat">
+                    <p>
+                        <b>Notification</b>
+                    </p>
+                    <div class="notification-switch">
+                        <div class="switch-group">
+                            <input type="checkbox" id="onOff">
+                            <label for="onOff"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <h3>Statistics</h3>
+                <div class="inner-notsat">
+                    <p>
+                        <b>Total diary entry since you joined</b>
+                    </p>
+                    <div class="statistics-figure-wrap">
+                        <p class="statistics-figure">
+                            <b>40</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/custom.js"></script>
+</body>
+
+</html>
