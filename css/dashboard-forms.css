@@ -50,4 +50,8 @@
     .editprofile .form-group label {
         font-size: 1rem;
     }
+    .editprofile .about-cont .form-control {
+        text-align-last: left;
+        height: 15rem;
+    }
 }
