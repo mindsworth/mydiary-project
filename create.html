@@ -57,36 +57,37 @@
     <main role="main">
         <div class="container col-1">
             <div>
-                <h1 class="big-title">Details</h1>
+                <h1 class="big-title">Edit profile</h1>
             </div>
-            <div class="wrapper details">
-                <div class="diary-entry">
-                    <div class="header">
-                        <h4 class="title">My love life</h4>
-                        <div class="edit">
-                            <i class="fas fa-trash-alt"></i>
-                            <i class="fas fa-pencil-alt"></i>
+            <div class="wrapper editprofile">
+                <form class="form-wrapper">
+                    <div class="form-group-wrap">
+                        <div class="form-group">
+                            <div class="title-box">
+                                <input class="form-control" type="text" id="title">
+                                <label for="title">Enter title</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select name="category" id="">
+                                <option>Categories</option>
+                                <option value="life-style">Life-style</option>
+                                <option value="my love life">My love life</option>
+                            </select>
+                            <div class="new-category">
+                                <a href="#">Add new category</a>
+                            </div>
                         </div>
                     </div>
-                    <h5 class="category">
-                        <span class="color"></span> Life-style</h5>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
-                        dicta accusantium ipsa magnam facere reiciendis, quos voluptate eligendi numquam.Lorem ipsum dolor
-                        sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis dicta accusantium
-                        ipsa magnam facere reiciendis, quos voluptate eligendi numquam.Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Quidem accusamus provident ad id culpa nobis dicta accusantium ipsa magnam facere
-                        reiciendis, quos voluptate eligendi numquam.</p>
-                    <div class="notice">
-                        <div class="fav">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="timer">Last updated - 3mins ago</div>
+                    <div class="small-spacing"></div>
+                    <div class="form-group about-cont">
+                        <textarea class="form-control" name="" id="" placeholder="Description"></textarea>
                     </div>
-                </div>
+                </form>
             </div>
-            <div class="back-home">
-                <a href="./dashboard.html">
-                    <i class="fas fa-angle-left"></i>
+            <div class="a-right r-btn">
+                <a href="./editprofile.html">
+                    <button class="cta-btn">Save</button>
                 </a>
             </div>
         </div>
