@@ -5,7 +5,7 @@
 }
 
 .diary-entry:hover {
-    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.1);
     background-color: #f7f7f7;
 }
 
@@ -44,9 +44,12 @@
 }
 
 .diary-entry .description {
-    padding-right: 5rem;
+    padding-right: 10rem;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
+    font-size: 1.6rem;
+    letter-spacing: .05rem;
+    line-height: 2.5rem;
 }
 
 .diary-entry .notice {
@@ -89,6 +92,8 @@
     }
     .diary-entry .description {
         padding: 0;
+        font-size: 1.4rem;
+        line-height: 2rem;
     }
     .diary-entry .notice {
         display: block;
