@@ -19,7 +19,7 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #222;
     background-color: #F3F1F0;
-    letter-spacing: .1rem;
+    letter-spacing: .08rem;
     line-height: 2rem;
 }
 
@@ -57,4 +57,18 @@ h4 {
 
 .tiny-title {
     margin-bottom: 1rem;
+}
+
+.cta-btn {
+    background-color: #FF6839;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    padding: 1.2rem 3rem;
+    color: #fff;
+}
+
+.thumbnail img {
+    width: 100%;
+    border-radius: 50%;
 }
