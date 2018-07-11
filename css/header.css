@@ -1,13 +1,14 @@
 header {
     display: grid;
     grid-template-columns: 18rem auto 25rem;
-    height: 6rem;
+    height: 7rem;
     background-color: #ffffff;
     align-items: center;
     position: fixed;
     width: 100vw;
     top: 0;
     box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    z-index: 999;
 }
 
 .brand {
