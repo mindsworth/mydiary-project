@@ -64,10 +64,6 @@
     font-size: 3rem;
 }
 
-.index main .container p {
-    font-size: 3rem;
-}
-
 .index main .container .hype {
     font-size: 1.6rem;
     width: 40rem;
@@ -81,4 +77,36 @@
 
 .index main .container div a button {
     font-weight: 700;
+}
+
+@media only screen and (max-width: 587px) {
+    .index main .container {
+        width: 100%;
+        padding-left: 2rem;
+    }
+    .index main .container {
+        /* border: 1px solid #000; */
+        margin-top: 28rem;
+    }
+    .shape-one {
+        height: 30%;
+    }
+    .shape-two {
+        bottom: -20%;
+        right: -5%;
+        height: 50%;
+        opacity: .3;
+    }
+    .index main .container .hype {
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+    .index main .container h1 {
+        line-height: 4rem;
+        margin: 1rem 0;
+        font-size: 4.5rem;
+    }
+    .index header {
+        padding-top: 2rem;
+    }
 }
