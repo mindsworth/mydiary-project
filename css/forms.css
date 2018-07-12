@@ -1,16 +1,15 @@
 .form-group-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 5rem;
+    grid-column-gap: 2em;
 }
 
 .form-group {
-    position: relative;
     display: block;
 }
 
 .form-group .form-control {
-    display: block;
+    display: inline-block;
     border: 0;
     color: #FF6839;
     border-bottom: 1px solid #FF6839;
@@ -20,12 +19,7 @@
     font-weight: 700;
 }
 
-.form-group label {
-    position: absolute;
-    left: 0%;
-    top: 120%;
-    width: 100%;
-    font-size: .9rem;
+.form-group .form-control::-webkit-input-placeholder {
     color: #FF6839;
 }
 
