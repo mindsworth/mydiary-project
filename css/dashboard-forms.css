@@ -18,8 +18,10 @@
 }
 
 .editprofile .form-group label {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    color: #FF6839;
     top: 100%;
+    display: block;
 }
 
 .editprofile .small-spacing {
@@ -31,10 +33,6 @@
     height: 20rem;
     font-size: 1.6rem;
     font-weight: 700;
-}
-
-.editprofile .about-cont textarea::-webkit-input-placeholder {
-    color: #FF6839;
 }
 
 .form-group-wrap .form-group select {

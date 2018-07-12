@@ -1,0 +1,112 @@
+.index {
+    height: 100vh;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.shape-one,
+.shape-two {
+    position: absolute;
+    z-index: 0;
+}
+
+.shape-one {
+    height: 50%;
+}
+
+.shape-two {
+    bottom: 0;
+    right: -5%;
+}
+
+.index header,
+.index .brand,
+.index nav {
+    background: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.index header {
+    grid-template-columns: 18rem auto;
+}
+
+.index nav {
+    text-align: right;
+}
+
+.index nav ul li {
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+.index nav a {
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: #222222;
+}
+
+.index main {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.index main .container {
+    /* border: 1px solid #000; */
+    margin-top: 28rem;
+}
+
+.index main .container p {
+    font-size: 3rem;
+}
+
+.index main .container .hype {
+    font-size: 1.6rem;
+    width: 40rem;
+    margin-bottom: 3rem;
+}
+
+.index main .container h1 {
+    font-size: 5.5rem;
+    margin: 2rem 0 3rem;
+}
+
+.index main .container div a button {
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 587px) {
+    .index main .container {
+        width: 100%;
+        padding-left: 2rem;
+    }
+    .index main .container {
+        /* border: 1px solid #000; */
+        margin-top: 28rem;
+    }
+    .shape-one {
+        height: 30%;
+    }
+    .shape-two {
+        bottom: -20%;
+        right: -5%;
+        height: 50%;
+        opacity: .3;
+    }
+    .index main .container .hype {
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+    .index main .container h1 {
+        line-height: 4rem;
+        margin: 1rem 0;
+        font-size: 4.5rem;
+    }
+    .index header {
+        padding-top: 2rem;
+    }
+}
