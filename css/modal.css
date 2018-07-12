@@ -1,0 +1,83 @@
+.modal-olay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-olay .form-group {
+    width: 50rem;
+    padding: 5rem;
+    background-color: #ffffff;
+}
+
+.modal-olay .form-group .form-control {
+    border: 1px solid #FF6839;
+    padding: 2rem 1rem;
+}
+
+.modal-olay .form-group .color-opt span {
+    position: relative;
+    margin: 2rem;
+}
+
+.modal-olay .form-group .color-opt label {
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.modal-olay .form-group .color-opt {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.modal-olay .form-group .color-opt .color-control {
+    opacity: 0;
+}
+
+.modal-olay .form-group .color-opt .color-control:checked~label {
+    border: 2px solid #333;
+}
+
+.modal-olay .form-group .color-opt p {
+    margin-bottom: 3rem;
+    font-weight: 500;
+}
+
+.modal-olay .form-group .color-opt .one {
+    background-color: #0AD3FC;
+}
+
+.modal-olay .form-group .color-opt .two {
+    background-color: #200AFC;
+}
+
+.modal-olay .form-group .color-opt .three {
+    background-color: #CC10D9;
+}
+
+.modal-olay .form-group .color-opt .four {
+    background-color: #FC0A3C;
+}
+
+.modal-olay .form-group .color-opt .five {
+    background-color: #5AFC0A;
+}
+
+.modal-btn-wrap {
+    text-align: center;
+    padding: 3rem;
+}
