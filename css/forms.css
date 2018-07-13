@@ -31,7 +31,6 @@
     font-size: 1.2rem;
 }
 
-http: //127.0.0.1:5500/create.html
 @media only screen and (max-width: 587px) {
     .form-group-wrap {
         display: grid;
@@ -40,7 +39,7 @@ http: //127.0.0.1:5500/create.html
     .form-group {
         position: relative;
         display: block;
-        margin-bottom: 2rem;
+        margin-bottom: .2rem;
     }
     .form-group .form-control,
     .form-group label {
