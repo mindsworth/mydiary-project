@@ -19,10 +19,19 @@
     font-weight: 700;
 }
 
-.form-group .form-control::-webkit-input-placeholder {
+.form-group .form-control::placeholder {
     color: #FF6839;
+    font-weight: 500;
+    font-size: 1.2rem;
 }
 
+.form-group .form-control::-webkit-input-placeholder {
+    color: #FF6839;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+http: //127.0.0.1:5500/create.html
 @media only screen and (max-width: 587px) {
     .form-group-wrap {
         display: grid;

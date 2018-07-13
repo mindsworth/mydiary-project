@@ -18,8 +18,8 @@
 }
 
 .modal-olay .form-group .form-control {
-    border: 1px solid #ff6839;
     padding: 2rem 1rem;
+    text-align: center;
 }
 
 .modal-olay .form-group .color-opt span {
