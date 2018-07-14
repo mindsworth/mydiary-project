@@ -41,8 +41,7 @@
         display: block;
         margin-bottom: .2rem;
     }
-    .form-group .form-control,
-    .form-group label {
+    .form-group .form-control {
         text-align: center;
     }
 }
