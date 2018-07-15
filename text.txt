@@ -1,0 +1,7 @@
+{
+	"_id": "3",
+	"title": "Jenefa's diary",
+	"description": "The Jenefa's TV show series was interesting",
+	"category_id": 3,
+	"user_id": 3
+}
