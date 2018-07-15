@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 
+import entriesRoute from './routes/enteries';
+
 const app = express();
 
 
@@ -12,6 +14,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+
+app.use('/api/v1/entries', entriesRoute);
 app.use((req, res, next) => {
   const error = new Error('Request Not Found!');
   error.status = 404;
