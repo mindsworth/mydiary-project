@@ -6,7 +6,7 @@ export const entriesGetAll = (req, res) => {
   const count = entries.length;
   res.status(200).json({
     message: "List of all entries",
-    "Number of entries": count,
+    "Number of entries added": count,
     entries,
   });
 };
