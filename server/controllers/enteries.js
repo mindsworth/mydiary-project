@@ -29,3 +29,23 @@ export const entriesAddEntry = (req, res) => {
     entries,
   });
 };
+
+export const entriesGetOne = (req, res) => {
+  const { params } = req;
+
+  const fetchedEntry = entries
+    .find(entry => entry._id === Number(params.entryId));
+  console.log(fetchedEntry);
+  console.log(params.entryId);
+  if (fetchedEntry) {
+    // const fetchedEntry = entries[params.entryId - 1];
+    res.status(200).json({
+      message: `Get the entry with ID ${params.entryId}`,
+      entryId: fetchedEntry,
+    });
+  } else {
+    res.status(404).json({
+      message: `The entry with the ID ${params.entryId} is not found.`,
+    });
+  }
+};
