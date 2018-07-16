@@ -5,3 +5,8 @@
 	"category_id": 3,
 	"user_id": 3
 }
+
+[
+	{"propName": "title", "value": "Hope for nigerians"},
+	{"propName": "description", "value": "What if its you with someone else's future wife?"}
+]
