@@ -84,3 +84,26 @@ export const entriesEdit = (req, res) => {
     fetchedEntry,
   });
 };
+
+export const entryDelete = (req, res) => {
+  const { params } = req;
+
+  const fetchedEntry = entries
+    .filter(entry => entry._id === Number(params.entryId));
+  console.log(fetchedEntry);
+
+  if (fetchedEntry.length === 0) {
+    return res.status(404).json({
+      Message: 'Entry does not exist',
+    });
+  }
+
+  const returnedEntry = entries
+    .filter(entry => entry._id !== Number(params.entryId));
+  console.log(fetchedEntry);
+
+  return res.status(200).json({
+    Message: `Entry deleted!`,
+    "Remaining Entries": returnedEntry,
+  });
+};
