@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 8.11.3
+
+branches:
+  only:
+    - API-test 
+script:
+  - npm test
+  
+after_success: npm run coverage
