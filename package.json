@@ -14,7 +14,8 @@
     ]
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node ./dist/server.js",
+    "heroku-postbuild": "npx babel server/ --out-dir dist/ --ignore server/test",
     "start:dev": "nodemon --watch server --exec babel-node -- server/server.js",
     "web": "./node_modules/.bin/forever -m 5 server.js",
     "test": "nyc --reporter=html mocha --require babel-core/register server/test/**/*.test.js --exit && nyc report",
