@@ -4,7 +4,7 @@ node_js:
 
 branches:
   only:
-    - API-test
+    - develop
     
 script:
   - npm test
