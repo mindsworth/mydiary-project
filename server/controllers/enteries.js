@@ -22,6 +22,12 @@ export const entriesAddEntry = (req, res) => {
     user_id: 3,
   };
 
+  if (!title && !description) {
+    return res.status(400).json({
+      Message: 'title and description Fields should not be Empty',
+    });
+  }
+
   if (!title) {
     return res.status(400).json({
       Message: 'title Field should not be Empty',
@@ -31,12 +37,6 @@ export const entriesAddEntry = (req, res) => {
   if (!description) {
     return res.status(400).json({
       Message: 'description Field should not be Empty',
-    });
-  }
-
-  if (!req.body.title && !req.body.description) {
-    return res.status(400).json({
-      Message: 'title and description Fields should not be Empty',
     });
   }
 
