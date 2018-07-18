@@ -14,22 +14,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.get('/api/v1', (req, res) => res.status(200).json({
+  message: 'Welcome to myDiary app for everyone.',
+}));
 
 app.use('/api/v1/entries', entriesRoute);
-app.use((req, res, next) => {
-  const error = new Error('Request Not Found!');
-  error.status = 404;
 
-  next(error);
-});
-
-app.use((error, req, res) => {
-  res.status(error.status || 500).json({
-    error: {
-      message: error.message,
-    },
-  });
-});
-
+app.get('*', (req, res) => res.status(404).json({
+  message: 'Request Not Found!',
+}));
 
 export default app;

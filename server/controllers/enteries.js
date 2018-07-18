@@ -12,29 +12,37 @@ export const entriesGetAll = (req, res) => {
 };
 
 export const entriesAddEntry = (req, res) => {
+  const { _id, title, description } = req.body;
+
   const entry = {
-    _id: req.body._id.trim(),
-    title: req.body.title.trim(),
-    description: req.body.description.trim(),
+    _id,
+    title: title.trim(),
+    description: description.trim(),
     category_id: 3,
     user_id: 3,
   };
 
-  if (!req.body.title) {
+  if (!title) {
     return res.status(400).json({
       Message: 'title Field should not be Empty',
     });
   }
 
-  if (!req.body.description) {
+  if (!description) {
     return res.status(400).json({
       Message: 'description Field should not be Empty',
     });
   }
 
+  if (!req.body.title && !req.body.description) {
+    return res.status(400).json({
+      Message: 'title and description Fields should not be Empty',
+    });
+  }
+
   entries = [...entries, entry];
 
-  return res.status(200).json({
+  return res.status(201).json({
     message: "Adding new entry",
     entries,
   });
@@ -49,7 +57,7 @@ export const entriesGetOne = (req, res) => {
   if (fetchedEntry) {
     return res.status(200).json({
       message: `Get the entry with ID ${params.entryId}`,
-      entryId: fetchedEntry,
+      entry: fetchedEntry,
     });
   }
   return res.status(404).json({
@@ -62,10 +70,9 @@ export const entriesEdit = (req, res) => {
 
   const fetchedEntry = entries
     .find(entry => entry._id === Number(params.entryId));
-  console.log(fetchedEntry);
 
   if (!fetchedEntry) {
-    return res.status(200).json({
+    return res.status(404).json({
       message: `Entry to modify is not available.`,
     });
   }
@@ -90,7 +97,6 @@ export const entryDelete = (req, res) => {
 
   const fetchedEntry = entries
     .filter(entry => entry._id === Number(params.entryId));
-  console.log(fetchedEntry);
 
   if (fetchedEntry.length === 0) {
     return res.status(404).json({
@@ -100,10 +106,9 @@ export const entryDelete = (req, res) => {
 
   const returnedEntry = entries
     .filter(entry => entry._id !== Number(params.entryId));
-  console.log(fetchedEntry);
 
   return res.status(200).json({
     Message: `Entry deleted!`,
-    "Remaining Entries": returnedEntry,
+    RemainingEntries: returnedEntry,
   });
 };
