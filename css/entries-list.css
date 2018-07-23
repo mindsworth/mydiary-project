@@ -1,0 +1,130 @@
+.list-container {
+  width: 90%;
+  margin: 12rem auto;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  background-color: #f7f7f7;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.filters button {
+  padding: 1rem 3rem;
+  border-radius: 30px;
+  border: 0;
+  margin: 0 1rem;
+  color: #222222;
+  font-weight: 700;
+  background-color: #fff;
+}
+
+.filters .active {
+  background-color: #ff6839;
+  color: #ffffff;
+}
+
+.content {
+  display: grid;
+  grid-gap: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.content .diary-entry {
+  border: 1px solid #e9ebee;
+  transition: 0.25s ease;
+  border-radius: 5px;
+  border-top: 5px solid #200afc;
+  border-bottom: 3px solid #dddddd;
+}
+
+.content .diary-entry:hover {
+  box-shadow: 0 10px 50px -10px rgba(134, 134, 134, 0.64);
+  transition: 0.25s ease;
+  transform: translateY(-2%);
+}
+
+.content .diary-entry .header {
+  margin-bottom: 0;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.content .header .edit {
+  position: relative;
+}
+
+.content .drawer {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  top: 100%;
+  right: 0;
+  border-radius: 3px;
+  display: none;
+}
+
+.content .show-drawer .drawer {
+  display: block;
+}
+
+.content .edit .drawer ul li {
+  text-align: left;
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.content .edit .drawer ul li a:hover {
+  background-color: #ff6839;
+  color: #ffffff;
+}
+
+.content .edit .drawer ul li a {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  padding-right: 3rem;
+  margin: 0;
+  display: block;
+}
+
+.content .edit .drawer ul li a .fas {
+  margin-left: 0;
+}
+
+.content .header .fa-ellipsis-h {
+  /* background-color: #eee; */
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.content .diary-entry .category {
+  padding-left: 1rem;
+  /* border-left: 3px solid #0AD3FC; */
+}
+
+.content .diary-entry .description {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.05rem;
+  line-height: 1.8rem;
+  border: 1px solid #e9ebee;
+  border-right: 0;
+  border-left: 0;
+  color: #222222;
+}
+
+.content .diary-entry .notice {
+  padding: 1rem;
+}
+
+.content .notice .fav {
+  font-size: 1.2rem;
+}
