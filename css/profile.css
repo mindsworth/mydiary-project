@@ -178,6 +178,33 @@
     text-align: right;
 }
 
+.all-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+.all-categories .items {
+    background-color: #200AFC;
+    color: #ffffff;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: .5rem 1.5rem;
+    border-radius: 30px;
+}
+
+.all-categories .items .fa-times-circle {
+    cursor: pointer;
+}
+
+.add-category .fa-plus {
+    padding: 1.2rem;
+    background-color: #FF6839;
+    border-radius: 50%;
+    color: #ffffff;
+}
+
 @media only screen and (max-width: 587px) {
     .info {
         display: block;
@@ -197,5 +224,8 @@
     }
     .age span {
         padding-left: 3rem;
+    }
+    .all-categories .items {
+        display: inline-block;
     }
 }

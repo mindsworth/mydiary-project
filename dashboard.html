@@ -37,108 +37,411 @@
                 <li>
                     <div class="thumbnail">
                         <img src="./imgs/userface.png" alt="User thumbnail">
+                        <ul class="user-dropdown">
+                            <li>
+                                <a href="./profile.html">Profile</a>
+                            </li>
+                            <li class="mobile-show">
+                                <a href="./create.html">Add New Entry</a>
+                            </li>
+                            <li>
+                                <a href="./login.html">Log Out</a>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-            </ul>
-        </div>
-        <div class="user-dropdown">
-            <ul>
-                <li>
-                    <a href="./profile.html">Profile</a>
-                </li>
-                <li class="mobile-show">
-                    <a href="./create.html">Add New Entry</a>
-                </li>
-                <li>
-                    <a href="./login.html">Log out</a>
                 </li>
             </ul>
         </div>
     </header>
     <main role="main">
-        <div class="container col-2">
-            <div class="filter">
-                <p class="tiny-title">Filters</p>
-                <ul class="filter-list">
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-heart"></i> favorite</a>
-                    </li>
-                </ul>
+        <div class="list-container">
+            <div class="filters">
+                <button class="">All</button>
+                <button class="active">Favourite</button>
             </div>
             <div class="content">
-                <p class="tiny-title">6 of 40</p>
                 <div class="diary-entry">
                     <div class="header">
                         <h4 class="title">My love life</h4>
                         <div class="edit">
-                            <a href="./create.html">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
                         </div>
                     </div>
-                    <h5 class="category">
-                        <span class="color"></span> Life-style</h5>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
-                        dicta accusantium ipsa magnam facere reiciendis, quos voluptate eligendi numquam.</p>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
                     <div class="notice">
                         <div class="fav">
                             <i class="fas fa-heart"></i>
                         </div>
                         <div class="timer">Last updated - 3mins ago</div>
-                        <div class="details-btn">
-                            <a href="./details.html">
-                                <button>view details</button>
-                            </a>
-                        </div>
                     </div>
                 </div>
-
                 <div class="diary-entry">
                     <div class="header">
                         <h4 class="title">My love life</h4>
                         <div class="edit">
-                            <i class="fas fa-pencil-alt"></i>
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
                         </div>
                     </div>
-                    <h5 class="category">
-                        <span class="color"></span> Life-style</h5>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
-                        dicta accusantium ipsa magnam facere reiciendis, quos voluptate eligendi numquam.</p>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
                     <div class="notice">
                         <div class="fav">
                             <i class="fas fa-heart"></i>
                         </div>
                         <div class="timer">Last updated - 3mins ago</div>
-                        <div class="details-btn">
-                            <a href="./details.html">
-                                <button>view details</button>
-                            </a>
-                        </div>
                     </div>
                 </div>
-
                 <div class="diary-entry">
                     <div class="header">
                         <h4 class="title">My love life</h4>
                         <div class="edit">
-                            <i class="fas fa-pencil-alt"></i>
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
                         </div>
                     </div>
-                    <h5 class="category">
-                        <span class="color"></span> Life-style</h5>
-                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
-                        dicta accusantium ipsa magnam facere reiciendis, quos voluptate eligendi numquam.</p>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
                     <div class="notice">
                         <div class="fav">
                             <i class="fas fa-heart"></i>
                         </div>
                         <div class="timer">Last updated - 3mins ago</div>
-                        <div class="details-btn">
-                            <a href="./details.html">
-                                <button>view details</button>
-                            </a>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
                         </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
+                    </div>
+                </div>
+                <div class="diary-entry">
+                    <div class="header">
+                        <h4 class="title">My love life</h4>
+                        <div class="edit">
+                            <i class="fas fa-ellipsis-h">
+                                <div class="drawer">
+                                    <ul>
+                                        <li>
+                                            <a href="./create.html">
+                                                <i class="fas fa-pencil-alt"></i>Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-trash-alt"></i>Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </i>
+                        </div>
+                    </div>
+                    <h5 class="category">Life-style</h5>
+                    <a href="./details.html">
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
+                            dicta accusantium ipsa magnam facere reiciendis, quos voluptate...</p>
+                    </a>
+                    <div class="notice">
+                        <div class="fav">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="timer">Last updated - 3mins ago</div>
                     </div>
                 </div>
             </div>
