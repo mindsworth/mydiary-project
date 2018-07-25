@@ -7,7 +7,7 @@ header {
     position: fixed;
     width: 100vw;
     top: 0;
-    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 1rem rgba(134, 134, 134, .24);
     z-index: 999;
 }
 
@@ -34,20 +34,22 @@ nav .fa-plus {
     border-radius: 50%;
 }
 
-.header .main-nav ul,
-.header .user ul {
+nav ul,
+.user ul {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.header ul li {
+.main-nav ul li,
+.user ul li {
     display: inline-block;
     padding: 0 1rem;
     font-weight: 500;
 }
 
-.header ul li a {
+.main-nav ul li a,
+.user ul li a {
     text-decoration: none;
     color: #222;
 }
@@ -58,24 +60,25 @@ nav .fa-plus {
 
 .user .thumbnail {
     display: inline-block;
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
     border: 5px solid #f7f7f7;
     border-radius: 50%;
     background-color: #2d1d80;
     cursor: pointer;
-    overflow: hidden;
+    position: relative;
 }
 
 /* Dropdown List */
 
-.user-dropdown {
+.user .thumbnail .user-dropdown {
     display: none;
     position: absolute;
-    min-width: 5rem;
-    min-height: 5rem;
-    top: 100%;
-    right: 5rem;
+    min-width: 20rem;
+    min-height: 2rem;
+    top: 130%;
+    right: 1rem;
+    padding: .5rem 0;
     border-top: 3px solid #FF6839;
     background-color: #ffffff;
     box-shadow: 0px 10px 16px 5px rgba(0, 0, 0, 0.1);
@@ -94,25 +97,30 @@ nav .fa-plus {
     transition: all .3s ease-in-out;
 }
 
-.user-dropdown ul li {
+.user .thumbnail:hover>.user-dropdown {
     display: block;
+}
+
+.thumbnail ul li {
     margin-bottom: .5rem;
     padding: 0;
+    display: block;
+}
+
+.user .thumbnail ul li a {
+    padding: 1rem 2rem;
+    display: block;
+    width: 100%;
+    /* background-color: #f7f7f7; */
     text-align: center;
 }
 
-.user-dropdown ul li a {
-    padding: 1rem 7rem;
-    display: block;
-    background-color: #f7f7f7;
-}
-
-.user-dropdown ul li a:hover {
+.user .thumbnail ul li a:hover {
     transition: all .3s ease-in-out;
     background-color: #eee;
 }
 
-.user-dropdown ul li:last-child {
+.user .thumbnail .user-dropdown li:last-child {
     margin-bottom: 0;
 }
 
@@ -135,8 +143,12 @@ nav .fa-plus {
     .header .main-nav ul {
         justify-content: flex-start;
     }
-    .user-dropdown {
-        right: 2rem;
+    .user .thumbnail {
+        margin-top: -1rem;
+    }
+    .user .thumbnail .user-dropdown {
+        right: 1rem;
+        top: 120%;
     }
     .mobile-hide {
         display: none !important;
