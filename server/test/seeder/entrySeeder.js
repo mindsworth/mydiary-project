@@ -11,10 +11,10 @@ const entrySeeder = {
   },
 
   setEditEntryData(title, description) {
-    return [
-      { propName: 'title', value: title },
-      { propName: 'description', value: description },
-    ];
+    return {
+      title,
+      description,
+    };
   },
 };
 

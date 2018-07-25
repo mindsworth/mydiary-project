@@ -1,5 +1,10 @@
-import chai, { expect } from 'chai';
-import { describe, it } from 'mocha';
+import chai, {
+  expect,
+} from 'chai';
+import {
+  describe,
+  it,
+} from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../app';
 
@@ -12,7 +17,9 @@ describe('Test entry routes', () => {
     chai.request(app)
       .get('/api/v1/entries')
       .end((err, res) => {
-        const { entries } = res.body;
+        const {
+          entries,
+        } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(200);
         expect(entries.length).to.equal(2);
@@ -24,7 +31,9 @@ describe('Test entry routes', () => {
     chai.request(app)
       .get('/api/v1/entries/1')
       .end((err, res) => {
-        const { entry } = res.body;
+        const {
+          entry,
+        } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(200);
         expect(entry._id).to.equal(1);
@@ -36,7 +45,9 @@ describe('Test entry routes', () => {
     chai.request(app)
       .get('/api/v1/entries/3')
       .end((err, res) => {
-        const { message } = res.body;
+        const {
+          message,
+        } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(404);
         expect(message).to.equal(`The entry with the ID 3 is not found.`);
@@ -52,17 +63,18 @@ describe('Test entry routes', () => {
         'What if its you with someone else\'s future wife?',
       ))
       .end((err, res) => {
-        const { entries } = res.body;
+        const {
+          message,
+        } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(201);
-        expect(entries.length).to.equal(3);
-        expect(entries[2].title).to.equal('Jenifa\'s Diary');
+        expect(message).to.equal('Added new entry');
         return done();
       });
   });
 
   it('should return status code 400 and a message when title'
-    + ' and description is not given', (done) => {
+  + ' and description is not given', (done) => {
     chai.request(app)
       .post('/api/v1/entries')
       .send(entrySeeder.setEntryData(
@@ -71,11 +83,12 @@ describe('Test entry routes', () => {
         '',
       ))
       .end((err, res) => {
-        const { Message } = res.body;
+        const {
+          message,
+        } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(400);
-        expect(Message).to.equal('title and description Fields'
-        + ' should not be Empty');
+        expect(message).to.equal('title,description fields are required');
         return done();
       });
   });
@@ -90,10 +103,10 @@ describe('Test entry routes', () => {
         'What if its you with someone else\'s future wife?',
       ))
       .end((err, res) => {
-        const { Message } = res.body;
+        const { message } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(400);
-        expect(Message).to.equal('title Field should not be Empty');
+        expect(message).to.equal('title fields are required');
         return done();
       });
   });
@@ -108,10 +121,10 @@ describe('Test entry routes', () => {
         '',
       ))
       .end((err, res) => {
-        const { Message } = res.body;
+        const { message } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(400);
-        expect(Message).to.equal('description Field should not be Empty');
+        expect(message).to.equal('description fields are required');
         return done();
       });
   });
@@ -145,13 +158,13 @@ describe('Test entry routes', () => {
         const { message } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(404);
-        expect(message).to.equal('Entry to modify is not available.');
+        expect(message).to.equal('Entry to modify is not found.');
         return done();
       });
   });
 
-  it('should return status code 404 and a message when the'
-    + ' entry is not found', (done) => {
+  it('should return status code 200 and a message when the'
+    + ' title is empty', (done) => {
     chai.request(app)
       .put('/api/v1/entries/2')
       .send(entrySeeder.setEditEntryData(
@@ -159,11 +172,10 @@ describe('Test entry routes', () => {
         'What if its you with someone else\'s future wife?',
       ))
       .end((err, res) => {
-        const { Message } = res.body;
-        console.log(Message);
+        const { message } = res.body;
         if (err) return done(err);
-        expect(res.statusCode).to.equal(400);
-        expect(Message).to.equal('title Field should not be Empty');
+        expect(res.statusCode).to.equal(200);
+        expect(message).to.equal('Entry Successfully Updated');
         return done();
       });
   });
@@ -172,10 +184,10 @@ describe('Test entry routes', () => {
     chai.request(app)
       .delete('/api/v1/entries/2')
       .end((err, res) => {
-        const { RemainingEntries } = res.body;
+        const { message } = res.body;
         if (err) return done(err);
-        expect(res.statusCode).to.equal(200);
-        expect(RemainingEntries.length).to.equal(2);
+        expect(res.statusCode).to.equal(202);
+        expect(message).to.equal('Entry successfully deleted!');
         return done();
       });
   });
@@ -184,10 +196,10 @@ describe('Test entry routes', () => {
     chai.request(app)
       .delete('/api/v1/entries/4')
       .end((err, res) => {
-        const { Message } = res.body;
+        const { message } = res.body;
         if (err) return done(err);
         expect(res.statusCode).to.equal(404);
-        expect(Message).to.equal('Entry does not exist');
+        expect(message).to.equal('Entry does not exist');
         return done();
       });
   });
