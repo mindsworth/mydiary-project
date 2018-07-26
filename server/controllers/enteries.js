@@ -1,114 +1,102 @@
-import Entry from '../models/enteries';
+import Entries from '../models/enteries';
 
-let entries = Entry;
+let entries = Entries;
 
-export const entriesGetAll = (req, res) => {
-  const count = entries.length;
-  res.status(200).json({
-    message: "List of all entries",
-    "Number of entries added": count,
-    entries,
-  });
-};
-
-export const entriesAddEntry = (req, res) => {
-  const { _id, title, description } = req.body;
-
-  const entry = {
-    _id,
-    title: title.trim(),
-    description: description.trim(),
-    category_id: 3,
-    user_id: 3,
-  };
-
-  if (!title && !description) {
-    return res.status(400).json({
-      Message: 'title and description Fields should not be Empty',
-    });
-  }
-
-  if (!title) {
-    return res.status(400).json({
-      Message: 'title Field should not be Empty',
-    });
-  }
-
-  if (!description) {
-    return res.status(400).json({
-      Message: 'description Field should not be Empty',
-    });
-  }
-
-  entries = [...entries, entry];
-
-  return res.status(201).json({
-    message: "Adding new entry",
-    entries,
-  });
-};
-
-export const entriesGetOne = (req, res) => {
-  const { params } = req;
-
-  const fetchedEntry = entries
-    .find(entry => entry._id === Number(params.entryId));
-
-  if (fetchedEntry) {
+class EntriesController {
+  getAllEntries(req, res) {
+    const count = entries.length;
     return res.status(200).json({
-      message: `Get the entry with ID ${params.entryId}`,
-      entry: fetchedEntry,
-    });
-  }
-  return res.status(404).json({
-    message: `The entry with the ID ${params.entryId} is not found.`,
-  });
-};
-
-export const entriesEdit = (req, res) => {
-  const { params } = req;
-
-  const fetchedEntry = entries
-    .find(entry => entry._id === Number(params.entryId));
-
-  if (!fetchedEntry) {
-    return res.status(404).json({
-      message: `Entry to modify is not available.`,
+      message: "List of all entries",
+      "Number of entries added": count,
+      entries,
     });
   }
 
-  for (const props of req.body) {
-    if (!props.value) {
-      return res.status(400).json({
-        Message: `${props.propName} Field should not be Empty`,
+  AddEntry(req, res) {
+    const {
+      _id,
+      title,
+      description,
+    } = req.body;
+
+    const entry = {
+      _id,
+      title,
+      description,
+      category_id: 3,
+      user_id: 3,
+    };
+
+    entries = [...entries, entry];
+
+    return res.status(201).json({
+      message: "Added new entry",
+    });
+  }
+
+  getOneEntry(req, res) {
+    const {
+      params,
+    } = req;
+
+    const fetchedEntry = entries
+      .find(entry => entry._id === Number(params.entryId));
+
+    if (fetchedEntry) {
+      return res.status(200).json({
+        message: `Get the entry with ID ${params.entryId}`,
+        entry: fetchedEntry,
       });
     }
-    fetchedEntry[props.propName] = props.value;
-  }
-
-  return res.status(200).json({
-    message: `Modify an Entry`,
-    fetchedEntry,
-  });
-};
-
-export const entryDelete = (req, res) => {
-  const { params } = req;
-
-  const fetchedEntry = entries
-    .filter(entry => entry._id === Number(params.entryId));
-
-  if (fetchedEntry.length === 0) {
     return res.status(404).json({
-      Message: 'Entry does not exist',
+      message: `The entry with the ID ${params.entryId} is not found.`,
     });
   }
 
-  const returnedEntry = entries
-    .filter(entry => entry._id !== Number(params.entryId));
+  editEntries(req, res) {
+    const {
+      params,
+      body,
+    } = req;
 
-  return res.status(200).json({
-    Message: `Entry deleted!`,
-    RemainingEntries: returnedEntry,
-  });
-};
+    const fetchedEntry = entries
+      .find(entry => entry._id === Number(params.entryId));
+
+    if (!fetchedEntry) {
+      return res.status(404).json({
+        message: `Entry to modify is not found.`,
+      });
+    }
+
+    fetchedEntry.title = body.title ? body.title.trim() : fetchedEntry.title;
+    fetchedEntry.description = body.description ? body
+      .description.trim() : fetchedEntry.description;
+
+    return res.status(200).json({
+      message: `Entry Successfully Updated`,
+      fetchedEntry,
+    });
+  }
+
+  deleteEntry(req, res) {
+    const {
+      params,
+    } = req;
+
+    const fetchedEntry = entries
+      .filter(entry => entry._id !== Number(params.entryId));
+
+    if (fetchedEntry.length === 0 || entries.length < params.entryId) {
+      return res.status(404).json({
+        message: 'Entry does not exist',
+      });
+    }
+    entries = fetchedEntry;
+
+    return res.status(202).json({
+      message: `Entry successfully deleted!`,
+    });
+  }
+}
+
+export default new EntriesController();

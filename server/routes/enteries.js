@@ -1,18 +1,18 @@
 import express from 'express';
-import {
-  entriesGetAll,
-  entriesGetOne,
-  entriesEdit,
-  entryDelete,
-  entriesAddEntry,
-} from '../controllers/enteries';
+import EntriesController from '../controllers/enteries';
+import Validator from '../Helpers/validator';
 
 const router = express.Router();
 
-router.get('/', entriesGetAll);
-router.post('/', entriesAddEntry);
-router.get('/:entryId', entriesGetOne);
-router.put('/:entryId', entriesEdit);
-router.delete('/:entryId', entryDelete);
+
+router.get('/', EntriesController.getAllEntries);
+router.post('/', Validator
+  .checkValidEntryInput('title', 'description'), EntriesController.AddEntry);
+router.get('/:entryId', Validator
+  .checkValidId('entryId'), EntriesController.getOneEntry);
+router.put('/:entryId', Validator
+  .checkValidId('entryId'), EntriesController.editEntries);
+router.delete('/:entryId', Validator
+  .checkValidId('entryId'), EntriesController.deleteEntry);
 
 export default router;
