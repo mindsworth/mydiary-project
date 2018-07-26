@@ -12,7 +12,7 @@ class EntriesController {
     });
   }
 
-  AddEntry(req, res) {
+  addEntry(req, res) {
     const {
       _id,
       title,
@@ -53,7 +53,7 @@ class EntriesController {
     });
   }
 
-  editEntries(req, res) {
+  editEntry(req, res) {
     const {
       params,
       body,
