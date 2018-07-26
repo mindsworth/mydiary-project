@@ -1,0 +1,14 @@
+{
+  "development": {
+    "host": "localhost",
+    "user": "prince",
+    "password": "cLICKHERE",
+    "database": "mydiaryDB"
+  },
+  "production": {
+    "host": "www.com",
+    "user": "prodUser",
+    "password": "prodPassword",
+    "database": "mydiaryDB"
+  }
+}
