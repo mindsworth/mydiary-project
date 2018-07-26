@@ -1,8 +1,6 @@
 import EntriesController from '../controllers/entries';
 import Validator from '../Helpers/validator';
 
-// const router = express.Router();
-
 const entryRoutes = (router) => {
   router.route('/abc')
     .get((req, res) => res.status(200).json({
