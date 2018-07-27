@@ -8,7 +8,8 @@ class TablesController {
           first_name VARCHAR(20) not null,
           last_name VARCHAR(20) not null,
           email VARCHAR(40) not null,
-          about VARCHAR(250),
+          about VARCHAR(250) null,
+          age VARCHAR(250) null,
           password VARCHAR(255) not null,
           createdAt timestamp not null,
           updatedAt timestamp not null
