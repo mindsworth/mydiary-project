@@ -13,7 +13,7 @@ class TablesController {
           createdAt timestamp not null,
           updatedAt timestamp not null
         )`);
-      return res.status(200).json({
+      return res.status(201).json({
         message: 'USERS TABLE CREATED SUCCESSFULLY.',
       });
     } catch (error) {
@@ -31,9 +31,11 @@ class TablesController {
           title VARCHAR(100) not null,
           description VARCHAR(1000) not null,
           category_id VARCHAR(250) not null,
-          user_id VARCHAR(250) not null
+          user_id VARCHAR(250) not null,
+          createdAt timestamp not null,
+          updatedAt timestamp not null
         )`);
-      return res.status(200).json({
+      return res.status(201).json({
         message: 'ENTRIES TABLE CREATED SUCCESSFULLY.',
       });
     } catch (error) {
