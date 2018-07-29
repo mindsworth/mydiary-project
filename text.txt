@@ -20,5 +20,7 @@
 
 {
   "email": "princegoziem@gmail.com",
-  "password": "123456"
+  "password": "chigodwin1"
 }
+
+This PR can be tested locally by running the server and application like postman to make http request to POST:/api/v1/entries endpoint.

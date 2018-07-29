@@ -11,7 +11,10 @@ const entryRoutes = (router) => {
       message: 'Welcome to myDiary app for everyone.',
     }));
   router.route('/entries')
-    .get(EntriesController.getAllEntries);
+    .get(
+      Auth.verifyToken,
+      EntriesController.getAllEntries,
+    );
 
   router.route('/entries/:entryId')
     .put(entryValidation(schemas.entrySchema), EntriesController.editEntry)
