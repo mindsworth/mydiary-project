@@ -1,4 +1,4 @@
-import client from '../../dbconnect';
+import client from './database/dbconnect';
 
 class TablesController {
   async createUsersTable(req, res) {

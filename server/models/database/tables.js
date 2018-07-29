@@ -1,4 +1,4 @@
-import TablesController from '../controllers/tables';
+import TablesController from '../tables';
 
 const tableRoutes = (router) => {
   router.route('/createuserstable')

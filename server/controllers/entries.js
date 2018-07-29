@@ -1,5 +1,5 @@
 // import Entries from '../models/enteries';
-import client from '../../dbconnect';
+import client from '../models/database/dbconnect';
 
 class EntriesController {
   async getAllEntries(req, res) {
@@ -15,8 +15,8 @@ class EntriesController {
         entries,
       });
     } catch (error) {
-      return res.status(500).json({
-        message: "FAILED TO GET ENTRIES.",
+      return res.status(400).json({
+        message: "Error processing request",
         error,
       });
     }
@@ -30,6 +30,18 @@ class EntriesController {
         categoryId,
         userId,
       } = req.body;
+
+      const query = await client.query(
+        `SELECT * FROM entries WHERE title=($1)`, [
+          title,
+        ],
+      );
+
+      if (query.rows.length) {
+        return res.status(409).json({
+          message: "Title already exist.",
+        });
+      }
 
       const sql = `INSERT INTO entries(
         title,
@@ -50,12 +62,22 @@ class EntriesController {
       ];
 
       await client.query(sql, values);
+
+      const fetchUser = await client.query(
+        `SELECT * FROM entries WHERE title=($1)`, [
+          title,
+        ],
+      );
+
+      const newEntry = fetchUser.rows;
+
       return res.status(201).json({
         message: 'ENTRY CREATED SUCCESSFULLY.',
+        newEntry,
       });
     } catch (error) {
-      return res.status(500).json({
-        message: "FAILED TO CREATE DUE TO SOME REASONS",
+      return res.status(400).json({
+        message: "Error processing request",
         error,
       });
     }
@@ -67,6 +89,12 @@ class EntriesController {
     } = req;
 
     try {
+      if (!Number(params.entryId)) {
+        return res.status(400).json({
+          message: `${params.entryId} is not a valid entry ID.`,
+        });
+      }
+
       const query = await client.query(
         `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
       );
@@ -79,12 +107,13 @@ class EntriesController {
         });
       }
 
-      return res.status(404).json({
+      return res.status(400).json({
         message: `The entry with the ID ${params.entryId} is not found.`,
       });
     } catch (error) {
-      return res.status(500).json({
-        message: `FAILED DUE TO SOME REASONS.`,
+      return res.status(400).json({
+        message: `Error processing request.`,
+        error,
       });
     }
   }
@@ -95,14 +124,20 @@ class EntriesController {
       body,
     } = req;
     try {
+      if (!Number(params.entryId)) {
+        return res.status(400).json({
+          message: `${params.entryId} is not a valid entry ID.`,
+        });
+      }
+
       const currentQuery = await client.query(
         `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
       );
       const currentEntry = currentQuery.rows;
 
       if (!currentEntry.length) {
-        return res.status(404).json({
-          message: `Entry to modify is not found.`,
+        return res.status(400).json({
+          message: `The entry with the ID ${params.entryId} is not found.`,
         });
       }
 
@@ -133,8 +168,9 @@ class EntriesController {
         updatedEntry,
       });
     } catch (error) {
-      return res.status(500).json({
-        message: `FAILED DUE TO SOME REASONS.`,
+      return res.status(400).json({
+        message: `Error processing request.`,
+        error,
       });
     }
   }
@@ -163,8 +199,9 @@ class EntriesController {
         message: `Entry successfully deleted!`,
       });
     } catch (error) {
-      return res.status(500).json({
-        message: `FAILED DUE TO SOME REASONS.`,
+      return res.status(400).json({
+        message: `Error processing request.`,
+        error,
       });
     }
   }
