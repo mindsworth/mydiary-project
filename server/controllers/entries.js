@@ -129,11 +129,14 @@ class EntriesController {
   }
 
   async editEntry(req, res) {
-    const {
-      params,
-      body,
-    } = req;
     try {
+      const {
+        params,
+        body,
+      } = req;
+
+      const userId = req.userData.userID;
+
       if (!Number(params.entryId)) {
         return res.status(400).json({
           message: `${params.entryId} is not a valid entry ID.`,
@@ -141,7 +144,10 @@ class EntriesController {
       }
 
       const currentQuery = await client.query(
-        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+        `SELECT * FROM entries WHERE  user_id=($1) AND entry_id = $2;`, [
+          userId,
+          params.entryId,
+        ],
       );
       const currentEntry = currentQuery.rows;
 
@@ -160,10 +166,12 @@ class EntriesController {
       await client.query(
         `UPDATE entries SET title=($1),
         description=($2),
-        updatedAt=($3) WHERE entry_id=($4)`, [
+        updatedAt = ($3) WHERE user_id = ($4) AND entry_id = ($5)
+        `, [
           data.title,
           data.description,
           'now',
+          userId,
           params.entryId,
         ],
       );

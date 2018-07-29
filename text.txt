@@ -23,4 +23,25 @@
   "password": "chigodwin1"
 }
 
-This PR can be tested locally by running the server and application like postman to make http request to POST:/api/v1/entries endpoint.
+#### What does this PR do?
+This PR enables a user to get a single entry from their diary account.
+
+#### Description of Task to be completed?
+- middleware that verify for the generated token
+- get user ID from the token generated
+- validate the data from use
+
+#### How should this be manually tested?
+This PR can be tested locally by running the server and application like postman to make http request to GET:/api/v1/entries/:entryId endpoint.
+
+#### Any background context you want to provide?
+N/A
+
+#### What are the relevant pivotal tracker stories?
+`#159388168`
+
+#### Screenshots (if appropriate)
+N/A
+
+#### Questions:
+N/A
