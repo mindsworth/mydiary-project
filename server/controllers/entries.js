@@ -90,11 +90,12 @@ class EntriesController {
   }
 
   async getOneEntry(req, res) {
-    const {
-      params,
-    } = req;
-
     try {
+      const {
+        params,
+      } = req;
+
+      const userId = req.userData.userID;
       if (!Number(params.entryId)) {
         return res.status(400).json({
           message: `${params.entryId} is not a valid entry ID.`,
@@ -102,7 +103,10 @@ class EntriesController {
       }
 
       const query = await client.query(
-        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+        `SELECT * FROM entries WHERE  user_id=($1) AND entry_id = $2;`, [
+          userId,
+          params.entryId,
+        ],
       );
       const entry = query.rows;
 
