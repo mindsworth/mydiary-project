@@ -18,7 +18,10 @@ const entryRoutes = (router) => {
 
   router.route('/entries/:entryId')
     .put(entryValidation(schemas.entrySchema), EntriesController.editEntry)
-    .get(EntriesController.getOneEntry)
+    .get(
+      Auth.verifyToken,
+      EntriesController.getOneEntry,
+    )
     .delete(EntriesController.deleteEntry);
 
   router.route('/entries')
