@@ -1,5 +1,5 @@
 import EntriesController from '../controllers/entries';
-
+import Auth from '../middleware/check-auth';
 import {
   entryValidation,
   schemas,
@@ -8,7 +8,7 @@ import {
 const entryRoutes = (router) => {
   router.route('/abc')
     .get((req, res) => res.status(200).json({
-      message: 'Welcome to myDiary app for everyone.aaaa',
+      message: 'Welcome to myDiary app for everyone.',
     }));
   router.route('/entries')
     .get(EntriesController.getAllEntries);
@@ -19,7 +19,11 @@ const entryRoutes = (router) => {
     .delete(EntriesController.deleteEntry);
 
   router.route('/entries')
-    .post(entryValidation(schemas.entrySchema), EntriesController.addEntry);
+    .post(
+      Auth.verifyToken,
+      entryValidation(schemas.entrySchema),
+      EntriesController.addEntry,
+    );
 };
 
 export default entryRoutes;

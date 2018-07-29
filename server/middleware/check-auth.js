@@ -10,29 +10,24 @@ class Auth {
     const token = req
       .body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
-      JWT.verify(token, process.env.JWT_KEY, (error, decoded) => {
-        if (error) {
+      JWT.verify(token, process.env.JWT_KEY, (err, decoded) => {
+        if (err) {
           return res.status(401).json({
             message: 'Invalid authorization token',
           });
         }
 
-        const query = client.query(
+        client.query(
           `SELECT * FROM users WHERE user_id = ($1);`, [
-            decoded.userId,
+            decoded.userID,
           ],
-        );
-
-        const user = query.rows;
-        if (!user.length) {
-          return res.status(400).json({
-            message: 'This user does not exist',
-          });
-        }
-        req.userData = decoded;
-        return next();
-
-        // .catch(err => res.status(404).json(err)
+        ).then(() => {
+          req.userData = decoded;
+          return next();
+        }).catch(error => res.status(400).json({
+          message: 'This user does not exist',
+          error,
+        }));
       });
     } else {
       res.status(403).json({

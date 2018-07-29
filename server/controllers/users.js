@@ -52,7 +52,6 @@ class UsersController {
         );
         const user = newUserQuery.rows;
 
-        // const obj = req.body;
         const newUser = Lodash.pick(user, [
           'email',
           'user_id',
