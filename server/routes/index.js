@@ -1,7 +1,6 @@
 import entryRoutes from './entries';
 import userRoutes from './users';
 import tableRoutes from '../models/database/tables';
-// import categoryRoutes from './order';
 
 const routes = (router) => {
   router.route('/')

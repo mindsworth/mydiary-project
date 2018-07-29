@@ -1,6 +1,3 @@
-// import entries from '../../models/enteries';
-
-
 const entrySeeder = {
   setEntryData(_id, title, description) {
     return {

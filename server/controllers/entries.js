@@ -1,4 +1,3 @@
-// import Entries from '../models/enteries';
 import client from '../models/database/dbconnect';
 
 class EntriesController {
@@ -28,11 +27,14 @@ class EntriesController {
         title,
         description,
         categoryId,
-        userId,
       } = req.body;
 
+      const userId = req.userData.userID;
+      console.log(userId);
+
       const query = await client.query(
-        `SELECT * FROM entries WHERE title=($1)`, [
+        `SELECT * FROM entries WHERE user_id=($1) AND title=($2)`, [
+          userId,
           title,
         ],
       );
@@ -64,7 +66,8 @@ class EntriesController {
       await client.query(sql, values);
 
       const fetchUser = await client.query(
-        `SELECT * FROM entries WHERE title=($1)`, [
+        `SELECT * FROM entries WHERE user_id=($1) AND title=($2)`, [
+          userId,
           title,
         ],
       );
