@@ -1,101 +1,209 @@
-import Entries from '../models/enteries';
-
-let entries = Entries;
+// import Entries from '../models/enteries';
+import client from '../models/database/dbconnect';
 
 class EntriesController {
-  getAllEntries(req, res) {
-    const count = entries.length;
-    return res.status(200).json({
-      message: "List of all entries",
-      "Number of entries added": count,
-      entries,
-    });
+  async getAllEntries(req, res) {
+    try {
+      const query = await client.query(
+        'SELECT * FROM entries ORDER BY entry_id ASC;',
+      );
+      const entries = query.rows;
+      const count = entries.length;
+      return res.status(200).json({
+        message: "List of all entries",
+        "Number of entries added": count,
+        entries,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: "Error processing request",
+        error,
+      });
+    }
   }
 
-  addEntry(req, res) {
-    const {
-      _id,
-      title,
-      description,
-    } = req.body;
+  async addEntry(req, res) {
+    try {
+      const {
+        title,
+        description,
+        categoryId,
+        userId,
+      } = req.body;
 
-    const entry = {
-      _id,
-      title,
-      description,
-      category_id: 3,
-      user_id: 3,
-    };
+      const query = await client.query(
+        `SELECT * FROM entries WHERE title=($1)`, [
+          title,
+        ],
+      );
 
-    entries = [...entries, entry];
+      if (query.rows.length) {
+        return res.status(409).json({
+          message: "Title already exist.",
+        });
+      }
 
-    return res.status(201).json({
-      message: "Added new entry",
-    });
+      const sql = `INSERT INTO entries(
+        title,
+        description,
+        category_id,
+        user_id,
+        createdAt,
+        updatedAt
+        ) VALUES($1, $2, $3, $4, $5, $6)`;
+
+      const values = [
+        title,
+        description,
+        categoryId,
+        userId,
+        'now',
+        'now',
+      ];
+
+      await client.query(sql, values);
+
+      const fetchUser = await client.query(
+        `SELECT * FROM entries WHERE title=($1)`, [
+          title,
+        ],
+      );
+
+      const newEntry = fetchUser.rows;
+
+      return res.status(201).json({
+        message: 'ENTRY CREATED SUCCESSFULLY.',
+        newEntry,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: "Error processing request",
+        error,
+      });
+    }
   }
 
-  getOneEntry(req, res) {
+  async getOneEntry(req, res) {
     const {
       params,
     } = req;
 
-    const fetchedEntry = entries
-      .find(entry => entry._id === Number(params.entryId));
+    try {
+      if (!Number(params.entryId)) {
+        return res.status(400).json({
+          message: `${params.entryId} is not a valid entry ID.`,
+        });
+      }
 
-    if (fetchedEntry) {
-      return res.status(200).json({
-        message: `Get the entry with ID ${params.entryId}`,
-        entry: fetchedEntry,
+      const query = await client.query(
+        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+      );
+      const entry = query.rows;
+
+      if (entry.length) {
+        return res.status(200).json({
+          message: `Get the entry with ID ${params.entryId}`,
+          entry,
+        });
+      }
+
+      return res.status(400).json({
+        message: `The entry with the ID ${params.entryId} is not found.`,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: `Error processing request.`,
+        error,
       });
     }
-    return res.status(404).json({
-      message: `The entry with the ID ${params.entryId} is not found.`,
-    });
   }
 
-  editEntry(req, res) {
+  async editEntry(req, res) {
     const {
       params,
       body,
     } = req;
+    try {
+      if (!Number(params.entryId)) {
+        return res.status(400).json({
+          message: `${params.entryId} is not a valid entry ID.`,
+        });
+      }
 
-    const fetchedEntry = entries
-      .find(entry => entry._id === Number(params.entryId));
+      const currentQuery = await client.query(
+        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+      );
+      const currentEntry = currentQuery.rows;
 
-    if (!fetchedEntry) {
-      return res.status(404).json({
-        message: `Entry to modify is not found.`,
+      if (!currentEntry.length) {
+        return res.status(400).json({
+          message: `The entry with the ID ${params.entryId} is not found.`,
+        });
+      }
+
+      const data = {
+        title: body.title ? body.title.trim() : currentEntry[0].title,
+        description: body.description ? body
+          .description.trim() : currentEntry[0].description,
+      };
+
+      await client.query(
+        `UPDATE entries SET title=($1),
+        description=($2),
+        updatedAt=($3) WHERE entry_id=($4)`, [
+          data.title,
+          data.description,
+          'now',
+          params.entryId,
+        ],
+      );
+
+      const query = await client.query(
+        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+      );
+      const updatedEntry = query.rows;
+
+      return res.status(200).json({
+        message: `Entry Successfully Updated`,
+        updatedEntry,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: `Error processing request.`,
+        error,
       });
     }
-
-    fetchedEntry.title = body.title ? body.title.trim() : fetchedEntry.title;
-    fetchedEntry.description = body.description ? body
-      .description.trim() : fetchedEntry.description;
-
-    return res.status(200).json({
-      message: `Entry Successfully Updated`,
-      fetchedEntry,
-    });
   }
 
-  deleteEntry(req, res) {
+  async deleteEntry(req, res) {
     const {
       params,
     } = req;
 
-    const fetchedEntry = entries
-      .filter(entry => entry._id !== Number(params.entryId));
+    try {
+      const currentQuery = await client.query(
+        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+      );
+      const currentEntry = currentQuery.rows;
 
-    if (fetchedEntry.length === 0 || entries.length < params.entryId) {
-      return res.status(404).json({
-        message: 'Entry does not exist',
+      if (!currentEntry.length) {
+        return res.status(404).json({
+          message: `Entry to DELETE is not found.`,
+        });
+      }
+      await client.query(
+        `DELETE FROM entries WHERE entry_id=${params.entryId};`,
+      );
+
+      return res.status(202).json({
+        message: `Entry successfully deleted!`,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: `Error processing request.`,
+        error,
       });
     }
-    entries = fetchedEntry;
-
-    return res.status(202).json({
-      message: `Entry successfully deleted!`,
-    });
   }
 }
 

@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import routes from './routes/index';
-// import entriesRoute from './routes/enteries';
 
 
 const app = express();
@@ -15,9 +14,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 routes(router);
-// app.get('/api/v1', (req, res) => res.status(200).json({
-//   message: 'Welcome to myDiary app for everyone.',
-// }));
 
 app.use('/api/v1/', router);
 

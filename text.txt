@@ -1,12 +1,24 @@
 {
-	"_id": "3",
 	"title": "Jenefa's diary",
 	"description": "The Jenefa's TV show series was interesting",
-	"category_id": 3,
-	"user_id": 3
+	"categoryId": 3,
+	"userId": 3
 }
 
 {
 	"title": "Hope for nigerians",
 	"description": "What if its you with someone else's future wife?"
+}
+
+{
+  "firstName": "Adewale",
+  "lastName": "Adetiba",
+  "email": "adetibawaley@gmail.com",
+  "password": "654321",
+  "about": "I'm a geologist, a minner of nature."
+}
+
+{
+  "email": "princegoziem@gmail.com",
+  "password": "123456"
 }

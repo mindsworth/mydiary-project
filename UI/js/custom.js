@@ -13,11 +13,9 @@ const displayDropdownHandler = () => {
     if (show) {
         userDropdown.style.display = 'none';
         show = !show;
-        console.log(show);
     } else {
         userDropdown.style.display = 'block';
         show = !show;
-        console.log(show);
     }
 }
 

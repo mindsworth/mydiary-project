@@ -1,7 +1,9 @@
 import EntriesController from '../controllers/entries';
-import Validator from '../Helpers/validator';
 
-// const router = express.Router();
+import {
+  entryValidation,
+  schemas,
+} from '../helpers/validator';
 
 const entryRoutes = (router) => {
   router.route('/abc')
@@ -12,15 +14,12 @@ const entryRoutes = (router) => {
     .get(EntriesController.getAllEntries);
 
   router.route('/entries/:entryId')
-    .put(Validator.checkValidId('entryId'), EntriesController.editEntry)
-    .get(Validator.checkValidId('entryId'), EntriesController.getOneEntry)
-    .delete(Validator.checkValidId('entryId'), EntriesController.deleteEntry);
+    .put(entryValidation(schemas.entrySchema), EntriesController.editEntry)
+    .get(EntriesController.getOneEntry)
+    .delete(EntriesController.deleteEntry);
 
   router.route('/entries')
-    .post(Validator.checkValidEntryInput(
-      'title',
-      'description',
-    ), EntriesController.addEntry);
+    .post(entryValidation(schemas.entrySchema), EntriesController.addEntry);
 };
 
 export default entryRoutes;

@@ -1,5 +1,6 @@
 import entryRoutes from './entries';
 import userRoutes from './users';
+import tableRoutes from '../models/database/tables';
 // import categoryRoutes from './order';
 
 const routes = (router) => {
@@ -13,6 +14,9 @@ const routes = (router) => {
 
   /* Entries Routes */
   entryRoutes(router);
+
+  /* Category Routes */
+  tableRoutes(router);
 
   /* Category Routes */
   // categoryRoutes(router);
