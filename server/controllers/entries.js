@@ -3,8 +3,12 @@ import client from '../models/database/dbconnect';
 class EntriesController {
   async getAllEntries(req, res) {
     try {
+      const userId = req.userData.userID;
+
       const query = await client.query(
-        'SELECT * FROM entries ORDER BY entry_id ASC;',
+        `SELECT * FROM entries WHERE user_id=($1) ORDER BY entry_id ASC;`, [
+          userId,
+        ],
       );
       const entries = query.rows;
       const count = entries.length;
@@ -30,7 +34,6 @@ class EntriesController {
       } = req.body;
 
       const userId = req.userData.userID;
-      console.log(userId);
 
       const query = await client.query(
         `SELECT * FROM entries WHERE user_id=($1) AND title=($2)`, [
