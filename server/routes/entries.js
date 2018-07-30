@@ -17,7 +17,11 @@ const entryRoutes = (router) => {
     );
 
   router.route('/entries/:entryId')
-    .put(entryValidation(schemas.entrySchema), EntriesController.editEntry)
+    .put(
+      Auth.verifyToken,
+      entryValidation(schemas.entrySchema),
+      EntriesController.editEntry,
+    )
     .get(
       Auth.verifyToken,
       EntriesController.getOneEntry,
