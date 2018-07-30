@@ -194,13 +194,18 @@ class EntriesController {
   }
 
   async deleteEntry(req, res) {
-    const {
-      params,
-    } = req;
-
     try {
+      const {
+        params,
+      } = req;
+
+      const userId = req.userData.userID;
+
       const currentQuery = await client.query(
-        `SELECT * FROM entries WHERE entry_id = ${params.entryId};`,
+        `SELECT * FROM entries WHERE  user_id=($1) AND entry_id = $2;`, [
+          userId,
+          params.entryId,
+        ],
       );
       const currentEntry = currentQuery.rows;
 

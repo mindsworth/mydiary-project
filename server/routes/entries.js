@@ -26,7 +26,10 @@ const entryRoutes = (router) => {
       Auth.verifyToken,
       EntriesController.getOneEntry,
     )
-    .delete(EntriesController.deleteEntry);
+    .delete(
+      Auth.verifyToken,
+      EntriesController.deleteEntry,
+    );
 
   router.route('/entries')
     .post(
