@@ -65,8 +65,8 @@ class UsersController {
           token,
         });
       }
-      return res.status(302).json({
-        message: `email "${email}" already exist`,
+      return res.status(409).json({
+        message: `Email "${email}" already exist`,
       });
     } catch (error) {
       return res.status(500).json({
@@ -99,7 +99,7 @@ class UsersController {
           (err, result) => {
             if (err) {
               return res.status(401).json({
-                message: 'Invalid login credentials+++',
+                message: 'Invalid login credentials',
               });
             }
 
@@ -112,12 +112,12 @@ class UsersController {
               });
 
               return res.status(200).json({
-                message: 'Logged in successful',
+                message: 'Logged in successfully.',
                 token,
               });
             }
             return res.status(401).json({
-              message: 'Invalid login credentials...',
+              message: 'Invalid login credentials',
             });
           },
         );

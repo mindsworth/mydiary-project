@@ -1,8 +1,9 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
+import dbConfig from "./config";
 
 dotenv.config();
-const client = new pg.Client();
+const client = new pg.Client(dbConfig);
 
 client.connect().then(() => {
   console.log('Connection Successful.');
