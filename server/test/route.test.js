@@ -1,7 +1,12 @@
-import chai, { expect } from 'chai';
-import { describe, it } from 'mocha';
+import chai, {
+  expect,
+} from 'chai';
+import {
+  describe,
+  it,
+} from 'mocha';
 import chaiHttp from 'chai-http';
-import app from '../app';
+import server from '../server';
 
 chai.use(chaiHttp);
 
@@ -9,7 +14,7 @@ chai.use(chaiHttp);
 describe('GET: /api/v1', () => {
   it('Should return status code 404 when user accesses non-existent route',
     (done) => {
-      chai.request(app)
+      chai.request(server)
         .get('/*')
         .end((err, res) => {
           expect(res.statusCode).to.equal(404);
@@ -21,7 +26,7 @@ describe('GET: /api/v1', () => {
     });
 
   it('Should return status code 200 when user access /api/v1', (done) => {
-    chai.request(app)
+    chai.request(server)
       .get('/api/v1')
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);

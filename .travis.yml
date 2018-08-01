@@ -5,7 +5,14 @@ node_js:
 branches:
   only:
     - develop
+    - ch-api-testing-fix-159131059
     
+before_script:
+  - psql -c 'create database travis;' -U postgres
+
+env:
+- SECRET_TOKEN=secret
+
 script:
   - npm test
   

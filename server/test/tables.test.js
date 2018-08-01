@@ -6,14 +6,14 @@ import {
   it,
 } from 'mocha';
 import chaiHttp from 'chai-http';
-import app from '../app';
+import server from '../server';
 
 chai.use(chaiHttp);
 
 describe('', () => {
   it(`Should return status code 201 
   when user access /api/v1/createuserstable`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/createuserstable')
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
@@ -24,7 +24,7 @@ describe('', () => {
 
   it(`Should return status code 201 
   when user access /api/v1/createentriestable`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/createentriestable')
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
@@ -35,7 +35,7 @@ describe('', () => {
 
   it(`Should return status code 201 
   when user access /api/v1/createcategoriestable`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/createcategoriestable')
       .end((err, res) => {
         expect(res.statusCode).to.equal(201);
@@ -48,7 +48,7 @@ describe('', () => {
 
   it(`Should return status code 201 
   when user access /api/v1/createcategoriestable`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/createcategoriestable')
       .send({
         firstName: 'Chigoziem',

@@ -45,3 +45,33 @@ N/A
 
 #### Questions:
 N/A
+
+Last 8hours
+Reading through OOP
+Fix bugs in my test
+
+Next 24hours
+Continue with the peer learning
+round up my test
+
+Blocker
+N/A
+
+PT Board: https://www.pivotaltracker.com/n/projects/2183845
+
+GitHub: https://github.com/mindsworth/mydiary-project
+
+GH-Pages: https://mindsworth.github.io/mydiary-project/
+
+*Last 4hours*
+Fix bugs in my test
+
+*Next 20hours*
+Continue with the peer learning
+round up my test
+Start challenge 4
+
+*Blocker*
+Travis
+
+git push origin ch-api-testing-fix-159131059
