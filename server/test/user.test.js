@@ -7,8 +7,6 @@ import {
   before,
 } from 'mocha';
 import chaiHttp from 'chai-http';
-// import jwtDecode from 'jwt-decode';
-import "babel-polyfill";
 import app from '../app';
 
 import seeder from './seeder/seeder';
