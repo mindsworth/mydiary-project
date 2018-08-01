@@ -5,6 +5,12 @@ node_js:
 branches:
   only:
     - develop
+
+before_script:
+  - psql -c 'create database travis;' -U postgres
+
+env:
+    - SECRET_TOKEN=secretcode
     
 script:
   - npm test
