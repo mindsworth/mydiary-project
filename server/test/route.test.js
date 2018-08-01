@@ -1,12 +1,6 @@
-import chai, {
-  expect,
-} from 'chai';
-import {
-  describe,
-  it,
-} from 'mocha';
+import chai, { expect } from 'chai';
+import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
-import "babel-polyfill";
 import app from '../app';
 
 chai.use(chaiHttp);
