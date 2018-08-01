@@ -54,7 +54,7 @@ class TablesController {
           title VARCHAR(100) not null,
           color_id VARCHAR(10) not null
         )`);
-      return res.status(201).json({
+      return res.status(200).json({
         message: 'CATEGORIES TABLE CREATED SUCCESSFULLY.',
       });
     } catch (error) {
