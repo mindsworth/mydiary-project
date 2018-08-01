@@ -1,5 +1,10 @@
-import chai, { expect } from 'chai';
-import { describe, it } from 'mocha';
+import chai, {
+  expect,
+} from 'chai';
+import {
+  describe,
+  it,
+} from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../app';
 

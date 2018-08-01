@@ -152,15 +152,14 @@ class EntriesController {
       const currentEntry = currentQuery.rows;
 
       if (!currentEntry.length) {
-        return res.status(400).json({
+        return res.status(404).json({
           message: `The entry with the ID ${params.entryId} is not found.`,
         });
       }
 
       const data = {
-        title: body.title ? body.title.trim() : currentEntry[0].title,
-        description: body.description ? body
-          .description.trim() : currentEntry[0].description,
+        title: body.title.trim(),
+        description: body.description.trim(),
       };
 
       await client.query(
@@ -218,7 +217,7 @@ class EntriesController {
         `DELETE FROM entries WHERE entry_id=${params.entryId};`,
       );
 
-      return res.status(202).json({
+      return res.status(200).json({
         message: `Entry successfully deleted!`,
       });
     } catch (error) {
