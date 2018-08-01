@@ -7,7 +7,7 @@ import {
   before,
 } from 'mocha';
 import chaiHttp from 'chai-http';
-import app from '../app';
+import server from '../server';
 
 import seeder from './seeder/seeder';
 
@@ -19,7 +19,7 @@ before(seeder.addUser);
 describe('POST api/v1/users/signup', () => {
   it(`should return status code 400 and 
   a message when firstname is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         '',
@@ -37,7 +37,7 @@ describe('POST api/v1/users/signup', () => {
 
   it(`should return status code 400 and 
   a message when lastname is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         'Chigoziem',
@@ -55,7 +55,7 @@ describe('POST api/v1/users/signup', () => {
 
   it(`should return status code 400 and 
   a message when email is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         'Chigoziem',
@@ -73,7 +73,7 @@ describe('POST api/v1/users/signup', () => {
 
   it(`should return status code 400 and 
   a message when password is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         'Chigoziem',
@@ -91,7 +91,7 @@ describe('POST api/v1/users/signup', () => {
 
   it(`should return status code 400 and 
   a message when password_confirmation is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         'Chigoziem',
@@ -110,7 +110,7 @@ describe('POST api/v1/users/signup', () => {
 
   it(`should return status code 409 and 
   a message when user Email already exist.`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         'Chigoziem',
@@ -129,7 +129,7 @@ describe('POST api/v1/users/signup', () => {
 
   it(`should return status code 201 and 
   a message when user signed up successfully`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/signup')
       .send(seeder.setUserSignUpData(
         'Chidinma',
@@ -150,7 +150,7 @@ describe('POST api/v1/users/signup', () => {
 describe('POST api/v1/users/login', () => {
   it(`should return status code 400 and 
   a message when email is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/login')
       .send(seeder.setUserLogInData(
         '',
@@ -166,7 +166,7 @@ describe('POST api/v1/users/login', () => {
 
   it(`should return status code 400 and 
   a message when password is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/login')
       .send(seeder.setUserLogInData(
         'princegoziem@gmail.com',
@@ -182,7 +182,7 @@ describe('POST api/v1/users/login', () => {
 
   it(`should return status code 401 and 
   a message when is invalid credentials`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/login')
       .send(seeder.setUserLogInData(
         'princegoziem@gmail.com',
@@ -198,7 +198,7 @@ describe('POST api/v1/users/login', () => {
 
   it(`should return status code 200 and 
   a message when email is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/auth/login')
       .send(seeder.setUserLogInData(
         'chiddybabe@gmail.com',

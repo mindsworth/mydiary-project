@@ -5,6 +5,8 @@ import {
   schemas,
 } from '../helpers/validator';
 
+console.log("ëntry validation ====>", typeof entryValidation);
+console.log("schema ====>", typeof schemas);
 const entryRoutes = (router) => {
   router.route('/abc')
     .get((req, res) => res.status(200).json({

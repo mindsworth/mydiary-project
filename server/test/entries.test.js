@@ -8,7 +8,7 @@ import {
 } from 'mocha';
 import chaiHttp from 'chai-http';
 import jwtDecode from 'jwt-decode';
-import app from '../app';
+import server from '../server';
 
 import seeder from './seeder/seeder';
 
@@ -20,7 +20,7 @@ before(seeder.addUser);
 let userToken;
 
 before((done) => {
-  chai.request(app)
+  chai.request(server)
     .post('/api/v1/auth/login')
     .send(seeder.setUserLogInData(
       'princegoziem@gmail.com',
@@ -37,7 +37,7 @@ before((done) => {
 
 describe('Test entry routes', () => {
   it('should list all entries', (done) => {
-    chai.request(app)
+    chai.request(server)
       .get('/api/v1/entries')
       .set({
         'x-access-token': userToken,
@@ -52,7 +52,7 @@ describe('Test entry routes', () => {
       });
   });
   it('should list all entries', (done) => {
-    chai.request(app)
+    chai.request(server)
       .get('/api/v1/entries')
       .set({
         'x-access-token': 'badassing',
@@ -70,7 +70,7 @@ describe('Test entry routes', () => {
   });
 
   it('should add a new entry', (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/entries')
       .set({
         'x-access-token': userToken,
@@ -93,7 +93,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 400 and 
   a message when title and description is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/entries')
       .set({
         'x-access-token': userToken,
@@ -117,7 +117,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 400 and 
   a message when title is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/entries')
       .set({
         'x-access-token': userToken,
@@ -140,7 +140,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 400 and 
   a message when description is not given`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .post('/api/v1/entries')
       .set({
         'x-access-token': userToken,
@@ -164,7 +164,7 @@ describe('Test entry routes', () => {
   });
 
   it('should get a specific entry', (done) => {
-    chai.request(app)
+    chai.request(server)
       .get('/api/v1/entries/1')
       .set({
         'x-access-token': userToken,
@@ -181,7 +181,7 @@ describe('Test entry routes', () => {
   });
 
   it('should get a specific entry', (done) => {
-    chai.request(app)
+    chai.request(server)
       .get('/api/v1/entries/2')
       .set({
         'x-access-token': userToken,
@@ -198,7 +198,7 @@ describe('Test entry routes', () => {
   });
 
   it('should modifiy a specific entry', (done) => {
-    chai.request(app)
+    chai.request(server)
       .put('/api/v1/entries/1')
       .set({
         'x-access-token': userToken,
@@ -220,7 +220,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 404 and 
   a message when the entry is not found`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .put('/api/v1/entries/4')
       .set({
         'x-access-token': userToken,
@@ -242,7 +242,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 400 and 
   a message when the title is empty`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .put('/api/v1/entries/2')
       .set({
         'x-access-token': userToken,
@@ -264,7 +264,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 400 and 
   a message when the when the params is invalid.`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .put('/api/v1/entries/a')
       .set({
         'x-access-token': userToken,
@@ -285,7 +285,7 @@ describe('Test entry routes', () => {
   });
 
   it('should delete a specific entry', (done) => {
-    chai.request(app)
+    chai.request(server)
       .delete('/api/v1/entries/1')
       .set({
         'x-access-token': userToken,
@@ -303,7 +303,7 @@ describe('Test entry routes', () => {
 
   it(`should return status code 400 and 
   a message when the title is empty`, (done) => {
-    chai.request(app)
+    chai.request(server)
       .delete('/api/v1/entries/4')
       .set({
         'x-access-token': userToken,

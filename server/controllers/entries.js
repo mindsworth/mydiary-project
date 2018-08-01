@@ -18,7 +18,7 @@ class EntriesController {
         entries,
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: "Error processing request",
         error,
       });
@@ -82,7 +82,7 @@ class EntriesController {
         newEntry,
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: "Error processing request",
         error,
       });
@@ -121,7 +121,7 @@ class EntriesController {
         message: `The entry with the ID ${params.entryId} is not found.`,
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: `Error processing request.`,
         error,
       });
@@ -185,7 +185,7 @@ class EntriesController {
         updatedEntry,
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: `Error processing request.`,
         error,
       });
@@ -221,7 +221,7 @@ class EntriesController {
         message: `Entry successfully deleted!`,
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: `Error processing request.`,
         error,
       });
