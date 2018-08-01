@@ -18,7 +18,7 @@
     "heroku-postbuild": "npx babel server/ --out-dir dist/ --ignore server/test",
     "start:dev": "cross-env-shell NODE_ENV=development nodemon --watch server --exec babel-node server/server.js",
     "test2": "cross-env-shell NODE_ENV=test yarn drop:create:table && nyc --reporter=html mocha --require babel-core/register server/test/route.test.js --exit && nyc report",
-    "test": "cross-env-shell NODE_ENV=test yarn drop:create:table && cross-env-shell NODE_ENV=test nyc --reporter=html mocha --require babel-core/register server/test/**/*.test.js --exit && nyc report",
+    "test": "cross-env-shell NODE_ENV=test yarn drop:create:table && cross-env-shell NODE_ENV=test nyc --reporter=html mocha --require babel-core/register babel-polyfill server/test/**/*.test.js --exit && nyc report",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "drop:create:table": "babel-node server/models/database/test_table.js"
   },
