@@ -1,5 +1,6 @@
 import entryRoutes from './entries';
 import userRoutes from './users';
+import categoryRoutes from './categories';
 import tableRoutes from '../models/database/tables';
 
 const routes = (router) => {
@@ -18,7 +19,7 @@ const routes = (router) => {
   tableRoutes(router);
 
   /* Category Routes */
-  // categoryRoutes(router);
+  categoryRoutes(router);
 };
 
 export default routes;
