@@ -68,7 +68,6 @@ describe('Test entry routes', () => {
         return done();
       });
   });
-
   it('should add a new entry', (done) => {
     chai.request(server)
       .post('/api/v1/entries')
