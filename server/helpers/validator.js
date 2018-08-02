@@ -44,6 +44,26 @@ export const signupValidation = schema => (req, res, next) => {
   next();
 };
 
+export const categoryValidation = schema => (req, res, next) => {
+  const obj = req.body;
+  const entryDatails = Lodash.pick(
+    obj, [
+      'title',
+      'colorId',
+    ],
+  );
+
+  const validation = new Validator({
+    ...entryDatails,
+  }, schema);
+  if (validation.fails()) {
+    return res.status(400).json({
+      message: validation.errors.all(),
+    });
+  }
+  next();
+};
+
 
 export const schemas = {
   entrySchema: {
@@ -60,5 +80,9 @@ export const schemas = {
   loginSchema: {
     email: 'required|email',
     password: 'required',
+  },
+  categorySchema: {
+    title: 'required|max:50',
+    colorId: 'required|integer',
   },
 };
