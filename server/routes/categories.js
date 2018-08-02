@@ -11,6 +11,10 @@ const categoryRoutes = (router) => {
       categoryValidation(schemas.categorySchema),
       Auth.verifyToken,
       CategoriesController.addCategory,
+    )
+    .get(
+      Auth.verifyToken,
+      CategoriesController.getAllCategories,
     );
   router.route('/categories/:categoryid')
     .delete(
