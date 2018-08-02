@@ -12,6 +12,13 @@ class EntriesController {
       );
       const entries = query.rows;
       const count = entries.length;
+
+      if (count === 0) {
+        return res.status(200).json({
+          message: 'There\'s no entry to display',
+        });
+      }
+
       return res.status(200).json({
         message: "List of all entries",
         "Number of entries added": count,

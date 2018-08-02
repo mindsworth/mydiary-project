@@ -1,7 +1,6 @@
 .container {
     width: 980px;
     margin: 10rem auto 7rem;
-    grid-gap: 16px;
 }
 
 .col-2 {

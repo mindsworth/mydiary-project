@@ -46,6 +46,7 @@ describe('Test entry routes', () => {
         const {
           entries,
         } = res.body;
+        console.log(res.body);
         expect(res.statusCode).to.equal(200);
         expect(entries.length).to.equal(0);
         return done();

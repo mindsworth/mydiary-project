@@ -15,7 +15,7 @@ describe('GET: /api/v1', () => {
   it('Should return status code 404 when user accesses non-existent route',
     (done) => {
       chai.request(server)
-        .get('/*')
+        .get('/')
         .end((err, res) => {
           expect(res.statusCode).to.equal(404);
           expect(res.body).to.eql({
