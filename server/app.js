@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({
   extended: false,
 }));
 app.use(bodyParser.json());
-routes(router);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -21,6 +20,11 @@ app.use((req, res, next) => {
   next();
 });
 
+routes(router);
 app.use('/api/v1/', router);
+
+app.get('/', (req, res) => res.status(404).json({
+  message: 'Request Not Found!',
+}));
 
 export default app;
