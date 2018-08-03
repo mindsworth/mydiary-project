@@ -47,12 +47,12 @@ N/A
 N/A
 
 Last 8hours
-Reading through OOP
-Fix bugs in my test
+- Rounding up my challenge 3
 
 Next 24hours
 Continue with the peer learning
-round up my test
+- Round up my test
+- Working challenge 4
 
 Blocker
 N/A
@@ -75,3 +75,11 @@ Start challenge 4
 Travis
 
 git push origin ch-api-testing-fix-159131059
+
+
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});

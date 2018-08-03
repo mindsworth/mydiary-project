@@ -6,7 +6,7 @@ import client from '../models/database/dbconnect';
 dotenv.config();
 
 class Auth {
-  async verifyToken(req, res, next) {
+  verifyToken(req, res, next) {
     const token = req
       .body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
@@ -30,7 +30,7 @@ class Auth {
         }));
       });
     } else {
-      res.status(403).json({
+      res.status(401).json({
         message: 'Token not provided',
       });
     }

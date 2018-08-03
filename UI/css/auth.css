@@ -16,6 +16,7 @@
 }
 
 .auth-inner {
+    border-radius: 1rem;
     background: #ffffff;
     padding: 5rem 10rem;
     width: 55rem;
