@@ -44,11 +44,11 @@ describe('Test entry routes', () => {
       })
       .end((err, res) => {
         const {
-          entries,
+          message,
         } = res.body;
         console.log(res.body);
         expect(res.statusCode).to.equal(200);
-        expect(entries.length).to.equal(0);
+        expect(message).to.equal('There\'s no entry to display');
         return done();
       });
   });

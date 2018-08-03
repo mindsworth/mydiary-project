@@ -61,7 +61,11 @@ class UsersController {
         });
         return res.status(201).json({
           message: 'Registration Successful',
-          user,
+          user: {
+            firstName: user[0].first_name,
+            lastName: user[0].last_name,
+            email: user[0].email,
+          },
           token,
         });
       }
@@ -69,6 +73,7 @@ class UsersController {
         message: `Email "${email}" already exist`,
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         message: "Error processing request.",
         error,
