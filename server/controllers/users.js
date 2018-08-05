@@ -46,7 +46,9 @@ class UsersController {
         await client.query(sql, values);
 
         const newUserQuery = await client.query(
-          `SELECT * FROM users WHERE email = ($1);`, [
+          `SELECT first_name,
+            last_name,
+            email FROM users WHERE email = ($1);`, [
             email,
           ],
         );
@@ -59,13 +61,10 @@ class UsersController {
         const token = JWT.sign(newUser, process.env.JWT_KEY, {
           expiresIn: '1hr',
         });
+
         return res.status(201).json({
           message: 'Registration Successful',
-          user: {
-            firstName: user[0].first_name,
-            lastName: user[0].last_name,
-            email: user[0].email,
-          },
+          user,
           token,
         });
       }
