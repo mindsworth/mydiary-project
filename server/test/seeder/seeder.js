@@ -17,12 +17,19 @@ const seeder = {
     };
   },
 
+  setCategoryData(title, colorId) {
+    return {
+      title,
+      colorId,
+    };
+  },
+
   setUserSignUpData(
     firstName,
     lastName,
     email,
     password,
-    password_confirmation,
+    password_confirmation, // eslint-disable-line camelcase
   ) {
     return {
       firstName,

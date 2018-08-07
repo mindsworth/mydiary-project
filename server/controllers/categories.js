@@ -3,12 +3,11 @@ import client from '../models/database/dbconnect';
 class CategoriesController {
   async addCategory(req, res) {
     try {
-      let {
+      const {
         title,
         colorId,
       } = req.body;
 
-      title = title.trim();
       const checkTitle = await client.query(
         `SELECT * FROM categories WHERE title=($1)`, [
           title,
@@ -18,7 +17,7 @@ class CategoriesController {
       if (!checkTitle.rows.length > 0) {
         const sql = `INSERT INTO categories(title,color_id) VALUES($1, $2)`;
         const values = [
-          title,
+          title.trim(),
           colorId,
         ];
 
@@ -40,7 +39,7 @@ class CategoriesController {
         message: 'Category already exist!',
       });
     } catch (error) {
-      return res.status(200).json({
+      return res.status(500).json({
         message: 'Error processing request',
         error,
       });

@@ -6,10 +6,6 @@ import {
 } from '../helpers/validator';
 
 const entryRoutes = (router) => {
-  router.route('/')
-    .get((req, res) => res.status(200).json({
-      message: 'Welcome to myDiary app for everyone.',
-    }));
   router.route('/entries')
     .get(
       Auth.verifyToken,

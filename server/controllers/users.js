@@ -72,7 +72,6 @@ class UsersController {
         message: `Email "${email}" already exist`,
       });
     } catch (error) {
-      console.log(error);
       return res.status(500).json({
         message: "Error processing request.",
         error,
@@ -101,12 +100,6 @@ class UsersController {
           password,
           user[0].password,
           (err, result) => {
-            if (err) {
-              return res.status(401).json({
-                message: 'Invalid login credentials',
-              });
-            }
-
             if (result) {
               const token = JWT.sign({
                 email: user[0].email,
@@ -122,6 +115,7 @@ class UsersController {
             }
             return res.status(401).json({
               message: 'Invalid login credentials',
+              error: err,
             });
           },
         );
