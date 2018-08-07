@@ -46,12 +46,12 @@ describe('Test entry routes', () => {
         const {
           message,
         } = res.body;
-        console.log(res.body);
         expect(res.statusCode).to.equal(200);
         expect(message).to.equal('There\'s no entry to display');
         return done();
       });
   });
+
   it('should list all entries', (done) => {
     chai.request(server)
       .get('/api/v1/entries')
@@ -60,10 +60,8 @@ describe('Test entry routes', () => {
       })
       .end((err, res) => {
         const {
-          entries,
           message,
         } = res.body;
-        console.log(entries);
         expect(res.statusCode).to.equal(401);
         expect(message).to.equal('Invalid authorization token');
         return done();
@@ -87,6 +85,44 @@ describe('Test entry routes', () => {
         if (err) return done(err);
         expect(res.statusCode).to.equal(201);
         expect(message).to.equal('ENTRY CREATED SUCCESSFULLY.');
+        return done();
+      });
+  });
+
+  it('should list all entries', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        expect(res.statusCode).to.equal(200);
+        expect(message).to.equal('List of all entries');
+        return done();
+      });
+  });
+
+  it('should add a new entry', (done) => {
+    chai.request(server)
+      .post('/api/v1/entries')
+      .set({
+        'x-access-token': userToken,
+      })
+      .send(seeder.setEntryData(
+        'Jenifa\'s Diary',
+        'What if its you with someone else\'s future wife?',
+        3,
+      ))
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(409);
+        expect(message).to.equal('Title already exist.');
         return done();
       });
   });
@@ -193,6 +229,23 @@ describe('Test entry routes', () => {
         if (err) return done(err);
         expect(res.statusCode).to.equal(400);
         expect(message).to.equal(`The entry with the ID 2 is not found.`);
+        return done();
+      });
+  });
+
+  it('should get a specific entry', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/love')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(400);
+        expect(message).to.equal(`love is not a valid entry ID.`);
         return done();
       });
   });

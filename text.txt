@@ -83,3 +83,13 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+*Since Last Standup*
+> - Worked on the feedback received during presentation
+> - Implementation of front-end functionality
+*Next 24 Hours*
+> - Continue the implementation of front-end functionality
+> - Add a get user details endpoint
+> - Write the test as well.
+*Blockers*
+> - None

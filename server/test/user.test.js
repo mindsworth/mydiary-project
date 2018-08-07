@@ -196,6 +196,22 @@ describe('POST api/v1/users/login', () => {
       });
   });
 
+  it(`should return status code 401 and 
+  a message when a wrong email is provided`, (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(seeder.setUserLogInData(
+        'chiddybabe001@gmail.com',
+        'chigodwin2',
+      ))
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(401);
+        expect(res.body.message)
+          .to.deep.equal('Invalid login credentials');
+        done();
+      });
+  });
+
   it(`should return status code 200 and 
   a message when email is not given`, (done) => {
     chai.request(server)
