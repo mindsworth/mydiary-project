@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>myDiary || Your personal true story</title>
     <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
@@ -16,25 +18,32 @@
             <a href="./index.html">
                 <img class="auth-logo" src="./imgs/mydiary_logo_white.png" alt="mydiary logo">
             </a>
-            <form action="./dashboard.html" class="auth-inner">
+            <form class="auth-inner" id="login">
                 <div class="auth-title">
                     <h4>Log In</h4>
                     <p>or
                         <a href="./signup.html">sign up for a new account.</a>.</p>
                 </div>
+                <div class="display-payload"></div>
                 <div class="form-group">
-                    <input class="form-control a-center" type="text" id="email" placeholder="Email">
+                    <input autocomplete="off" class="form-control" type="text" name="email" placeholder="Email">
+                    <label for="email"></label>
                     <!-- <label class="a-center" for="email">EMAIL</label> -->
                 </div>
                 <div class="small-spacing"></div>
                 <div class="form-group">
-                    <input class="form-control a-center" type="password" id="password" placeholder="Password">
+                    <input autocomplete="off" class="form-control" type="password" name="password" placeholder="Password">
+                    <label for="password"></label>
                     <!-- <label class="a-center" for="password">PASSWORD</label> -->
                 </div>
-                <button>Log me in</button>
+                <button>
+                    <i class="fas fa-spinner fa-pulse fa-1x fa-fw"></i>
+                    Log me in
+                </button>
             </form>
         </div>
     </div>
+    <script src="./CLIENT/auth-login.js"></script>
 </body>
 
 </html>
