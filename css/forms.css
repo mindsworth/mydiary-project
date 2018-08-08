@@ -8,6 +8,15 @@
     display: block;
 }
 
+.form-group label {
+    font-size: .9rem;
+    display: block;
+    text-align: left;
+    line-height: 1rem;
+    margin-top: .5rem;
+    color: #3FBF79
+}
+
 .form-group .form-control {
     display: inline-block;
     border: 0;
@@ -26,7 +35,7 @@
 }
 
 .form-group .form-control::-webkit-input-placeholder {
-    color: #FF6839;
+    color: #222222;
     font-weight: 500;
     font-size: 1.2rem;
 }

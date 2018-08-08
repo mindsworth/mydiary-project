@@ -49,6 +49,25 @@
     bottom: -10%;
     cursor: pointer;
     margin-top: 5rem;
+    position: relative;
+}
+
+.fa-spinner {
+    color: #ffffff;
+    position: absolute;
+    top: 20%;
+    left: 42%;
+    font-size: 3rem;
+    display: none;
+}
+
+.display-payload {
+    border-radius: 3rem;
+    padding: 0;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    font-style: italic;
+    display: none;
 }
 
 /* Responsiveness Styling*/
