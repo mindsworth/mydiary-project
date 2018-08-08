@@ -8,6 +8,15 @@
     display: block;
 }
 
+.form-group label {
+    font-size: .9rem;
+    display: block;
+    text-align: left;
+    line-height: 1rem;
+    margin-top: .5rem;
+    color: #3FBF79
+}
+
 .form-group .form-control {
     display: inline-block;
     border: 0;
