@@ -66,6 +66,16 @@ h4 {
     font-size: 1.8rem;
     padding: 1.2rem 3rem;
     color: #fff;
+    position: relative;
+}
+
+.cta-btn .fa-spinner {
+    color: #ffffff;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    font-size: 3rem;
+    display: none;
 }
 
 .thumbnail img {

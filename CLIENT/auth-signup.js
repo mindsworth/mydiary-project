@@ -118,7 +118,6 @@ class AuthenticationClient {
               handlePayLoad(response.message, payLoad);
               redirect(response);
             } else {
-              console.log('Error', response.message);
               handlePayLoad(response.message, payLoad);
             }
           }

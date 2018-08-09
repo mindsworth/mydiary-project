@@ -52,7 +52,7 @@
     position: relative;
 }
 
-.fa-spinner {
+.auth-inner button .fa-spinner {
     color: #ffffff;
     position: absolute;
     top: 20%;
