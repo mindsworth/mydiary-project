@@ -95,7 +95,7 @@ class AuthenticationClient {
       const data = getUserInput(event.target);
       const method = 'post';
 
-      const fetchedData = MakeNetworkRequest({
+      MakeNetworkRequest({
           url,
           method,
           data
@@ -110,7 +110,6 @@ class AuthenticationClient {
               handlePayLoad(response.message, payLoad);
               redirect(response);
             } else {
-              console.log('Error', response.message);
               handlePayLoad(response.message, payLoad);
             }
           }
