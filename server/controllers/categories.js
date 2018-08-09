@@ -107,6 +107,42 @@ class CategoriesController {
       });
     }
   }
+
+  async getSingleCategory(req, res) {
+    try {
+      const {
+        categoryid,
+      } = req.params;
+      if (!Number(categoryid)) {
+        return res.status(400).json({
+          message: `${categoryid} is not a valid user ID.`,
+        });
+      }
+
+      const query = await client.query(
+        `SELECT * FROM categories WHERE category_id=($1);`, [
+          categoryid,
+        ],
+      );
+      const category = query.rows;
+
+      if (category.length) {
+        return res.status(200).json({
+          message: `Get the category with ID ${categoryid}`,
+          category,
+        });
+      }
+
+      return res.status(400).json({
+        message: `The category with the ID ${categoryid} is not found.`,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        message: `Error processing request.`,
+        error,
+      });
+    }
+  }
 }
 
 export default new CategoriesController();
