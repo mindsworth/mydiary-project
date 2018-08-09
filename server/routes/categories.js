@@ -20,6 +20,10 @@ const categoryRoutes = (router) => {
     .delete(
       Auth.verifyToken,
       CategoriesController.deleteCategory,
+    )
+    .get(
+      Auth.verifyToken,
+      CategoriesController.getSingleCategory,
     );
 };
 
