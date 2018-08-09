@@ -103,8 +103,6 @@ class EntryClient {
           window.location.href = 'login.html';
         }
         response.categories.map((item) => {
-          // const opt = `<option value="${item.category_id}">${item.title}</option>`;
-          const opt = document.createElement('option');
           opt.setAttribute('value', item.category_id);
           opt.innerText = item.title;
           category.append(opt);
