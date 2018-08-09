@@ -80,6 +80,49 @@ class UsersController {
   }
 
 
+  async getSingleUser(req, res) {
+    try {
+      const userId = req.userData.userID;
+      if (!Number(userId)) {
+        return res.status(400).json({
+          message: `${userId} is not a valid user ID.`,
+        });
+      }
+
+      const query = await client.query(
+        `SELECT
+        user_id,
+        first_name
+        last_name,
+        email,
+        about,
+        age,
+        createdAt,
+        updatedAt  FROM users WHERE  user_id=($1);`, [
+          userId,
+        ],
+      );
+      const user = query.rows;
+
+      if (user.length) {
+        return res.status(200).json({
+          message: `Get the user with ID ${userId}`,
+          user,
+        });
+      }
+
+      return res.status(400).json({
+        message: `The user with the ID ${userId} is not found.`,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        message: `Error processing request.`,
+        error,
+      });
+    }
+  }
+
+
   async userLogin(req, res) {
     const {
       email,

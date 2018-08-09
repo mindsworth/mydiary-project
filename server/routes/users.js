@@ -1,4 +1,5 @@
 import UsersController from '../controllers/users';
+import Auth from '../middleware/check-auth';
 import {
   signupValidation,
   schemas,
@@ -14,6 +15,11 @@ const userRoutes = (router) => {
     .post(
       signupValidation(schemas.loginSchema),
       UsersController.userLogin,
+    );
+  router.route('/user')
+    .get(
+      Auth.verifyToken,
+      UsersController.getSingleUser,
     );
 };
 
