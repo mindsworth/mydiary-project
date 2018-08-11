@@ -17,6 +17,47 @@
     font-size: 1.2rem;
 }
 
+.trash-modal .modal-wrap {
+    border: 1px solid #FF6839;
+    background-color: #ffffff;
+    width: 40%;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.trash-modal .modal-wrap .trash-title {
+    font-size: 2rem;
+    margin-bottom: 5rem;
+    font-weight: 500;
+}
+
+.trash-modal .modal-wrap .trash-body {
+    font-size: 1.5rem;
+    padding: 3rem 0 0;
+    border-top: 1px solid #e8e8e8;
+}
+
+.trash-modal .modal-wrap .trash-body .trash-cta button {
+    padding: 1.5rem 3rem;
+    border: 0;
+    border-radius: 30px;
+    font-weight: 600;
+    margin: .5rem;
+}
+
+.trash-modal .modal-wrap .trash-body .trash-cta {
+    padding-top: 2rem;
+}
+
+.trash-modal .modal-wrap .trash-body .trash-cta .accept {
+    background-color: #FF6839;
+    color: #ffffff;
+}
+
+.trash-modal .modal-wrap .trash-body .trash-cta .cancel {
+    border: 2px solid #FF6839;
+}
+
 @media only screen and (max-width: 587px) {
     .details .diary-entry {
         padding: 0;

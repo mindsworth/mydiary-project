@@ -155,42 +155,49 @@
         </div>
         <div class="modal-olay">
             <div class="modal-wraP">
-                <form action="./create.html">
+                <form id="category-form">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Enter category title">
+                        <input name="title" class="form-control" type="text" placeholder="Enter category title">
+                        <label class="errfield"></label>
                         <div class="color-opt" name="color">
                             <p>Select color</p>
                             <span>
-                                <input class="color-control" id="one" type="radio" name="color">
+                                <input class="color-control" value="0" id="one" type="radio" name="color" checked>
                                 <label class="one" for="one"></label>
                             </span>
                             <span>
-                                <input class="color-control" id="two" type="radio" name="color">
+                                <input class="color-control" value="1" id="two" type="radio" name="color">
                                 <label class="two" for="two"></label>
                             </span>
                             <span>
-                                <input class="color-control" id="three" type="radio" name="color">
+                                <input class="color-control" value="2" id="three" type="radio" name="color">
                                 <label class="three" for="three"></label>
                             </span>
                             <span>
-                                <input class="color-control" id="four" type="radio" name="color">
+                                <input class="color-control" value="3" id="four" type="radio" name="color">
                                 <label class="four" for="four"></label>
                             </span>
                             <span>
-                                <input class="color-control" id="five" type="radio" name="color">
+                                <input class="color-control" value="4" id="five" type="radio" name="color">
                                 <label class="five" for="five"></label>
                             </span>
                         </div>
+                        <div class="display-payload"></div>
                     </div>
                     <div class="modal-btn-wrap">
-                        <button class="cta-btn">Save</button>
+                        <button class="cta-btn btn">
+                            <i class="fas fa-spinner fa-pulse fa-1x fa-fw"></i>
+                            Save
+                        </button>
                     </div>
                 </form>
             </div>
             <i class="modal-close fas fa-times"></i>
         </div>
     </main>
+    <script src="./CLIENT/profile.js"></script>
     <script src="./js/custom.js"></script>
+
 </body>
 
 </html>

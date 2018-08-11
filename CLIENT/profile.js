@@ -30,8 +30,7 @@ const getUserInput = function (input) {
   const formInput = new FormData(input);
   const data = {
     title: formInput.get('title'),
-    description: formInput.get('description'),
-    categoryId: formInput.get('category'),
+    colorId: formInput.get('color'),
   };
   return data;
 }
@@ -50,25 +49,14 @@ const animateSpinDisabled = (btn, spin) => {
   spin.style.display = "none";
 }
 
-const displayErrors = (errorLog, errfield) => {
-  for (const err in errorLog) {
-    if (err === 'title') {
-      errfield[0].innerHTML = errorLog[err][0];
-    } else if (err === 'description') {
-      errfield[1].innerHTML = errorLog[err][0];
-    }
-  }
-};
-
 const handlePayLoad = (message, payLoad) => {
   payLoad.innerHTML = `${message}`;
   payLoad.style.display = 'block';
-};
+}
 
-class EntryClient {
+class ProfileClient {
   init() {
-    new EntryClient().getAllCategories();
-    new EntryClient().addEntry();
+    new ProfileClient().addCategory();
   }
 
   checkToken() {
@@ -80,79 +68,47 @@ class EntryClient {
     return token;
   }
 
-  getAllCategories() {
-    const category = document.querySelector('#category');
-    const token = new EntryClient().checkToken();
-    const data = {
-      token,
-    }
-    const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/categories`;
-    const method = 'get';
-
-    MakeNetworkRequest({
-        url,
-        method,
-        data
-      }).then((response) => {
-        if (response.message === 'Invalid authorization token') {
-          window.location.href = 'login.html';
-        }
-        response.categories.map((item) => {
-          const opt = document.createElement('option');
-          opt.setAttribute('value', item.category_id);
-          opt.innerText = item.title;
-          category.append(opt);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  addEntry() {
-    const create = document.querySelector('#create');
-    const btn = document.querySelector('.cta-btn');
-    const spin = document.querySelector('.fa-spinner');
+  addCategory() {
+    const categoryForm = document.querySelector('#category-form');
+    const btn = document.querySelector('.btn');
     const payLoad = document.querySelector('.display-payload');
-    const errfield = document.querySelectorAll("label");
-
-    create.addEventListener('submit', (event) => {
+    const spin = document.querySelector('.fa-spinner');
+    const errfield = document.querySelector('.errfield');
+    categoryForm.addEventListener('submit', (event) => {
       event.preventDefault();
+      errfield.innerHTML = "";
       payLoad.style.display = 'none';
-      for (const err of errfield) {
-        err.innerHTML = "";
-      }
 
       animateSpin(btn, spin);
-      const token = new EntryClient().checkToken();
-      const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries`;
+
+      const url = 'https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/categories';
       const body = getUserInput(event.target);
+      const token = new ProfileClient().checkToken();
+      const method = 'post';
       const data = {
         token,
         body
       }
-      const method = 'post';
 
       MakeNetworkRequest({
           url,
           method,
           data
         }).then((response) => {
+          if (response.message === 'Invalid authorization token') {
+            window.location.href = 'login.html';
+          }
 
           animateSpinDisabled(btn, spin);
 
           if (typeof response.message === 'object') {
-            displayErrors(response.message, errfield);
-            console.log(response);
+            errfield.innerHTML = response.message.title[0];
           } else {
-            if (response.message === 'ENTRY CREATED SUCCESSFULLY.') {
+            if (response.message === 'Category created successufully!') {
               handlePayLoad(response.message, payLoad);
               window.location.reload(true);
             } else {
               handlePayLoad(response.message, payLoad);
-              if (response.message === 'Invalid authorization token') {
-                window.location.href = 'login.html';
-              }
             }
           }
         })
@@ -163,4 +119,4 @@ class EntryClient {
   }
 }
 
-new EntryClient().init();
+new ProfileClient().init();

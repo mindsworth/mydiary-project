@@ -205,6 +205,19 @@
     color: #ffffff;
 }
 
+.modal-olay .form-group .errfield {
+    color: #3FBF79;
+    display: block;
+    text-align: center;
+}
+
+.modal-olay .form-group .display-payload {
+    text-align: center;
+    background-color: rgba(255, 103, 57, 0.2);
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
 @media only screen and (max-width: 587px) {
     .info {
         display: block;

@@ -67,6 +67,7 @@ h4 {
     padding: 1.2rem 3rem;
     color: #fff;
     position: relative;
+    font-weight: 600;
 }
 
 .cta-btn .fa-spinner {
