@@ -67,6 +67,7 @@
   right: 0;
   border-radius: 3px;
   display: none;
+  width: 10rem;
 }
 
 /* .content .drawer {
