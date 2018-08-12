@@ -55,6 +55,18 @@ h4 {
     font-weight: 500;
 }
 
+.place-text {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+    opacity: .1;
+}
+
+.fa-smile-wink {
+    font-size: 10rem;
+    margin-bottom: 3rem;
+}
+
 .tiny-title {
     margin-bottom: 1rem;
 }

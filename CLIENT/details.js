@@ -129,7 +129,7 @@ class DetailsClient {
   getSingleCategory(categoryId) {
     const category = document.querySelector('.category');
     const color = document.querySelector('.color');
-    const colors = ['#0AD3FC', '#200AFC', '#CC10D9', '#FC0A3C', '#5AFC0A'];
+    const colors = ['#81ecec', '#fd79a8', '#fdcb6e', '#00b894', '#cd84f1'];
     const token = new DetailsClient().checkToken();
     const data = {
       token,
@@ -160,7 +160,7 @@ class DetailsClient {
       const data = {
         token,
       }
-      const entryId = localStorage.getItem('entry_id');
+      const entryId = location.search.split('entryid=')[1];
       const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
       const method = 'delete';
 
@@ -191,7 +191,7 @@ class DetailsClient {
     const data = {
       token,
     }
-    const entryId = localStorage.getItem('entry_id');
+    let entryId = location.search.split('entryid=')[1];
     const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
     const method = 'get';
     MakeNetworkRequest({

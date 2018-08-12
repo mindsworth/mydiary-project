@@ -143,7 +143,6 @@ class EntryClient {
 
           if (typeof response.message === 'object') {
             displayErrors(response.message, errfield);
-            console.log(response);
           } else {
             if (response.message === 'ENTRY CREATED SUCCESSFULLY.') {
               handlePayLoad(response.message, payLoad);
