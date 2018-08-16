@@ -93,6 +93,7 @@ class DetailsClient {
     new DetailsClient().getSingleEntry();
     new DetailsClient().handleModal();
     new DetailsClient().deleteEntry();
+    new DetailsClient().handEditIcon();
   }
 
   checkToken() {
@@ -108,7 +109,8 @@ class DetailsClient {
     const pencil = document.querySelector('.fa-pencil-alt');
 
     pencil.addEventListener('click', () => {
-      localStorage.setItem('entry_id', '');
+      const entryId = location.search.split('entryid=')[1];
+      window.location.href = `./editentry.html?entryid=${entryId}`;
     });
   }
 
