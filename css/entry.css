@@ -1,6 +1,9 @@
 .diary-entry {
-    background-color: #ffffff;
     margin-bottom: .3rem;
+}
+
+.list-container .diary-entry {
+    background-color: #FBFBFc;
 }
 
 .diary-entry .header {
@@ -51,9 +54,10 @@
     align-items: center;
 }
 
-.notice .fav {
+.fav {
     font-size: 1.8rem;
     color: #FF6839;
+    cursor: pointer;
 }
 
 .notice .timer {

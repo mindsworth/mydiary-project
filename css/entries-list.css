@@ -1,20 +1,27 @@
 .list-container {
   width: 90%;
-  margin: 12rem auto;
+  margin: 0 auto;
+}
+
+.filter-margin {
+  padding-top: 10rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f7f7f7;
+  margin-bottom: 5rem;
 }
 
 .filters {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   background-color: #f7f7f7;
   padding: 1rem;
   border-radius: 5px;
 }
 
 .filters button {
-  padding: 1rem 3rem;
+  padding: .8rem 3rem;
   border-radius: 30px;
   border: 0;
   margin: 0 1rem;
@@ -47,6 +54,7 @@
   box-shadow: 0 10px 50px -10px rgba(134, 134, 134, 0.64);
   transition: 0.25s ease;
   transform: translateY(-2%);
+  background-color: #ffffff;
 }
 
 .content .diary-entry .header {
@@ -139,7 +147,11 @@
 
 @media only screen and (max-width: 587px) {
   .list-container {
-    margin: 8rem auto;
+    margin: 3rem auto;
+  }
+  .filter-margin {
+    padding-top: 5rem;
+    margin-bottom: 0rem;
   }
   .content {
     /* grid-gap: 5rem; */

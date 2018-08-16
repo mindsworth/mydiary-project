@@ -62,10 +62,10 @@
 
 @media only screen and (max-width: 587px) {
     .form-wrapper {
-        padding: 0rem 0rem;
+        padding: 0rem;
     }
     .editprofile {
-        border-left: 5rem solid #FF6839;
+        border-left: 2rem solid #FF6839;
     }
     .editprofile .modified-grid {
         display: block;

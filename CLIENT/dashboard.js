@@ -16,8 +16,9 @@ const MakeNetworkRequest = (input = {
   } else {
     reqObject.headers = {
       'content-type': 'application/json',
+      'x-access-token': input.data.token,
     };
-    reqObject.body = JSON.stringify(input.data);
+    reqObject.body = JSON.stringify(input.data.body);
   }
 
   return fetch(input.url, reqObject)
@@ -105,7 +106,7 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
                                 <div class="drawer">
                                     <ul>
                                         <li>
-                                            <a href="./create.html">
+                                            <a href="./editentry.html?entryid=${entry_id}">
                                                 <i class="fas fa-pencil-alt"></i>Edit</a>
                                         </li>
                                         <li>
@@ -123,7 +124,7 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
                     </a>
                     <div class="notice">
                         <div class="fav">
-                            <i class="fas fa-heart"></i>
+                            <i data-favEntryId="${entry_id}" class="fas fa-heart"></i>
                         </div>
                         <div class="timer">Last updated - ${updatedAt}</div>
                     </div>
@@ -131,11 +132,14 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
   return entryWrap;
 };
 
+let status = false;
+
 class DashboardClient {
   init() {
     new DashboardClient().getAllEntry();
     new DashboardClient().handleModal();
     new DashboardClient().getUserDetails();
+    new DashboardClient().handleFavorite();
   }
 
   checkToken() {
@@ -242,8 +246,8 @@ class DashboardClient {
       })
       .then((response) => {
         const userFirstName = document.querySelector('.user-fname');
-        userFirstName.innerHTML = response.user[0].last_name;
-        console.log('User: ', response.user);
+        userFirstName.innerHTML = response.user[0].first_name;
+        // console.log('User: ', response.user);
       })
       .catch(err => err);
   }
@@ -278,6 +282,51 @@ class DashboardClient {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  handleFavorite() {
+
+    document.addEventListener('click', (event) => {
+      if (event.target.className === 'fas fa-heart') {
+        const entryId = parseInt(event.target.dataset.faventryid, 10);
+        const token = new DashboardClient().checkToken();
+        status = !status;
+        console.log(typeof entryId);
+        const body = {
+          favStatus: status,
+        };
+        const data = {
+          token,
+          body,
+        };
+        console.log(data);
+
+        const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/favorite/${entryId}`;
+        const method = 'put';
+        MakeNetworkRequest({
+            url,
+            method,
+            data
+          }).then((response) => {
+            if (response.message === 'Invalid authorization token') {
+              window.location.href = 'login.html';
+            }
+            console.log(response)
+            // if (response.entries.length > 0) {
+            //   content.innerHTML = "";
+            // }
+            // if (response.entries.length < 3) {
+            //   content.style.gridTemplateColumns = 'repeat(auto-fit, minmax(22rem, 27rem))';
+            // }
+            // response.entries.map((item) => {
+            //   new DashboardClient().getSingleCategory(item);
+            // });
+          })
+          .catch((err) => {
+            console.log(err.toString());
+          });
+      }
+    });
   }
 }
 

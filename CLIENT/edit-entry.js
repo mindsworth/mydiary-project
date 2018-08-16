@@ -8,7 +8,7 @@ const MakeNetworkRequest = (input = {
     mode: 'cors',
   };
 
-  if (input.method === 'get') {
+  if (input.method === 'get' || input.method === 'delete') {
     reqObject.headers = {
       'content-type': 'application/json',
       'x-access-token': input.data.token,
@@ -36,6 +36,11 @@ const getUserInput = function (input) {
   return data;
 }
 
+const handlePayLoad = (message, payLoad) => {
+  payLoad.innerHTML = `${message}`;
+  payLoad.style.display = 'block';
+};
+
 const animateSpin = (btn, spin) => {
   btn.disabled = true;
   btn.style.cursor = "progress";
@@ -50,25 +55,11 @@ const animateSpinDisabled = (btn, spin) => {
   spin.style.display = "none";
 }
 
-const displayErrors = (errorLog, errfield) => {
-  for (const err in errorLog) {
-    if (err === 'title') {
-      errfield[0].innerHTML = errorLog[err][0];
-    } else if (err === 'description') {
-      errfield[1].innerHTML = errorLog[err][0];
-    }
-  }
-};
-
-const handlePayLoad = (message, payLoad) => {
-  payLoad.innerHTML = `${message}`;
-  payLoad.style.display = 'block';
-};
-
-class EntryClient {
+class EditPageClient {
   init() {
-    new EntryClient().getAllCategories();
-    new EntryClient().addEntry();
+    new EditPageClient().getSingleEntry();
+    new EditPageClient().getAllCategories();
+    new EditPageClient().updateEntry();
   }
 
   checkToken() {
@@ -82,10 +73,12 @@ class EntryClient {
 
   getAllCategories() {
     const category = document.querySelector('#category');
-    const token = new EntryClient().checkToken();
+
+    const token = new EditPageClient().checkToken();
     const data = {
       token,
     }
+
     const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/categories`;
     const method = 'get';
 
@@ -105,55 +98,64 @@ class EntryClient {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.toString());
       });
   }
 
-  addEntry() {
-    const create = document.querySelector('#create');
+  getSingleEntry() {
+    const title = document.querySelector('.title');
+    const description = document.querySelector('.description');
+    const token = new EditPageClient().checkToken();
+    const data = {
+      token,
+    }
+    let entryId = location.search.split('entryid=')[1];
+    const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
+    const method = 'get';
+    MakeNetworkRequest({
+        url,
+        method,
+        data
+      }).then((response) => {
+        if (response.message === 'Invalid authorization token') {
+          window.location.href = 'login.html';
+        }
+        title.value = response.entry[0].title;
+        description.value = response.entry[0].description;
+      })
+      .catch((err) => {
+        console.log(err.toString());
+      });
+  }
+
+  updateEntry() {
+    const editEntry = document.querySelector('#edit-entry');
+    const payLoad = document.querySelector('.display-payload');
     const btn = document.querySelector('.cta-btn');
     const spin = document.querySelector('.fa-spinner');
-    const payLoad = document.querySelector('.display-payload');
-    const errfield = document.querySelectorAll("label");
-
-    create.addEventListener('submit', (event) => {
+    editEntry.addEventListener('submit', (event) => {
       event.preventDefault();
-      payLoad.style.display = 'none';
-      for (const err of errfield) {
-        err.innerHTML = "";
-      }
-
-      animateSpin(btn, spin);
-      const token = new EntryClient().checkToken();
-      const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries`;
       const body = getUserInput(event.target);
+      const token = new EditPageClient().checkToken();
       const data = {
         token,
         body
       }
-      const method = 'post';
-
+      animateSpin(btn, spin);
+      let entryId = location.search.split('entryid=')[1];
+      const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
+      const method = 'put';
       MakeNetworkRequest({
           url,
           method,
           data
         }).then((response) => {
-
           animateSpinDisabled(btn, spin);
-
-          if (typeof response.message === 'object') {
-            displayErrors(response.message, errfield);
-          } else {
-            if (response.message === 'ENTRY CREATED SUCCESSFULLY.') {
-              handlePayLoad(response.message, payLoad);
-              window.location.reload(true);
-            } else {
-              handlePayLoad(response.message, payLoad);
-              if (response.message === 'Invalid authorization token') {
-                window.location.href = 'login.html';
-              }
-            }
+          if (response.message === 'Invalid authorization token') {
+            window.location.href = 'login.html';
           }
+          handlePayLoad(response.message, payLoad);
+          window.location.href = 'dashboard.html';
         })
         .catch((err) => {
           console.log(err.toString());
@@ -162,4 +164,4 @@ class EntryClient {
   }
 }
 
-new EntryClient().init();
+new EditPageClient().init();

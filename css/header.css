@@ -62,8 +62,8 @@ nav ul,
     display: inline-block;
     width: 5rem;
     height: 5rem;
-    border: 5px solid #f7f7f7;
-    border-radius: 50%;
+    border: 3px solid #f7f7f7;
+    border-radius: 20%;
     background-color: #2d1d80;
     cursor: pointer;
     position: relative;
@@ -71,13 +71,18 @@ nav ul,
 
 /* Dropdown List */
 
-.user .thumbnail .user-dropdown {
-    display: none;
+.user .thumbnail .user-dropdown-wraper {
     position: absolute;
+    display: none;
+    top: 100%;
+    padding-top: 1rem;
+    right: 1rem;
+}
+
+.user-dropdown-wraper .user-dropdown {
     min-width: 20rem;
     min-height: 2rem;
-    top: 130%;
-    right: 1rem;
+    display: block;
     padding: .5rem 0;
     border-top: 3px solid #FF6839;
     background-color: #ffffff;
@@ -91,13 +96,13 @@ nav ul,
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
     border-bottom: 10px solid #FF6839;
-    top: -10px;
+    top: 0px;
     right: 0;
     z-index: 10;
     transition: all .3s ease-in-out;
 }
 
-.user .thumbnail:hover>.user-dropdown {
+.user .thumbnail:hover>.user-dropdown-wraper {
     display: block;
 }
 
