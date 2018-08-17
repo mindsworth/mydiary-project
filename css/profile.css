@@ -1,38 +1,80 @@
 .info {
     display: grid;
-    grid-template-columns: 1.2fr 2.7fr 2fr;
+    grid-template-columns: 2fr 1.2fr;
     grid-gap: 2rem;
+    background-color: #ffffff;
 }
 
 .info .user-image {
+    background-color: #FF6839;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 5rem;
+}
+
+.user-image-inner {
     text-align: center;
 }
 
 .user-image .thumbnail {
-    width: 10rem;
-    height: 10rem;
-    background-color: #2d1d80;
+    width: 20rem;
+    height: 20rem;
+    position: relative;
     border-radius: 50%;
     display: inline-block;
-    border: 5px solid #f7f7f7;
+    border: 10px solid rgb(255, 255, 255);
     margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.user-image .thumbnail img {
+    width: 18rem;
+    height: 18rem;
+}
+
+.profile-image-save-wrap {
+    margin: -.5rem 0 2rem;
+}
+
+.profile-image-save {
+    background-color: #ffffff;
+    border: 0;
+    right: 10rem;
+    padding: .2rem 2rem .5rem;
+    border-radius: 30px;
+    display: none;
+}
+
+.user-image .thumbnail:hover>.change-image-btn {
+    display: flex;
+}
+
+#profile-image {
+    display: none;
 }
 
 .user-image .change-image-btn {
-    background-color: #A9DBD8;
-    border: none;
-    padding: .7rem 2rem;
-    border-radius: 30px;
+    display: none;
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    background-color: #00000073;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
 }
 
 .change-image-btn .fa-image {
-    color: #FF6839;
-    font-size: 1.6rem;
-    padding-right: 1rem;
-    vertical-align: middle;
+    color: #ffffff;
+    font-size: 2.6rem;
+    cursor: pointer;
 }
 
-.user-image .remove {
+/* .user-image .remove {
     margin-top: .2rem;
 }
 
@@ -41,69 +83,84 @@
     font-weight: 500;
     color: #222;
     text-decoration: none;
-}
+} */
 
 /* Info One */
 
-.user-info-one .user-name {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #f7f7f7;
+.info .user-details {
+    padding: 8rem 0;
+    padding-right: 5rem;
 }
 
-.user-info-one .user-about {
+.info .user-details h4 {
+    margin-bottom: .3rem;
     font-size: 1.4rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid #f7f7f7;
 }
 
-.user-info-one .age-gender {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
+.email,
+.tel,
+.about {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 2rem;
 }
 
-.age-gender .age {
-    flex: 1 100%;
+.about {
+    border-bottom: 0;
 }
 
-.age-gender .gender {
-    flex: 1 100%;
+#about {
+    border: 0;
+    width: 100%;
+    min-height: 7rem;
+    resize: none;
+    font-size: 1.5rem;
+    color: #222222;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
 }
 
-.age span {
-    padding-left: 5rem;
+#tel {
+    border: 0;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
 }
 
-.gender .fas {
-    padding-right: 1rem;
+.save-wrap {
+    text-align: right;
+    display: block;
 }
 
-/* Info Two */
-
-.user-info-two .email {
-    padding: 1rem 0;
-    border-bottom: 1px solid #f7f7f7;
+.save {
+    background-color: #FF6839;
+    border: 0;
+    border-radius: 30px;
+    padding: .2rem 1.5rem .5rem;
+    color: #ffffff;
+    margin-top: .5rem;
+    display: none;
+    position: relative;
 }
 
-.user-info-two .tel {
-    padding: 1rem 0;
-    border-bottom: 1px solid #f7f7f7;
+.save .fa-spinner {
+    position: absolute;
+    top: 22%;
+    left: 35%;
+    display: none;
+    color: #ffffff;
 }
 
-.user-info-two .city {
-    padding: 1rem 0;
+.fa-pencil-alt {
+    cursor: pointer;
 }
 
-.email span {
-    padding-left: 3rem;
-}
-
-.tel span {
-    padding-left: 3rem;
-}
-
-.city span {
-    padding-left: 3rem;
+.user-name {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ffffff;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
 }
 
 /*Reminder Settings Styling*/
@@ -178,11 +235,8 @@
     text-align: right;
 }
 
-.all-categories {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-top: 2rem;
-    align-items: center;
+.category-wrap {
+    display: inline;
 }
 
 .all-categories .items {
@@ -216,6 +270,23 @@
     background-color: rgba(255, 103, 57, 0.2);
     margin: 2rem 0;
     padding: 1rem;
+}
+
+.total {
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 1rem;
+    padding-top: 1.5rem;
+}
+
+.total p {
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.total h1 {
+    font-size: 4rem;
+    color: #FF6839;
 }
 
 @media only screen and (max-width: 587px) {

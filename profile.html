@@ -33,7 +33,7 @@
         </nav>
         <div class="user">
             <ul>
-                <li class="mobile-hide">Chigoziem</li>
+                <li class="mobile-hide user-fname"></li>
                 <li>
                     <div class="thumbnail">
                         <img src="./imgs/userface.png" alt="User thumbnail">
@@ -45,7 +45,7 @@
                                 <li class="mobile-show">
                                     <a href="./create.html">Add New Entry</a>
                                 </li>
-                                <li>
+                                <li id="logout">
                                     <a href="./login.html">Log Out</a>
                                 </li>
                             </ul>
@@ -57,74 +57,83 @@
     </header>
     <main role="main">
         <div class="container col-1">
-            <div>
+            <!-- <div>
                 <a href="./editprofile.html">
                     <button class="cta-btn">Edit profile</button>
                 </a>
-            </div>
-            <div class="wrapper info">
+            </div> -->
+            <div class="info">
                 <div class="user-image">
-                    <div class="thumbnail">
-                        <img src="./imgs/userface.png" alt="User thumbnail">
-                    </div>
-                    <div>
-                        <button class="change-image-btn">
+                    <div class="user-image-inner">
+                        <div class="thumbnail" id="thumbnail">
+                            <img src="" id="image-field" alt="User thumbnail">
+                            <div class="change-image-btn">
+                                <input type="file" name="profileImage" id="profile-image">
+                                <label for="profile-image" class="fas fa-image"></label>
+                            </div>
+                        </div>
+                        <div class="profile-image-save-wrap">
+                            <button class="profile-image-save">save</button>
+                        </div>
+                        <div>
+                            <h3 class="user-name">
+                                <span class="dp-fname"></span>
+                                <span class="dp-lname"></span>
+                            </h3>
+                            <!-- <button class="change-image-btn">
                             <i class="fas fa-image"></i>change image</button>
                         <p class="remove">
                             <a href="#">Remove</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="user-info-one">
-                    <h2 class="user-name">Chigoziem Nwaiwu</h2>
-                    <p class="user-about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem accusamus provident ad id culpa nobis
-                        dicta accusantium ipsa magnam facere reiciendis, quos voluptate eligendi numquam.</p>
-                    <div class="age-gender">
-                        <div class="age">
-                            <b>Age:</b>
-                            <span>30years</span>
+                        </p> -->
                         </div>
-                        <div class="gender">
-                            <i class="fas fa-male"></i>
-                            <b>Male</b>
+                        <div class="total">
+                            <h1 class="total-entries"></h1>
+                            <p>Total Entry</p>
                         </div>
                     </div>
                 </div>
-                <div class="user-info-two">
+                <div class="user-details">
                     <div class="email">
-                        <b>Email:</b>
-                        <span>princegoziem@gmail.com</span>
+                        <h4>Email:</h4>
+                        <p class="dp-email">princegoziem@gmail.com</p>
                     </div>
                     <div class="tel">
-                        <b>Phone Number:</b>
-                        <span>08039216673</span>
+                        <h4>Phone Number
+                            <i class="fas fa-pencil-alt tel-edit"></i>
+                        </h4>
+                        <input type="text" disabled id="tel" placeholder="************">
+                        <div class="save-wrap">
+                            <button class="save tel-save">
+                                <i class="fas tel-spin fa-spinner fa-pulse fa-1x fa-fw"></i>
+                                save
+                            </button>
+                        </div>
                     </div>
-                    <div class="city">
-                        <b>City:</b>
-                        <span>Lagos</span>
+                    <div class="about">
+                        <h4>About
+                            <i class="fas fa-pencil-alt about-edit"></i>
+                        </h4>
+                        <textarea name="about" disabled id="about" placeholder="say something about yourself..."></textarea>
+                        <div class="save-wrap">
+                            <button class="save about-save">
+                                <i class="fas about-spin fa-spinner fa-pulse fa-1x fa-fw"></i>
+                                save
+                            </button>
+                        </div>
                     </div>
+                    <!-- <div class="age">
+                        <h4>Age:</h4>
+                        <p>30years</p>
+                    </div> -->
                 </div>
             </div>
             <div class="wrapper">
                 <h3>All Categories</h3>
                 <div class="all-categories">
-                    <ul class="">
-                        <l1 class="items">Love Life
-                            <i class="fas fa-times-circle"></i>
-                        </l1>
-                        <l1 class="items">Life style
-                            <i class="fas fa-times-circle"></i>
-                        </l1>
-                        <l1 class="items">Church service
-                            <i class="fas fa-times-circle"></i>
-                        </l1>
-                        <l1 class="items">Romance
-                            <i class="fas fa-times-circle"></i>
-                        </l1>
-                        <a class="add-category modal-open" href="./create.html">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </ul>
+                    <ul class="category-wrap"></ul>
+                    <a class="add-category modal-open" href="./create.html">
+                        <i class="fas fa-plus"></i>
+                    </a>
                 </div>
             </div>
             <div class="wrapper">
@@ -141,25 +150,12 @@
                     </div>
                 </div>
             </div>
-            <div class="wrapper">
-                <h3>Statistics</h3>
-                <div class="inner-notsat">
-                    <p>
-                        <b>Total diary entry since you joined</b>
-                    </p>
-                    <div class="statistics-figure-wrap">
-                        <p class="statistics-figure">
-                            <b>40</b>
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="modal-olay">
             <div class="modal-wraP">
                 <form id="category-form">
                     <div class="form-group">
-                        <input name="title" class="form-control" type="text" placeholder="Enter category title">
+                        <input autocomplete="off" name="title" class="form-control" type="text" placeholder="Enter category title">
                         <label class="errfield"></label>
                         <div class="color-opt" name="color">
                             <p>Select color</p>
@@ -188,7 +184,7 @@
                     </div>
                     <div class="modal-btn-wrap">
                         <button class="cta-btn btn">
-                            <i class="fas fa-spinner fa-pulse fa-1x fa-fw"></i>
+                            <i class="fas category-spin fa-spinner fa-pulse fa-1x fa-fw"></i>
                             Save
                         </button>
                     </div>

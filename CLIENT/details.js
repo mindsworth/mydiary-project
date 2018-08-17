@@ -94,6 +94,8 @@ class DetailsClient {
     new DetailsClient().handleModal();
     new DetailsClient().deleteEntry();
     new DetailsClient().handEditIcon();
+    new DetailsClient().logout();
+    new DetailsClient().getUserDetails();
   }
 
   checkToken() {
@@ -103,6 +105,35 @@ class DetailsClient {
       return null;
     }
     return token;
+  }
+
+  logout() {
+    const logout = document.querySelector('#logout');
+    logout.addEventListener('click', (event) => {
+      event.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    });
+  }
+
+  getUserDetails() {
+    const token = new DetailsClient().checkToken();
+    const method = 'get';
+    const url = 'https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/user';
+    const data = {
+      token,
+    };
+    MakeNetworkRequest({
+        url,
+        method,
+        data
+      })
+      .then((response) => {
+        const userFirstName = document.querySelector('.user-fname');
+        userFirstName.innerHTML = response.user[0].first_name;
+        // console.log('User: ', response.user);
+      })
+      .catch(err => err);
   }
 
   handEditIcon() {

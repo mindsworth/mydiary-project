@@ -140,6 +140,7 @@ class DashboardClient {
     new DashboardClient().handleModal();
     new DashboardClient().getUserDetails();
     new DashboardClient().handleFavorite();
+    new DashboardClient().logout();
   }
 
   checkToken() {
@@ -149,6 +150,15 @@ class DashboardClient {
       return null;
     }
     return token;
+  }
+
+  logout() {
+    const logout = document.querySelector('#logout');
+    logout.addEventListener('click', (event) => {
+      event.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    });
   }
 
   handEditIcon() {
@@ -167,8 +177,6 @@ class DashboardClient {
       if (event.target.dataset.entryid) {
         const entryId = event.target.dataset.entryid;
         modalOlay.style.display = 'flex';
-        console.log(event.target.dataset.entryid);
-        console.log('Yes');
         new DashboardClient().deleteEntry(entryId);
       }
     });
@@ -285,7 +293,6 @@ class DashboardClient {
   }
 
   handleFavorite() {
-
     document.addEventListener('click', (event) => {
       if (event.target.className === 'fas fa-heart') {
         const entryId = parseInt(event.target.dataset.faventryid, 10);
