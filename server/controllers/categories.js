@@ -88,8 +88,9 @@ class CategoriesController {
       }
 
       const fetchCategory = await client.query(
-        `DELETE FROM categories WHERE category_id=($1), user_id=($2)`, [
+        `DELETE FROM categories WHERE category_id=($1) AND user_id=($2)`, [
           categoryid,
+          userId,
         ],
       );
 
@@ -126,8 +127,9 @@ class CategoriesController {
 
   async getAllCategories(req, res) {
     try {
+      const userId = req.userData.userID;
       const query = await client.query(
-        `SELECT * FROM categories`,
+        `SELECT * FROM categories WHERE user_id=${userId}`,
       );
 
       const categories = query.rows;
@@ -158,6 +160,7 @@ class CategoriesController {
       const {
         categoryid,
       } = req.params;
+      const userId = req.userData.userID;
       if (!Number(categoryid)) {
         return res.status(400).json({
           message: `${categoryid} is not a valid user ID.`,
@@ -165,8 +168,9 @@ class CategoriesController {
       }
 
       const query = await client.query(
-        `SELECT * FROM categories WHERE category_id=($1);`, [
+        `SELECT * FROM categories WHERE category_id=($1) AND user_id=($2);`, [
           categoryid,
+          userId,
         ],
       );
       const category = query.rows;

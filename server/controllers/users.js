@@ -120,6 +120,9 @@ class UsersController {
         first_name,
         last_name,
         email,
+        profile_image,
+        profile_image_id,
+        phone_number,
         about,
         age,
         createdAt,
@@ -234,8 +237,6 @@ class UsersController {
       const imagePath = req.file ? req.file.secure_url : user[0].profile_image;
       const imagePathId = req.file ? req.file.public_id : user[0]
         .profile_image_id;
-
-      console.log(about);
 
       const sql = `UPDATE users SET about=($1),
         age=($2),

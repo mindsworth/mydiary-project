@@ -254,6 +254,7 @@ class EntriesController {
       } = req.body;
 
       const userId = req.userData.userID;
+      const entryId = req.params.entryId;
 
       await client.query(
         `UPDATE entries SET favorite=($1)
@@ -267,7 +268,11 @@ class EntriesController {
 
       const query = await client.query(
         `SELECT favorite FROM entries
-        WHERE user_id = ${userId} AND entry_id = ${req.params.entryId};`,
+        WHERE user_id = ($1) AND entry_id = ($2)
+        `, [
+          userId,
+          entryId,
+        ],
       );
       const newFavStatus = query.rows;
 
