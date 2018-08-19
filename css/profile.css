@@ -36,15 +36,24 @@
 
 .profile-image-save-wrap {
     margin: -.5rem 0 2rem;
+    text-align: center;
 }
 
 .profile-image-save {
     background-color: #ffffff;
     border: 0;
-    right: 10rem;
     padding: .2rem 2rem .5rem;
     border-radius: 30px;
     display: none;
+    position: relative;
+}
+
+.profile-image-save .fa-spinner {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    display: none;
+    color: #FF6839;
 }
 
 .user-image .thumbnail:hover>.change-image-btn {

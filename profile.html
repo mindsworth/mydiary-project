@@ -36,7 +36,7 @@
                 <li class="mobile-hide user-fname"></li>
                 <li>
                     <div class="thumbnail">
-                        <img src="./imgs/userface.png" alt="User thumbnail">
+                        <img id="thumbnail" src="" alt="User thumbnail">
                         <div class="user-dropdown-wraper">
                             <ul class="user-dropdown">
                                 <li>
@@ -73,7 +73,10 @@
                             </div>
                         </div>
                         <div class="profile-image-save-wrap">
-                            <button class="profile-image-save">save</button>
+                            <button class="profile-image-save">
+                                <i class="fas dp-spin fa-spinner fa-pulse fa-1x fa-fw"></i>
+                                save
+                            </button>
                         </div>
                         <div>
                             <h3 class="user-name">
@@ -101,7 +104,7 @@
                         <h4>Phone Number
                             <i class="fas fa-pencil-alt tel-edit"></i>
                         </h4>
-                        <input type="text" disabled id="tel" placeholder="************">
+                        <input type="text" disabled id="tel" placeholder="+234 *** *** ****">
                         <div class="save-wrap">
                             <button class="save tel-save">
                                 <i class="fas tel-spin fa-spinner fa-pulse fa-1x fa-fw"></i>

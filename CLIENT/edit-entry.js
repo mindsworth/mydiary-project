@@ -89,6 +89,7 @@ class EditPageClient {
     const data = {
       token,
     };
+
     MakeNetworkRequest({
         url,
         method,
@@ -96,8 +97,11 @@ class EditPageClient {
       })
       .then((response) => {
         const userFirstName = document.querySelector('.user-fname');
+        const thumbnail = document.querySelector('#thumbnail');
+
+        const userDp = response.user[0].profile_image ? response.user[0].profile_image : './imgs/userface.png';
+        thumbnail.setAttribute('src', userDp);
         userFirstName.innerHTML = response.user[0].first_name;
-        // console.log('User: ', response.user);
       })
       .catch(err => err);
   }
