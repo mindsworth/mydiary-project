@@ -62,9 +62,8 @@ nav ul,
     display: inline-block;
     width: 5rem;
     height: 5rem;
-    border: 3px solid #f7f7f7;
-    border-radius: 20%;
-    background-color: #2d1d80;
+    /* border: 3px solid #f7f7f7; */
+    border-radius: 50%;
     cursor: pointer;
     position: relative;
 }

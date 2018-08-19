@@ -92,7 +92,8 @@ h4 {
 }
 
 .thumbnail img {
-    width: 100%;
+    width: 4.4rem;
+    height: 4.4rem;
     border-radius: 50%;
 }
 

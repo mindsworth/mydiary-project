@@ -15,8 +15,7 @@ const MakeNetworkRequest = (input = {
     };
   } else {
     reqObject.headers = {
-      'content-type': 'application/json',
-      'enctype': 'multipart/form-data',
+      'content-Type': 'application/json',
       'x-access-token': input.data.token,
     };
     reqObject.body = JSON.stringify(input.data.body);
@@ -176,7 +175,6 @@ class ProfileClient {
         if (response.message === 'Invalid authorization token') {
           window.location.href = 'login.html';
         }
-        console.log(response);
         const userFirstName = document.querySelector('.user-fname');
         const dpFirstName = document.querySelector('.dp-fname');
         const dplastName = document.querySelector('.dp-lname');
@@ -184,6 +182,7 @@ class ProfileClient {
         const aboutBox = document.querySelector('#about');
         const dpEmail = document.querySelector('.dp-email');
         const dpImage = document.querySelector('#image-field');
+        const thumbnail = document.querySelector('#thumbnail');
 
         const userDp = response.user[0].profile_image ? response.user[0].profile_image : './imgs/userface.png';
 
@@ -192,6 +191,7 @@ class ProfileClient {
         dplastName.innerHTML = response.user[0].last_name;
         dpEmail.innerHTML = response.user[0].email;
         dpImage.setAttribute('src', userDp);
+        thumbnail.setAttribute('src', userDp);
 
         if (response.user[0].phone_number) {
           telBox.value = response.user[0].phone_number;
@@ -203,17 +203,6 @@ class ProfileClient {
         } else {
           aboutBox.value = "";
         }
-
-        // if (typeof response.message === 'object') {
-        //   errfield.innerHTML = response.message.title[0];
-        // } else {
-        //   if (response.message === 'Category created successufully!') {
-        //     handlePayLoad(response.message, payLoad);
-        //     window.location.reload(true);
-        //   } else {
-        //     handlePayLoad(response.message, payLoad);
-        //   }
-        // }
       })
       .catch((err) => {
         console.log(err);
@@ -221,46 +210,35 @@ class ProfileClient {
   }
 
   updateProfileImage() {
-    const dpImageTest = document.querySelector('#profile-image');
     const dpImageSaveBtn = document.querySelector('.profile-image-save');
-    const uploadForm = document.querySelector('#uploadForm');
-
-    // const telBox = document.querySelector('#tel');
+    const dpSpin = document.querySelector('.dp-spin');
 
     dpImageSaveBtn.addEventListener('click', (e) => {
-      // console.log('files ', uploadForm.files[0]);
-      const url = 'https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/user/update';
       const token = new ProfileClient().checkToken();
-      const method = 'put';
-      /*const body = {
-        profileImage: dpImageTest.value,
-      }*/
-      const body = new FormData();
-      body.append('profileImage', dpImage);
-      console.log('body ', body);
-      const data = {
-        token,
-        body,
-      }
+      const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/user/update`;
+      const formData = new FormData();
+      formData.append('profileImage', dpImage)
 
-      // animateSpin(telSave, telSpin);
-      console.log(dpImage);
+      animateSpin(dpImageSaveBtn, dpSpin);
 
-      MakeNetworkRequest({
-          url,
-          method,
-          data
-        }).then((response) => {
-          // animateSpinDisabled(telSave, telSpin);
+      fetch(url, {
+          method: 'put',
+          body: formData,
+          mode: 'cors',
+          headers: {
+            'x-access-token': token,
+          }
+        })
+        .then(res => res.json())
+        .then((response) => {
+          animateSpinDisabled(dpImageSaveBtn, dpSpin);
           if (response.message === 'Invalid authorization token') {
             window.location.href = 'login.html';
           }
-          console.log(response);
-          // window.location.href = 'profile.html';
+          window.location.href = 'profile.html';
+          dpImageSaveBtn.style.display = 'none';
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(err => err);
     });
   }
 

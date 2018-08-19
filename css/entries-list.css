@@ -78,9 +78,9 @@
   width: 10rem;
 }
 
-/* .content .drawer {
-  display: block;
-} */
+.favStatus {
+  color: #ff6839;
+}
 
 .content .edit .fa-ellipsis-h .drawer ul li {
   text-align: left;
