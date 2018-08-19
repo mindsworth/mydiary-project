@@ -87,11 +87,15 @@ const timeSince = function (date) {
   return `${interval}${intervalType} ago`;
 };
 
+let status;
+
 const bindEntryData = (entry, itemColor, itemTitle) => {
   let title = entry.title;
   let description = entry.description;
   const updatedAt = timeSince(new Date(entry.updatedat));
   const entry_id = entry.entry_id;
+  const fav = entry.favorite === true ? 'fas fa-heart favStatus' : 'fas fa-heart';
+  status = entry.favorite;
   if (entry.title.length > 18) {
     title = `${entry.title.substring(0, 18)}...`;
   }
@@ -124,7 +128,7 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
                     </a>
                     <div class="notice">
                         <div class="fav">
-                            <i data-favEntryId="${entry_id}" class="fas fa-heart"></i>
+                            <i data-favEntryId="${entry_id}" class="${fav}"></i>
                         </div>
                         <div class="timer">Last updated - ${updatedAt}</div>
                     </div>
@@ -132,14 +136,13 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
   return entryWrap;
 };
 
-let status = false;
-
 class DashboardClient {
   init() {
     new DashboardClient().getAllEntry();
     new DashboardClient().handleModal();
     new DashboardClient().getUserDetails();
     new DashboardClient().handleFavorite();
+    new DashboardClient().logout();
   }
 
   checkToken() {
@@ -149,6 +152,15 @@ class DashboardClient {
       return null;
     }
     return token;
+  }
+
+  logout() {
+    const logout = document.querySelector('#logout');
+    logout.addEventListener('click', (event) => {
+      event.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    });
   }
 
   handEditIcon() {
@@ -167,8 +179,6 @@ class DashboardClient {
       if (event.target.dataset.entryid) {
         const entryId = event.target.dataset.entryid;
         modalOlay.style.display = 'flex';
-        console.log(event.target.dataset.entryid);
-        console.log('Yes');
         new DashboardClient().deleteEntry(entryId);
       }
     });
@@ -239,6 +249,7 @@ class DashboardClient {
     const data = {
       token,
     };
+
     MakeNetworkRequest({
         url,
         method,
@@ -246,8 +257,11 @@ class DashboardClient {
       })
       .then((response) => {
         const userFirstName = document.querySelector('.user-fname');
+        const thumbnail = document.querySelector('#thumbnail');
+
+        const userDp = response.user[0].profile_image ? response.user[0].profile_image : './imgs/userface.png';
+        thumbnail.setAttribute('src', userDp);
         userFirstName.innerHTML = response.user[0].first_name;
-        // console.log('User: ', response.user);
       })
       .catch(err => err);
   }
@@ -285,21 +299,17 @@ class DashboardClient {
   }
 
   handleFavorite() {
-
     document.addEventListener('click', (event) => {
-      if (event.target.className === 'fas fa-heart') {
+      if (event.target.dataset.faventryid === '1') {
         const entryId = parseInt(event.target.dataset.faventryid, 10);
         const token = new DashboardClient().checkToken();
-        status = !status;
-        console.log(typeof entryId);
         const body = {
-          favStatus: status,
+          favStatus: !status,
         };
         const data = {
           token,
           body,
         };
-        console.log(data);
 
         const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/favorite/${entryId}`;
         const method = 'put';
@@ -311,16 +321,8 @@ class DashboardClient {
             if (response.message === 'Invalid authorization token') {
               window.location.href = 'login.html';
             }
-            console.log(response)
-            // if (response.entries.length > 0) {
-            //   content.innerHTML = "";
-            // }
-            // if (response.entries.length < 3) {
-            //   content.style.gridTemplateColumns = 'repeat(auto-fit, minmax(22rem, 27rem))';
-            // }
-            // response.entries.map((item) => {
-            //   new DashboardClient().getSingleCategory(item);
-            // });
+            window.location.href = 'dashboard.html';
+
           })
           .catch((err) => {
             console.log(err.toString());

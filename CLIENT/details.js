@@ -16,8 +16,9 @@ const MakeNetworkRequest = (input = {
   } else {
     reqObject.headers = {
       'content-type': 'application/json',
+      'x-access-token': input.data.token,
     };
-    reqObject.body = JSON.stringify(input.data);
+    reqObject.body = JSON.stringify(input.data.body);
   }
 
   return fetch(input.url, reqObject)
@@ -87,6 +88,7 @@ const timeSince = function (date) {
 };
 
 let entryId;
+let status;
 
 class DetailsClient {
   init() {
@@ -94,6 +96,9 @@ class DetailsClient {
     new DetailsClient().handleModal();
     new DetailsClient().deleteEntry();
     new DetailsClient().handEditIcon();
+    new DetailsClient().logout();
+    new DetailsClient().handleFavorite();
+    new DetailsClient().getUserDetails();
   }
 
   checkToken() {
@@ -103,6 +108,39 @@ class DetailsClient {
       return null;
     }
     return token;
+  }
+
+  logout() {
+    const logout = document.querySelector('#logout');
+    logout.addEventListener('click', (event) => {
+      event.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    });
+  }
+
+  getUserDetails() {
+    const token = new DetailsClient().checkToken();
+    const method = 'get';
+    const url = 'https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/user';
+    const data = {
+      token,
+    };
+
+    MakeNetworkRequest({
+        url,
+        method,
+        data
+      })
+      .then((response) => {
+        const userFirstName = document.querySelector('.user-fname');
+        const thumbnail = document.querySelector('#thumbnail');
+
+        const userDp = response.user[0].profile_image ? response.user[0].profile_image : './imgs/userface.png';
+        thumbnail.setAttribute('src', userDp);
+        userFirstName.innerHTML = response.user[0].first_name;
+      })
+      .catch(err => err);
   }
 
   handEditIcon() {
@@ -189,11 +227,13 @@ class DetailsClient {
     const createdAt = document.querySelector('.createdat');
     const updatedAt = document.querySelector('.updatedat');
     const description = document.querySelector('.description');
+    const heart = document.querySelector('.fa-heart');
     const token = new DetailsClient().checkToken();
     const data = {
       token,
     }
     let entryId = location.search.split('entryid=')[1];
+
     const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
     const method = 'get';
     MakeNetworkRequest({
@@ -211,11 +251,49 @@ class DetailsClient {
         new DetailsClient().getSingleCategory(categoryId);
         createdAt.innerHTML = formatDate(response.entry[0].createdat);
         updatedAt.innerHTML = timeSince(new Date(response.entry[0].updatedat));
+        const fav = response.entry[0].favorite === true ? 'fas fa-heart favStatus' : 'fas fa-heart';
+        status = response.entry[0].favorite;
+        heart.className = fav;
         redirect(response);
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  handleFavorite() {
+    document.addEventListener('click', (event) => {
+
+      if (event.target.classList[1] === 'fa-heart') {
+        const entryId = location.search.split('entryid=')[1];
+        const token = new DetailsClient().checkToken();
+        const favStatus = !status;
+        const body = {
+          favStatus,
+        };
+        const data = {
+          token,
+          body,
+        };
+
+        const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/favorite/${entryId}`;
+        const method = 'put';
+        MakeNetworkRequest({
+            url,
+            method,
+            data
+          }).then((response) => {
+            if (response.message === 'Invalid authorization token') {
+              window.location.href = 'login.html';
+            }
+            window.location.reload(true);
+
+          })
+          .catch((err) => {
+            console.log(err.toString());
+          });
+      }
+    });
   }
 }
 

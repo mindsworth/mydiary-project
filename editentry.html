@@ -33,10 +33,10 @@
         </nav>
         <div class="user">
             <ul>
-                <li class="mobile-hide">Chigoziem</li>
+                <li class="mobile-hide user-fname"></li>
                 <li>
                     <div class="thumbnail">
-                        <img src="./imgs/userface.png" alt="User thumbnail">
+                        <img id="thumbnail" src="" alt="User thumbnail">
                         <div class="user-dropdown-wraper">
                             <ul class="user-dropdown">
                                 <li>
@@ -45,7 +45,7 @@
                                 <li class="mobile-show">
                                     <a href="./create.html">Add New Entry</a>
                                 </li>
-                                <li>
+                                <li id="logout">
                                     <a href="./login.html">Log Out</a>
                                 </li>
                             </ul>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="small-spacing"></div>
                     <div class="form-group about-cont">
-                        <textarea class="form-control description" name="description" placeholder="Description"></textarea>
+                        <textarea autocomplete="off" class="form-control description" name="description" placeholder="Description"></textarea>
                         <label></label>
                     </div>
                 </div>
