@@ -46,15 +46,17 @@ class UsersController {
           last_name,
           email,
           password,
+          reminder,
           createdAt,
           updatedAt)
-          VALUES($1, $2, $3, $4, $5, $6)`;
+          VALUES($1, $2, $3, $4, $5, $6, $7)`;
 
         const values = [
           firstName,
           lastName,
           email,
           hashPassword,
+          false,
           'now',
           'now',
         ];
@@ -123,6 +125,7 @@ class UsersController {
         profile_image,
         profile_image_id,
         phone_number,
+        reminder,
         about,
         age,
         createdAt,
@@ -229,7 +232,6 @@ class UsersController {
       );
 
       const user = userQuery.rows;
-      console.log(userId);
 
       const about = req.body.about ? req.body.about.trim() : user[0].about;
       const age = req.body.age ? req.body.age.trim() : user[0].age;
@@ -276,6 +278,45 @@ class UsersController {
       return res.status(200).json({
         message: 'Profile Successfully Updated',
         userUpdated,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        message: "Error processing request.",
+        error: error.toString(),
+      });
+    }
+  }
+
+  /**
+   * @description - Deleting an Entry
+   *
+   * @param { object }  req
+   * @param { object }  res
+   *
+   * @returns { object } object
+   */
+
+  async updateReminder(req, res) {
+    try {
+      const userId = req.userData.userID;
+
+      const {
+        reminder,
+      } = req.body;
+
+      await client.query(`UPDATE users SET reminder=($1) 
+        WHERE user_id = ($2)`, [
+        reminder,
+        userId,
+      ]);
+
+      const query = await client.query(
+        `SELECT reminder FROM users WHERE  user_id=${userId};`,
+      );
+      const reminderUpdated = query.rows;
+      return res.status(200).json({
+        message: 'Profile Successfully Updated',
+        reminderUpdated,
       });
     } catch (error) {
       return res.status(500).json({

@@ -12,6 +12,7 @@ import client from './dbconnect';
           about VARCHAR(250),
           age integer,
           phone_number VARCHAR(250),
+          reminder boolean not null,
           profile_image VARCHAR(255),
           profile_image_id VARCHAR(255),
           password VARCHAR(255) not null,

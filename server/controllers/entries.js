@@ -254,7 +254,9 @@ class EntriesController {
       } = req.body;
 
       const userId = req.userData.userID;
-      const entryId = req.params.entryId;
+      const {
+        entryId,
+      } = req.params;
 
       await client.query(
         `UPDATE entries SET favorite=($1)

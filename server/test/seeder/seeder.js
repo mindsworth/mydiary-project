@@ -64,15 +64,17 @@ const seeder = {
           last_name,
           email,
           password,
+          reminder,
           createdAt,
           updatedAt)
-          VALUES($1, $2, $3, $4, $5, $6)`;
+          VALUES($1, $2, $3, $4, $5, $6, $7)`;
 
       const user1 = [
         'Chigoziem',
         'Nwaiwu',
         'princegoziem@gmail.com',
         userHash,
+        false,
         'now',
         'now',
       ];
@@ -82,6 +84,7 @@ const seeder = {
         'Adetiba',
         'adetibawaley@gmail.com',
         userHash,
+        false,
         'now',
         'now',
       ];

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import logger from 'morgan';
 import cors from 'cors';
 import routes from './routes/index';
+import cronMail from './middleware/mail-sender';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
+cronMail.start();
 routes(router);
 app.use('/api/v1/', router);
 
