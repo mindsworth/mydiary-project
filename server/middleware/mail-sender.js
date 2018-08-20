@@ -40,8 +40,8 @@ const fetchUsers = async () => {
       });
       transporter.use('compile', inLineCss());
 
-      let url = 'https://res.cloudinary.com/daymoly7f/image/upload';
-      url += '/v1534685239/mydiary-app/mydiary_logo.png';
+      let url = 'https://res.cloudinary.com/daymoly7f/image/upload/';
+      url += 'v1534766326/mydiary-app/mydiary_logo.png';
       const bodyMail = `<style type="text/css">
       .container-fluid {
         width: 100%;
@@ -115,7 +115,7 @@ const fetchUsers = async () => {
 };
 
 // sending emails at periodic intervals
-export default cron.schedule("* * * * *", () => {
+export default cron.schedule("00 56 06 * * *", () => {
   console.log("---------------------");
   console.log("Running Cron Job");
   fetchUsers();
