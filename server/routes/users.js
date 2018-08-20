@@ -33,6 +33,11 @@ const userRoutes = (router) => {
       Auth.verifyToken,
       UsersController.deleteProfileImage,
     );
+  router.route('/user/reminder')
+    .put(
+      Auth.verifyToken,
+      UsersController.updateReminder,
+    );
 };
 
 export default userRoutes;
