@@ -28,7 +28,6 @@ const MakeNetworkRequest = (input = {
 
 const redirect = (response) => {
   if (response.newEntry) {
-    localStorage.setItem('entry_id', response.newEntry[0].entry_id);
     window.location.href = 'details.html';
   }
 };
@@ -110,7 +109,7 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
                                 <div class="drawer">
                                     <ul>
                                         <li>
-                                            <a href="./editentry.html?entryid=${entry_id}">
+                                            <a href="./editentry.html?e=${entry_id}">
                                                 <i class="fas fa-pencil-alt"></i>Edit</a>
                                         </li>
                                         <li>
@@ -123,7 +122,7 @@ const bindEntryData = (entry, itemColor, itemTitle) => {
                         </div>
                     </div>
                     <h5 class="category">${itemTitle}</h5>
-                    <a href="./details.html?entryid=${entry_id}">
+                    <a href="./details.html?e=${entry_id}">
                         <p class="description">${description}</p>
                     </a>
                     <div class="notice">
@@ -286,7 +285,7 @@ class DashboardClient {
         if (response.entries.length > 0) {
           content.innerHTML = "";
         }
-        if (response.entries.length < 3) {
+        if (response.entries.length <= 3) {
           content.style.gridTemplateColumns = 'repeat(auto-fit, minmax(22rem, 27rem))';
         }
         response.entries.map((item) => {
@@ -300,7 +299,7 @@ class DashboardClient {
 
   handleFavorite() {
     document.addEventListener('click', (event) => {
-      if (event.target.dataset.faventryid === '1') {
+      if (event.target.dataset.faventryid) {
         const entryId = parseInt(event.target.dataset.faventryid, 10);
         const token = new DashboardClient().checkToken();
         const body = {

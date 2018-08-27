@@ -29,11 +29,12 @@
     font-size: 2rem;
     margin-bottom: 5rem;
     font-weight: 500;
+    padding: 0 5rem;
 }
 
 .trash-modal .modal-wrap .trash-body {
     font-size: 1.5rem;
-    padding: 3rem 0 0;
+    padding: 3rem 5rem 0;
     border-top: 1px solid #e8e8e8;
 }
 
@@ -61,5 +62,8 @@
 @media only screen and (max-width: 587px) {
     .details .diary-entry {
         padding: 0;
+    }
+    .trash-modal .modal-wrap {
+        width: 95%;
     }
 }

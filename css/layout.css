@@ -1,6 +1,6 @@
 .container {
     width: 980px;
-    margin: 12rem auto 7rem;
+    margin: 0 auto;
 }
 
 .col-2 {
@@ -40,5 +40,8 @@
     }
     .wrapper {
         padding: 5rem 3rem;
+    }
+    .container {
+        margin: 0 auto;
     }
 }

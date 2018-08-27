@@ -34,7 +34,7 @@
 .auth-title h4 {
     font-size: 2.4rem;
     color: #FF6839;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .auth-inner button {
@@ -75,11 +75,13 @@
 @media only screen and (max-width: 587px) {
     .auth-container {
         margin: 3rem 0;
+        margin-bottom: 0;
     }
     .auth-inner {
-        padding: 0rem 2rem;
+        padding: 5rem;
         width: 100vw;
-        background: none;
+        border-radius: 0;
+        margin-bottom: 3rem;
     }
     .auth-title {
         margin-bottom: 2.5rem;
@@ -96,10 +98,20 @@
         text-align-last: center !important;
     }
     .auth-inner .form-group .form-control {
-        background: #ffffffb6;
-        padding: 3rem;
-    }
-    .auth-title h4 {
+        border-bottom: 2px solid #ffffff;
+        padding: 2.5rem 2rem;
+        font-size: 1.6rem;
+        margin: 0;
+        background-color: #FF6839;
         color: #ffffff;
+    }
+    /* .auth-inner .form-group .form-control:last-child {
+        border: 0;
+    } */
+    .auth-inner .form-group {
+        margin: 0;
+    }
+    .auth-inner .form-group label {
+        margin: 0;
     }
 }

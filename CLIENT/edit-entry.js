@@ -144,7 +144,7 @@ class EditPageClient {
     const data = {
       token,
     }
-    let entryId = location.search.split('entryid=')[1];
+    let entryId = location.search.split('e=')[1];
     const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
     const method = 'get';
     MakeNetworkRequest({

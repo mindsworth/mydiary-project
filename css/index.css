@@ -57,7 +57,7 @@
 
 .index main .container {
     /* border: 1px solid #000; */
-    margin-top: 28rem;
+    margin-top: 15rem;
 }
 
 .index main .container p {
@@ -85,8 +85,7 @@
         padding-left: 2rem;
     }
     .index main .container {
-        /* border: 1px solid #000; */
-        margin-top: 28rem;
+        margin-top: 15rem;
     }
     .shape-one {
         height: 30%;
