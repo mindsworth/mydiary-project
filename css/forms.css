@@ -14,7 +14,7 @@
     text-align: left;
     line-height: 1rem;
     margin-top: .5rem;
-    color: #3FBF79;
+    color: #FF6839;
 }
 
 .form-group .form-control {
@@ -29,13 +29,13 @@
 }
 
 .form-group .form-control::placeholder {
-    color: #222222;
+    color: #22222271;
     font-weight: 500;
     font-size: 1.2rem;
 }
 
 .form-group .form-control::-webkit-input-placeholder {
-    color: #222222;
+    color: #22222271;
     font-weight: 500;
     font-size: 1.2rem;
 }
@@ -51,10 +51,14 @@
         margin-bottom: .2rem;
     }
     .form-group .form-control {
-        text-align: center;
         color: #222222;
     }
     .form-group label {
         margin-bottom: 1rem;
+    }
+    .form-group .form-control::placeholder {
+        color: #22222271;
+        font-weight: 500;
+        font-size: 1.2rem;
     }
 }

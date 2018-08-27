@@ -147,8 +147,8 @@ class DetailsClient {
     const pencil = document.querySelector('.fa-pencil-alt');
 
     pencil.addEventListener('click', () => {
-      const entryId = location.search.split('entryid=')[1];
-      window.location.href = `./editentry.html?entryid=${entryId}`;
+      const entryId = location.search.split('e=')[1];
+      window.location.href = `./editentry.html?e=${entryId}`;
     });
   }
 
@@ -232,7 +232,7 @@ class DetailsClient {
     const data = {
       token,
     }
-    let entryId = location.search.split('entryid=')[1];
+    let entryId = location.search.split('e=')[1];
 
     const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/entries/${entryId}`;
     const method = 'get';

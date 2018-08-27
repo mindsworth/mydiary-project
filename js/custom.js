@@ -1,5 +1,5 @@
 const categoryBtn = document.querySelector('.modal-open');
-const modalOlay = document.querySelector('.modal-olay');
+const modalOlay = document.querySelector('.model-add');
 const modalClose = document.querySelector('.modal-close');
 
 const categoryModalShowHandler = (event) => {

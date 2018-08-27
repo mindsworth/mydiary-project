@@ -21,6 +21,15 @@ body {
     background-color: #F3F1F0;
     letter-spacing: .05rem;
     line-height: 2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+main {
+    padding: 10rem 0;
 }
 
 button {
@@ -108,4 +117,10 @@ h4 {
 
 .r-btn {
     padding-right: 10rem;
+}
+
+@media only screen and (max-width: 587px) {
+    .place-text {
+        line-height: 5rem;
+    }
 }

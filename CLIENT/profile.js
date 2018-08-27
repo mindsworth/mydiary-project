@@ -56,7 +56,7 @@ const handlePayLoad = (message, payLoad) => {
 
 let aboutStatus = true;
 let telStatus = true;
-let dpImage;
+let dpImage, reminderStatus;
 
 class ProfileClient {
   init() {
@@ -71,6 +71,8 @@ class ProfileClient {
     new ProfileClient().logout();
     new ProfileClient().handlePreviewImage();
     new ProfileClient().updateProfileImage();
+    new ProfileClient().toggleReminder();
+    new ProfileClient().handleModal();
   }
 
   checkToken() {
@@ -183,6 +185,7 @@ class ProfileClient {
         const dpEmail = document.querySelector('.dp-email');
         const dpImage = document.querySelector('#image-field');
         const thumbnail = document.querySelector('#thumbnail');
+        const reminderBtn = document.querySelector('#onOff');
 
         const userDp = response.user[0].profile_image ? response.user[0].profile_image : './imgs/userface.png';
 
@@ -190,6 +193,8 @@ class ProfileClient {
         dpFirstName.innerHTML = response.user[0].first_name;
         dplastName.innerHTML = response.user[0].last_name;
         dpEmail.innerHTML = response.user[0].email;
+        reminderBtn.checked = response.user[0].reminder ? true : false;
+        reminderStatus = response.user[0].reminder;
         dpImage.setAttribute('src', userDp);
         thumbnail.setAttribute('src', userDp);
 
@@ -269,7 +274,6 @@ class ProfileClient {
           if (response.message === 'Invalid authorization token') {
             window.location.href = 'login.html';
           }
-          console.log(response);
           window.location.href = 'profile.html';
         })
         .catch((err) => {
@@ -311,6 +315,35 @@ class ProfileClient {
         });
     });
   }
+  toggleReminder() {
+    const reminderBtn = document.querySelector('#onOff');
+    reminderBtn.addEventListener('change', () => {
+      const url = 'https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/user/reminder';
+      const token = new ProfileClient().checkToken();
+      const method = 'put';
+      const body = {
+        reminder: !reminderStatus,
+      }
+      const data = {
+        token,
+        body,
+      }
+
+      MakeNetworkRequest({
+          url,
+          method,
+          data
+        }).then((response) => {
+          if (response.message === 'Invalid authorization token') {
+            window.location.href = 'login.html';
+          }
+          window.location.href = 'profile.html';
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  }
 
   getAllCategories() {
     const category = document.querySelector('.category-wrap');
@@ -331,12 +364,8 @@ class ProfileClient {
           window.location.href = 'login.html';
         }
         response.categories.map((item) => {
-          // const opt = document.createElement('li');
-          // opt.setAttribute('value', item.category_id);
-          // opt.innerText = item.title;
-          // category.append(opt);
           const list = `<l1 class="items" style="background-color: ${colors[item.color_id]}">${item.title}
-                            <i class="fas fa-times-circle"></i>
+                            <i data-categoryId="${item.category_id}" class="fas fa-times-circle"></i>
                         </l1>`;
           category.innerHTML += list;
         });
@@ -423,6 +452,50 @@ class ProfileClient {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  handleModal() {
+    const modalOlay = document.querySelector('.trash-modal');
+    const modalClose = document.querySelector('.cancel');
+    document.addEventListener('click', (event) => {
+
+      if (event.target.dataset.categoryid) {
+        const categoryid = event.target.dataset.categoryid;
+        modalOlay.style.display = 'flex';
+        new ProfileClient().deleteCategory(categoryid);
+      }
+    });
+
+    modalClose.addEventListener('click', () => {
+      modalOlay.style.display = 'none';
+    });
+  }
+
+  deleteCategory(categoryid) {
+    const accept = document.querySelector('.accept');
+
+    accept.addEventListener('click', () => {
+      const token = new ProfileClient().checkToken();
+      const data = {
+        token,
+      }
+      const url = `https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/categories/${categoryid}`;
+      const method = 'delete';
+
+      MakeNetworkRequest({
+          url,
+          method,
+          data
+        }).then((response) => {
+          if (response.message === 'Invalid authorization token') {
+            window.location.href = 'login.html';
+          }
+          window.location.href = 'profile.html';
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   }
 }
 

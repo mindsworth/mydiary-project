@@ -35,6 +35,12 @@
     font-weight: 700;
 }
 
+.editprofile .about-cont .createdecs {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-size: 1.8rem;
+}
+
 .form-group-wrap .form-group select {
     border: 1px solid #FF6839;
     width: 100%;
@@ -78,7 +84,12 @@
         height: 15rem;
         color: #222222;
     }
+    .editprofile .about-cont .createdecs {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
     .form-group .form-control::placeholder {
-        color: #222222;
+        color: #22222271;
     }
 }

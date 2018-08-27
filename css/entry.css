@@ -19,7 +19,7 @@
 .header .edit {
     text-align: right;
     display: block;
-    flex: 1 20%;
+    flex: 1 30%;
 }
 
 .header .fas {
@@ -111,18 +111,22 @@
     .float-btn {
         display: block;
         position: fixed;
-        bottom: 5%;
-        right: 10%;
+        bottom: 10%;
+        right: 5%;
         background-color: #FF6839;
         width: 5rem;
         height: 5rem;
         border-radius: 50%;
         text-align: center;
         font-size: 2rem;
+        z-index: 999;
     }
     .float-btn .fas {
         margin-top: 50%;
         transform: translateY(-50%);
         color: #ffffff;
+    }
+    .header .fas {
+        margin: 0 .5rem;
     }
 }

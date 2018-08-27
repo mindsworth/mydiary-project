@@ -1,0 +1,10 @@
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  display: block;
+  width: 100vw;
+  line-height: 5rem;
+  background-color: #fff;
+  padding-right: 5rem;
+}

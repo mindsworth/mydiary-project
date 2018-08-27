@@ -83,17 +83,6 @@
     cursor: pointer;
 }
 
-/* .user-image .remove {
-    margin-top: .2rem;
-}
-
-.remove a {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #222;
-    text-decoration: none;
-} */
-
 /* Info One */
 
 .info .user-details {
@@ -302,23 +291,12 @@
     .info {
         display: block;
     }
-    .user-info-one .user-name {
-        text-align: center;
-        margin-top: 2rem;
-    }
-    .user-info-one .user-about {
-        margin: 2rem 0;
-    }
-    .age-gender .age {
-        flex: 1 100%;
-    }
-    .age-gender .gender {
-        flex: 1 50%;
-    }
-    .age span {
+    .info .user-details {
+        padding: 3rem 0;
         padding-left: 3rem;
     }
-    .all-categories .items {
-        display: inline-block;
+    .user-name {
+        font-size: 3.5rem;
+        line-height: 3.2rem;
     }
 }
