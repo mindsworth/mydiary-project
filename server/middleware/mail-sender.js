@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
-import cron from 'node-cron';
+import {
+  CronJob,
+} from 'cron';
 
 import inLineCss from 'nodemailer-juice';
 import dotenv from 'dotenv';
@@ -23,7 +25,6 @@ const fetchUsers = async () => {
       return console.log("No email to send mail to.");
     }
     users.forEach((user) => {
-      console.log(user);
       const {
         email,
         first_name, // eslint-disable-line camelcase
@@ -115,8 +116,10 @@ const fetchUsers = async () => {
 };
 
 // sending emails at periodic intervals
-export default cron.schedule("00 56 06 * * *", () => {
+const cronMail = new CronJob("00 00 06 * * 1-7", () => {
   console.log("---------------------");
   console.log("Running Cron Job");
   fetchUsers();
 });
+
+export default cronMail;
