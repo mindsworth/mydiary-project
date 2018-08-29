@@ -1,0 +1,925 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "MyDiary is an online journal where users can pen down their thoughts and feelings under different categories",
+    "version": "1.0.0",
+    "title": "My Diary",
+    "contact": {
+      "email": "princegoziem@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1"
+    }
+  },
+  "host": "chigoziem-mydiary-bootcamp-app.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "This handles user's authorization and authentication."
+    },
+    {
+      "name": "Entries",
+      "description": "This creates entries and handles all other operations on entries of a diary."
+    },
+    {
+      "name": "Favorite",
+      "description": "This creates entries and handles all other operations on entries of a diary."
+    },
+    {
+      "name": "User",
+      "description": "Other operations about user"
+    },
+    {
+      "name": "Categories",
+      "description": "This creates categories and handles other operations about categories"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create a new user in the database",
+        "description": "By filling in valid form inputs, a new user can create an account",
+        "operationId": "createUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User that needs to be created in the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Registration Successful"
+          },
+          "400": {
+            "description": "Validation Errors"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create a new user in the database",
+        "description": "Login an existing user in to the application filling valid information.",
+        "operationId": "userLogin",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user that needs to login to the application.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logged in successfully."
+          },
+          "400": {
+            "description": "Validation Errors"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/entries": {
+      "post": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Create a new diary entry in the database",
+        "description": "This method is used to add a new diary entry.",
+        "operationId": "addEntry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create a new diary entry.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Entries"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "ENTRY CREATED SUCCESSFULLY."
+          },
+          "400": {
+            "description": "Validation Errors"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Fetch all diary entries that belong to a particuler user from the database",
+        "description": "This method gets all diary entries created by a specific user from the database.",
+        "operationId": "getAllEntries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all entries",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/responseMessage"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/entries/<entryId>": {
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Fetch a single entry by user ID",
+        "description": "This method is used to fetch a single entry by user ID.",
+        "operationId": "getOneEntry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all entries",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/responseMessage"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid entry ID"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Modify an existing diary entry in the database",
+        "description": "This method is used to modify an existing diary entry.",
+        "operationId": "editEntry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entryid",
+            "in": "path",
+            "description": "ID of entry to be modified",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Form data for diary entry to modify.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Entries"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entry Successfully Updated."
+          },
+          "400": {
+            "description": "Validation Errors"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "404": {
+            "description": "Entry not found."
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "delete an existing diary entry in the database",
+        "description": "This method is used to delete an existing diary entry.",
+        "operationId": "deleteEntry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entryid",
+            "in": "path",
+            "description": "ID of entry to be delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entry successfully deleted!"
+          },
+          "400": {
+            "description": "Invalid ID provided"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "404": {
+            "description": "Entry not found."
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/favorite": {
+      "get": {
+        "tags": [
+          "Favorite"
+        ],
+        "summary": "Fetch all favorite entries by user ID",
+        "description": "This method is used to fetch all favorite entries by user ID.",
+        "operationId": "getAllFavoriteEntries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all entries",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/responseMessage"
+              }
+            }
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Modify an entry favorite status in the database",
+        "description": "This method is used to modify an entry favorite status in the database.",
+        "operationId": "toggleFavoriate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entryid",
+            "in": "path",
+            "description": "ID of entry to be modified",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Form data for diary entry to modify.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Favorite"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Favorite status Successfully Updated."
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create a new diary entry category in the database",
+        "description": "This method is used to add a new entry category.",
+        "operationId": "addCategory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create a new entry category.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Category created successufully!"
+          },
+          "400": {
+            "description": "Validation Errors"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "409": {
+            "description": "Category already exist!"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Fetch all entries categories that belong to a particuler user from the database",
+        "description": "This method gets all entries categorie created by a specific user from the database.",
+        "operationId": "getAllCategories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all categories successful.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/responseMessage"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/categories/<categoryid>": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Fetch a single category by user ID and category ID",
+        "description": "This method is used to fetch a single category by user ID and category ID.",
+        "operationId": "getSingleCategory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the category with category ID",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/responseMessage"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid category ID"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "delete an existing entry category from the database",
+        "description": "This method is used to delete an existing entry category from the database.",
+        "operationId": "deleteCategory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entryid",
+            "in": "path",
+            "description": "ID of category to be deleted",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category with related entry(ies) Successfully Deleted!"
+          },
+          "400": {
+            "description": "Invalid ID provided"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "404": {
+            "description": "Entry not found."
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Fetch a particuler user from the database",
+        "description": "This method gets a specific user from the database.",
+        "operationId": "getSingleUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the user with user ID",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/responseMessage"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid User ID"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/user/update": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Modify an existing user in the database",
+        "description": "This method is used to modify an existing user account in the database.",
+        "operationId": "updateProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Form data for diary entry to modify.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile Successfully Updated."
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    },
+    "/user/removeprofileimage": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Remove user picture in the database",
+        "description": "This method is used to delete user image in the database.",
+        "operationId": "deleteProfileImage",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Form data for diary entry to modify.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile image removed successfully!"
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          },
+          "500": {
+            "description": "Error processing request."
+          },
+          "default": {
+            "description": "Unexpected Error"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1/auth",
+      "flow": "implicit",
+      "scopes": {
+        "write:entries": "create/modify Entries",
+        "read:entries": "read your Entries",
+        "write:categories": "create/modify Categories",
+        "read:categories": "read your Categories"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Signup": {
+      "type": "object",
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password",
+        "password_comfirmation"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Chigoziem"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Nwaiwu"
+        },
+        "email": {
+          "type": "string",
+          "example": "princegoziem@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "chigoziem123"
+        },
+        "password_comfirmation": {
+          "type": "string",
+          "example": "chigoziem123"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "princegoziem@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "chigoziem123"
+        }
+      }
+    },
+    "Favorite": {
+      "type": "object",
+      "properties": {
+        "fav": {
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "Entries": {
+      "type": "object",
+      "required": [
+        "title",
+        "description",
+        "catgoryId"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "School trip"
+        },
+        "description": {
+          "type": "string",
+          "example": "Going back to school after this long holiday makes things very interest."
+        },
+        "catgoryId": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "about": {
+          "type": "string",
+          "example": "I am a software developer"
+        },
+        "tel": {
+          "type": "string",
+          "example": "+2348039216673"
+        },
+        "profileImage": {
+          "type": "string",
+          "example": "https://res.cloudinary.com/daymoly7f/image/upload/v1534766326/mydiary-app/mydiary_logo.png"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Personal"
+        },
+        "colorId": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "responseMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

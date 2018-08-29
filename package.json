@@ -50,6 +50,7 @@
     "pg": "^7.4.3",
     "sinon": "^6.1.4",
     "sinon-chai": "^3.2.0",
+    "swagger-ui-express": "^4.0.0",
     "validatorjs": "^3.14.2"
   },
   "devDependencies": {
