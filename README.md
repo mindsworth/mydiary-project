@@ -93,7 +93,7 @@ This is a protected endpoints, users must be authenticated to do the following:
 
 ## API LINK
 
-myDiary Application API is readily availble [here](https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1) api on heroku
+myDiary Application API is readily availble [here](https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1)
 
 ## Testing
 
@@ -146,13 +146,14 @@ The API contains different endpoint with their respective payload in the table b
 * Is the application licensed ?
   - Yes, the application and its contents is under MIT license
 
-## User template is available on
+## User template is available
 
 -   [myDiary-Project](https://mindsworth.github.io/mydiary-project)
 
 ## License and Copyright
 
 &copy; Chigoziem Nwaiwu
-<img width="150px" alt="myDiary-screenshot" src="./UI/imgs/mydiary_logo.png">
 
 Licensed under the [MIT License](LICENSE).
+
+<img width="100px" alt="myDiary-screenshot" src="./UI/imgs/mydiary_logo.png">
