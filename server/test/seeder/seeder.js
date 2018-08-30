@@ -40,6 +40,35 @@ const seeder = {
     };
   },
 
+  setUpdateProfileData(
+    about,
+    age,
+    tel,
+    reminder,
+    imagePath,
+    imagePathId, // eslint-disable-line camelcase
+  ) {
+    return {
+      about,
+      age,
+      tel,
+      reminder,
+      imagePath,
+      imagePathId,
+    };
+  },
+
+  setReminderData(reminder) {
+    return {
+      reminder,
+    };
+  },
+  setFavoriteData(favStatus) {
+    return {
+      favStatus,
+    };
+  },
+
   setUserLogInData(email, password) {
     return {
       email,

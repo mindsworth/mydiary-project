@@ -7,6 +7,7 @@ import {
   before,
 } from 'mocha';
 import chaiHttp from 'chai-http';
+import jwtDecode from 'jwt-decode';
 import server from '../server';
 
 import seeder from './seeder/seeder';
@@ -16,7 +17,9 @@ chai.use(chaiHttp);
 before(seeder.emptyUserTable);
 before(seeder.addUser);
 
-describe('POST api/v1/users/signup', () => {
+let userToken;
+let userId;
+describe('POST api/v1/auth/signup', () => {
   it(`should return status code 400 and 
   a message when firstname is not given`, (done) => {
     chai.request(server)
@@ -147,7 +150,7 @@ describe('POST api/v1/users/signup', () => {
   });
 });
 
-describe('POST api/v1/users/login', () => {
+describe('POST api/v1/auth/login', () => {
   it(`should return status code 400 and 
   a message when email is not given`, (done) => {
     chai.request(server)
@@ -213,7 +216,7 @@ describe('POST api/v1/users/login', () => {
   });
 
   it(`should return status code 200 and 
-  a message when email is not given`, (done) => {
+  a message when credientials are valid`, (done) => {
     chai.request(server)
       .post('/api/v1/auth/login')
       .send(seeder.setUserLogInData(
@@ -221,9 +224,93 @@ describe('POST api/v1/users/login', () => {
         'chigodwin2',
       ))
       .end((err, res) => {
+        userToken = res.body.token;
+        userId = jwtDecode(userToken).userID;
         expect(res.statusCode).to.equal(200);
         expect(res.body.message)
           .to.deep.equal('Logged in successfully.');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/user', () => {
+  it(`should return status code 200 and 
+  a message for the validated user`, (done) => {
+    chai.request(server)
+      .get('/api/v1/user')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.message)
+          .to.deep.equal(`Get the user with ID ${userId}`);
+        done();
+      });
+  });
+
+  it(`should return status code 200 and 
+  a message for the validated user`, (done) => {
+    chai.request(server)
+      .put('/api/v1/user/update')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.message)
+          .to.deep.equal(`Profile Successfully Updated`);
+        done();
+      });
+  });
+  it(`should return status code 200 and 
+  a message for the validated user`, (done) => {
+    chai.request(server)
+      .put('/api/v1/user/update')
+      .set({
+        'x-access-token': userToken,
+      })
+      .send(seeder.setUpdateProfileData(
+        'I\'m a software developer',
+        '30',
+        '08039216673',
+      ))
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.message)
+          .to.deep.equal(`Profile Successfully Updated`);
+        done();
+      });
+  });
+  it(`should return status code 200 and 
+  a message for the validated user`, (done) => {
+    chai.request(server)
+      .put('/api/v1/user/reminder')
+      .set({
+        'x-access-token': userToken,
+      })
+      .send(seeder.setReminderData(
+        true,
+      ))
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.message)
+          .to.deep.equal(`Profile Successfully Updated`);
+        done();
+      });
+  });
+  it(`should return status code 200 and 
+  a message when user deletes their profile image`, (done) => {
+    chai.request(server)
+      .put('/api/v1/user/removeprofileimage')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.message)
+          .to.deep.equal(`Profile image removed successfully!`);
         done();
       });
   });

@@ -110,11 +110,6 @@ class UsersController {
   async getSingleUser(req, res) {
     try {
       const userId = req.userData.userID;
-      if (!Number(userId)) {
-        return res.status(400).json({
-          message: `${userId} is not a valid user ID.`,
-        });
-      }
 
       const query = await client.query(
         `SELECT
@@ -141,10 +136,6 @@ class UsersController {
           user,
         });
       }
-
-      return res.status(400).json({
-        message: `The user with the ID ${userId} is not found.`,
-      });
     } catch (error) {
       return res.status(500).json({
         message: `Error processing request.`,
@@ -346,14 +337,18 @@ class UsersController {
 
       const user = userQuery.rows;
 
-      await cloudinary.v2.uploader.destroy(user[0].profile_image_id,
-        (error, result) => {
-          console.log(result);
-        });
+      if (user.profile_image) {
+        await cloudinary.v2.uploader.destroy(user[0].profile_image_id,
+          (error, result) => {
+            console.log(result);
+          });
+      }
 
       await client.query(
-        `UPDATE users SET profile_image=null,
-        profile_image_id=null WHERE user_id=${userId};`,
+        `UPDATE users SET profile_image=NULL,
+        profile_image_id=NULL WHERE user_id=($1);`, [
+          userId,
+        ],
       );
 
       return res.status(200).json({
