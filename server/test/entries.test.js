@@ -372,3 +372,84 @@ describe('Test entry routes', () => {
       });
   });
 });
+
+describe('Test entry routes', () => {
+  it(`should return status code 200 and 
+  a success message`, (done) => {
+    chai.request(server)
+      .get('/api/v1/favorite')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(200);
+        expect(message).to.equal('There\'s no Favorite entry to display');
+        return done();
+      });
+  });
+  it('should add a new entry', (done) => {
+    chai.request(server)
+      .post('/api/v1/entries')
+      .set({
+        'x-access-token': userToken,
+      })
+      .send(seeder.setEntryData(
+        'Jenifa\'s Diary',
+        'What if its you with someone else\'s future wife?',
+        3,
+      ))
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(201);
+        expect(message).to.equal('ENTRY CREATED SUCCESSFULLY.');
+        return done();
+      });
+  });
+  it(`should return status code 200 and 
+  a success message`, (done) => {
+    chai.request(server)
+      .put('/api/v1/favorite/2')
+      .set({
+        'x-access-token': userToken,
+      })
+      .send(seeder.setFavoriteData(
+        true,
+      ))
+      .end((err, res) => {
+        console.log(res.body);
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        console.log(res.body.newFavStatus);
+        expect(res.statusCode).to.equal(200);
+        expect(message).to.equal('Favorite status Successfully Updated.');
+        return done();
+      });
+  });
+  it(`should return status code 200 and 
+  a success message`, (done) => {
+    chai.request(server)
+      .get('/api/v1/favorite')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        console.log(res.body);
+        expect(res.statusCode).to.equal(200);
+        expect(message).to.equal('List of all entries');
+        return done();
+      });
+  });
+});
