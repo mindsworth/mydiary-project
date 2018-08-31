@@ -104,24 +104,25 @@ myDiary Application API is readily availble [here](https://chigoziem-mydiary-boo
 
 The API contains different endpoint with their respective payload in the table below
 
-| Endpoints                   | Functions                                            | Payloads                                                  | Requets Method |
-| --------------------------- | ---------------------------------------------------- | --------------------------------------------------------- | -------------- |
-| /api/v1/auth/signup         | Create a new user                                    | Email, FisrtName, LastName, Password and Confirm Password | POST           |
-| /api/v1/auth/login          | Login a user                                         | Email, Password                                           | POST           |
-| /api/v1/user                | Get a user details                                   | No payload                                                | GET            |
-| /api/v1/user/reminder       | Modifies reminder status                             | favStatus                                                 | PUT            |
-| /api/v1/user/update         | Modifies users details                               | about, tel, age, profileImage                             | PUT            |
-| /api/v1/entries             | Get all entries for a user                           | No payload                                                | GET            |
-| /api/v1/entries             | Post a new diary entry                               | title, description, categoryId                            | POST           |
-| /api/v1/entries/:entryId    | Get entry by entryId                                 | No payload                                                | GET            |
-| /api/v1/entries/:entryId    | Modify a pending request                             | title, description                                        | PUT            |
-| /api/v1/entries/:entryId    | delete an entry for a user by entryId                | No payload                                                | DELETE         |
-| /api/v1/entries/:entryId    | delete an entry for a user by entryId                | No payload                                                | DELETE         |
-| /api/v1/favorite            | Get all favorite entries for a user by entryId       | No payload                                                | DELETE         |
-| /api/v1/favorite/:entryId   | Modify favorite entries status for a user by entryId | favStatus                                                 | PUT            |
-| /api/v1/categories          | Post a new category for a user                       | title, colorId                                            | POST           |
-| /api/v1/categories/:entryId | Get a single category for a user                     | No payload                                                | GET            |
-| /api/v1/categories/:entryId | delete a single category for a user                  | No payload                                                | DELETE         |
+| Endpoints                       | Functions                                            | Payloads                                                  | Requets Method |
+| ------------------------------- | ---------------------------------------------------- | --------------------------------------------------------- | -------------- |
+| /api/v1/auth/signup             | Create a new user                                    | Email, FisrtName, LastName, Password and Confirm Password | POST           |
+| /api/v1/auth/login              | Login a user                                         | Email, Password                                           | POST           |
+| /api/v1/user                    | Get a user details                                   | No payload                                                | GET            |
+| /api/v1/user/reminder           | Modifies reminder status                             | favStatus                                                 | PUT            |
+| /api/v1/user/update             | Modifies users details                               | about, tel, age, profileImage                             | PUT            |
+| /api/v1/user/removeprofileimage | Removes users Image                                  | No payload                                                | PUT            |
+| /api/v1/entries                 | Get all entries for a user                           | No payload                                                | GET            |
+| /api/v1/entries                 | Post a new diary entry                               | title, description, categoryId                            | POST           |
+| /api/v1/entries/:entryId        | Get entry by entryId                                 | No payload                                                | GET            |
+| /api/v1/entries/:entryId        | Modify a pending request                             | title, description                                        | PUT            |
+| /api/v1/entries/:entryId        | delete an entry for a user by entryId                | No payload                                                | DELETE         |
+| /api/v1/entries/:entryId        | delete an entry for a user by entryId                | No payload                                                | DELETE         |
+| /api/v1/favorite                | Get all favorite entries for a user by entryId       | No payload                                                | DELETE         |
+| /api/v1/favorite/:entryId       | Modify favorite entries status for a user by entryId | favStatus                                                 | PUT            |
+| /api/v1/categories              | Post a new category for a user                       | title, colorId                                            | POST           |
+| /api/v1/categories/:categoryid  | Get a single category for a user                     | No payload                                                | GET            |
+| /api/v1/categories/:categoryid  | delete a single category for a user                  | No payload                                                | DELETE         |
 
 ## Contribution
 
@@ -132,19 +133,19 @@ The API contains different endpoint with their respective payload in the table b
 
 ## FAQ
 
-* What language is used to build this application ?
-  - The application back-end is entirely built with javascript
-  - The front-end is created using HTML, CSS, and JavaScript
-* Is this an open-source project ?
-  - Yes, Is an open-source project.
-* Who can contribute ?
-  - Anyone can contribute as long as you would follow the contribution guides outlined above
-* Is the application hosted online ?
-  - Yes, the application is hosted on heroku platform. You can always visit it via this link [https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1](https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1)
-* Does the application have an API ?
-  - Yes, The application has a well documented API that can be viewed via a link in the API documentation section above
-* Is the application licensed ?
-  - Yes, the application and its contents is under MIT license
+-   What language is used to build this application ?
+    -   The application back-end is entirely built with javascript
+    -   The front-end is created using HTML, CSS, and JavaScript
+-   Is this an open-source project ?
+    -   Yes, Is an open-source project.
+-   Who can contribute ?
+    -   Anyone can contribute as long as you would follow the contribution guides outlined above
+-   Is the application hosted online ?
+    -   Yes, the application is hosted on heroku platform. You can always visit it via this link [https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1](https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api/v1)
+-   Does the application have an API ?
+    -   Yes, The application has a well documented API that can be viewed via a link in the API documentation section above
+-   Is the application licensed ?
+    -   Yes, the application and its contents is under MIT license
 
 ## User template is available
 
