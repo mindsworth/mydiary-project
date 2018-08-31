@@ -1,4 +1,5 @@
 import entryRoutes from './entries';
+import favoriteRoutes from './favorite';
 import userRoutes from './users';
 import reminderRoutes from './reminder';
 import categoryRoutes from './categories';
@@ -22,6 +23,9 @@ const routes = (router) => {
 
   /* Entries Routes */
   entryRoutes(router);
+
+  /* Favorite Routes */
+  favoriteRoutes(router);
 
   /* Category Routes */
   tableRoutes(router);

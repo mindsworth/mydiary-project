@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/mindsworth/mydiary-project/badge.svg?branch=develop)](https://coveralls.io/github/mindsworth/mydiary-project?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/90c870c1c7cf69289cfe/maintainability)](https://codeclimate.com/github/mindsworth/mydiary-project/maintainability)
 
-# mydiary-project
+# myDiary-Project
 
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
@@ -32,7 +32,7 @@ The development process can be seen as a two part process, the Back-end (server 
 -   [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3) for styling frontend
 -   [FETCH API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for making Ajax call from the client to the API
 
-## myDiary Documentation is available on
+## myDiary Documentation is available
 
 -   [Documentation](https://chigoziem-mydiary-bootcamp-app.herokuapp.com/api-docs)
 
@@ -100,7 +100,7 @@ myDiary Application API is readily availble [here](https://chigoziem-mydiary-boo
 -   Create a test database of your choice by following the example in .env.sample file
 -   Run server-side test with `yarn test`
 
-# TESTING WITH POSTMAN
+## Testing with POSTMAN
 
 The API contains different endpoint with their respective payload in the table below
 

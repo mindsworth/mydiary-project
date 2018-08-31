@@ -206,6 +206,63 @@ describe('Test categories routes', () => {
       });
   });
 
+  it('should get a specific category', (done) => {
+    chai.request(server)
+      .get('/api/v1/categories/love')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(400);
+        expect(message)
+          .to
+          .equal('love is not a valid user ID.');
+        return done();
+      });
+  });
+
+  it('should get a specific category', (done) => {
+    chai.request(server)
+      .get('/api/v1/categories/2')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(400);
+        expect(message)
+          .to
+          .equal('The category with the ID 2 is not found.');
+        return done();
+      });
+  });
+
+  it('should get a specific category', (done) => {
+    chai.request(server)
+      .get('/api/v1/categories/1')
+      .set({
+        'x-access-token': userToken,
+      })
+      .end((err, res) => {
+        const {
+          message,
+        } = res.body;
+        if (err) return done(err);
+        expect(res.statusCode).to.equal(200);
+        expect(message)
+          .to
+          .equal('Get the category with ID 1');
+        return done();
+      });
+  });
+
   it('should delete a specific category', (done) => {
     chai.request(server)
       .delete('/api/v1/categories/1')
