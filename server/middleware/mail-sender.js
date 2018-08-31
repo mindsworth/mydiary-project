@@ -9,41 +9,10 @@ import client from '../models/database/dbconnect';
 
 dotenv.config();
 
-const fetchUsers = async () => {
-  try {
-    const query = await client.query(
-      `SELECT
-        user_id,
-        first_name,
-        email  FROM users WHERE reminder=($1);`, [
-        true,
-      ],
-    );
-    const users = query.rows;
-    let emailList = [];
-    if (users.length === 0) {
-      return console.log("No email to send mail to.");
-    }
-    users.forEach((user) => {
-      const {
-        email,
-        first_name, // eslint-disable-line camelcase
-      } = user;
-      emailList = [...emailList, email];
-
-
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.GMAIL_CLIENT_USER,
-          pass: process.env.GMAIL_CLIENT_PASS,
-        },
-      });
-      transporter.use('compile', inLineCss());
-
-      let url = 'https://res.cloudinary.com/daymoly7f/image/upload/';
-      url += 'v1534766326/mydiary-app/mydiary_logo.png';
-      const bodyMail = `<style type="text/css">
+const bindBody = (firstName) => {
+  let url = 'https://res.cloudinary.com/daymoly7f/image/upload/';
+  url += 'v1534766326/mydiary-app/mydiary_logo.png';
+  const bodyMail = `<style type="text/css">
       .container-fluid {
         width: 100%;
       }
@@ -78,7 +47,7 @@ const fetchUsers = async () => {
       <div class="container-fluid">
         <div class="container">
           <img class="logo" src="${url}" alt="myDiary logo">
-          <h1>Hi, ${first_name// eslint-disable-line camelcase
+          <h1>Hi, ${firstName// eslint-disable-line camelcase
 }</h1>
           <div class="content">
             <p>Thanks for joining and staying with us.Here we choose to give 
@@ -94,22 +63,61 @@ const fetchUsers = async () => {
         </div>
       </div>`;
 
-      const mailOptions = {
-        from: `"myDiary™ 👻" <${process.env.GMAIL_CLIENT_USER}>`,
-        to: email,
-        subject: `Weekly Reminder 📣📢🔔🔊`,
-        html: bodyMail,
-      };
-      transporter.sendMail(mailOptions, (error) => {
-        if (error) {
-          console.log(error);
-          throw error;
-        } else {
-          console.log("Email successfully sent!");
-        }
-      });
+  return bodyMail;
+};
+
+const clientMail = (users) => {
+  let emailList = [];
+  users.forEach((user) => {
+    const {
+      email,
+      first_name, // eslint-disable-line camelcase
+    } = user;
+    emailList = [...emailList, email];
+
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_CLIENT_USER,
+        pass: process.env.GMAIL_CLIENT_PASS,
+      },
     });
-    console.log(emailList);
+    transporter.use('compile', inLineCss());
+
+    const mailOptions = {
+      from: `"myDiary™ 👻" <${process.env.GMAIL_CLIENT_USER}>`,
+      to: email,
+      subject: `Weekly Reminder 📣📢🔔🔊`,
+      html: bindBody(first_name),
+    };
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        console.log(error);
+        throw error;
+      } else {
+        console.log("Email successfully sent!");
+      }
+    });
+  });
+};
+
+
+const fetchUsers = async () => {
+  try {
+    const query = await client.query(
+      `SELECT
+        user_id,
+        first_name,
+        email  FROM users WHERE reminder=($1);`, [
+        true,
+      ],
+    );
+    const users = query.rows;
+    if (users.length === 0) {
+      return console.log("No email to send mail to.");
+    }
+    clientMail(users);
   } catch (err) {
     console.log(err.toString());
   }

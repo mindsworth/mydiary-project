@@ -33,16 +33,6 @@ const entryRoutes = (router) => {
       entryValidation(schemas.entrySchema),
       EntriesController.addEntry,
     );
-  router.route('/favorite')
-    .get(
-      Auth.verifyToken,
-      EntriesController.getAllFavoriteEntries,
-    );
-  router.route('/favorite/:entryId')
-    .put(
-      Auth.verifyToken,
-      EntriesController.toggleFavoriate,
-    );
 };
 
 export default entryRoutes;
