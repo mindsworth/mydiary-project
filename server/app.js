@@ -5,7 +5,7 @@ import cors from 'cors'
 import swaggerUi from 'swagger-ui-express'
 import routes from './routes/index'
 import swaggerDoc from '../swagger.json'
-import cronMail from './middleware/mail-sender'
+// import cronMail from './middleware/mail-sender'
 
 const app = express()
 const router = express.Router()
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-cronMail.start()
+// cronMail.start()
 routes(router)
 app.use('/api/v1/', router)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))

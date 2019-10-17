@@ -1,25 +1,28 @@
-import dotenv from 'dotenv'
+require('dotenv').config()
 
-dotenv.config()
-
-const config = {
-	production: {
-		connectionString: process.env.DATABASE_URL
-	},
+module.exports = {
 	development: {
-		user: process.env.PG_USER,
-		host: process.env.PG_HOST,
-		database: process.env.PG_DATABASE,
+		username: process.env.PG_USER,
 		password: process.env.PG_PASSWORD,
-		port: 5432
+		database: process.env.PG_DATABASE,
+		host: process.env.PG_HOST,
+		dialect: 'postgres',
+		port: process.env.DB_PORT
 	},
 	test: {
-		user: process.env.PG_USER,
-		host: process.env.PG_HOST,
-		database: process.env.TEST_PG_DATABASE,
+		username: process.env.PG_USER,
 		password: process.env.PG_PASSWORD,
-		port: 5432
+		database: process.env.TEST_PG_DATABASE,
+		host: process.env.PG_HOST,
+		dialect: 'postgres',
+		port: process.env.DB_PORT
+	},
+	production: {
+		username: process.env.PG_USER,
+		password: process.env.PG_PASSWORD,
+		database: process.env.PG_DATABASE,
+		host: process.env.PG_HOST,
+		dialect: 'postgres',
+		port: process.env.DB_PORT
 	}
 }
-
-export default config[process.env.NODE_ENV]

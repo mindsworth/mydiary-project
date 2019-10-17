@@ -1,6 +1,5 @@
 import http from 'http'
 import app from './app'
-import Sequelize from './database/models'
 
 const port = process.env.PORT || 5000
 

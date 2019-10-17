@@ -1,20 +1,10 @@
-import AuthController from '../controllers/auth';
-import {
-  signupValidation,
-  schemas,
-} from '../helpers/validator';
+import AuthController from '../controllers/AuthController'
+import { signupValidation, schemas } from '../helpers/validator'
 
-const authRoutes = (router) => {
-  router.route('/auth/signup')
-    .post(
-      signupValidation(schemas.signupSchema),
-      AuthController.userSignup,
-    );
-  router.route('/auth/login')
-    .post(
-      signupValidation(schemas.loginSchema),
-      AuthController.userLogin,
-    );
-};
+const authRoutes = router => {
+	router
+		.route('/auth/signup')
+		.post(signupValidation(schemas.signupSchema), AuthController.createUser)
+}
 
-export default authRoutes;
+export default authRoutes
